@@ -7,7 +7,7 @@ import { BaseModel } from '@common/infrastructure/BaseModel';
 @Entity('movie')
 export class MovieModel extends BaseModel<MovieModel> {
 
-    @PrimaryColumn('movie_id')
+    @PrimaryColumn({ name: 'movie_id' })
     public id: string;
 
     @Column()
