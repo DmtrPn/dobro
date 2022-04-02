@@ -1,11 +1,18 @@
 import * as React from 'react';
 
-import * as style from './Home.scss';
+import style from './Home.scss';
+import { RefObject } from 'react';
 
-export function HomePage(): JSX.Element {
+interface Props {
+    rootRef: RefObject<HTMLDivElement>;
+}
+
+export function HomePage({
+    rootRef,
+}: Props): JSX.Element {
     return (
         <div className={style.root}>
-            Simple React + Mobx boilerplate
+            <div  ref={rootRef} className={style.stars} />
         </div>
     );
 }

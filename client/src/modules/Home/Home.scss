@@ -1,5 +1,35 @@
 .root {
+    height: 100%;
     padding: 50px;
 
+    background: radial-gradient(ellipse at center, #28162f 33%, rgb(2, 81, 120) 100%);
+
     font-size: 16px;
+}
+
+.stars {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+
+    width: 3px;
+    height: 3px;
+    margin: 0 auto;
+
+    transform: translateY(-50%);
+    transform-origin: 0 0;
+    animation: rotate 270s infinite linear;
+
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
 }
