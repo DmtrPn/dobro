@@ -17,6 +17,10 @@ const locations: { url: string, label: string }[] = [
         url: '/dream',
         label: 'Мечты',
     },
+    {
+        url: '/movie',
+        label: 'Movies',
+    },
 ];
 
 export const Navigation = (): JSX.Element => {
@@ -32,7 +36,7 @@ export const Navigation = (): JSX.Element => {
                     }
                     to={pageLocation.url}
                 >
-                    Link to {pageLocation.label}
+                    {pageLocation.label}
                 </NavLink>,
             )}
         </div>

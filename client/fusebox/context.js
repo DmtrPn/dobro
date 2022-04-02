@@ -1,5 +1,16 @@
 const { context } = require('fuse-box/sparky');
-const { FuseBox, WebIndexPlugin, SassPlugin, QuantumPlugin, CSSModulesPlugin, CSSPlugin } = require('fuse-box');
+const {
+    FuseBox,
+    WebIndexPlugin,
+    SassPlugin,
+    QuantumPlugin,
+    CSSModulesPlugin,
+    CSSPlugin,
+    CSSResourcePlugin,
+    PostCSSPlugin,
+} = require('fuse-box');
+
+const getLocalIdent = require('./getLocalIdent');
 
 context(
     class  {
@@ -41,9 +52,25 @@ context(
                     [
                         SassPlugin(),
                         CSSModulesPlugin({
+                            scopedName: getLocalIdent,
                             useDefault: false
                         }),
-                        CSSPlugin()
+                        CSSResourcePlugin({ inline: true }),
+                        PostCSSPlugin([
+                            require('autoprefixer')
+                        ]),
+                        CSSPlugin({
+                            minify: this.isProduction
+                        }),
+                    ],
+                    [
+                        CSSResourcePlugin({ inline: true }),
+                        PostCSSPlugin([
+                            require('autoprefixer')
+                        ]),
+                        CSSPlugin({
+                            minify: this.isProduction
+                        }),
                     ],
                     this.isProduction && QuantumPlugin({
                         bakeApiIntoBundle: true,
