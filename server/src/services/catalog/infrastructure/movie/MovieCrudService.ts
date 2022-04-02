@@ -1,5 +1,5 @@
 import { TransactionManager } from '@common/infrastructure/TransactionManager';
-import { Attributes } from '@core/common/types';
+import { Attributes } from 'dobro-types/common';
 
 import { MovieModel } from './MovieModel';
 

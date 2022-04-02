@@ -1,0 +1,10 @@
+{
+  "name": "dobro",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "backend/*",
+    "client/*",
+    "types"
+  ]
+}
