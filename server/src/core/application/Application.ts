@@ -14,6 +14,7 @@ import { Config, ConfigName, ServerConfig } from '@core/config';
 
 import { Launcher, ClusterLauncher } from './launcher';
 import { AppModule } from '../../AppModule';
+import { DbConnector } from '@core/db-connector';
 
 const PUBLIC_PATH = path.join(__dirname, '../../../../public');
 const INDEX_HTML_PATH = path.join(PUBLIC_PATH, 'index.html');
@@ -25,6 +26,7 @@ class Application {
 
     private app: NestExpressApplication;
     private serverConfig: ServerConfig;
+    private dbConnector = DbConnector.getInstance();
 
     constructor() {
         this.serverConfig = <ServerConfig>Config.getConfig(ConfigName.Server);
@@ -33,6 +35,8 @@ class Application {
     public async init(): Promise<void> {
         const key = withHttps && !!process.env.SSL_KEY && fs.readFileSync(process.env.SSL_KEY); // path to *.key witch generate on Step 2 (README).
         const cert = withHttps && !!process.env.SSL_CRT && fs.readFileSync(process.env.SSL_CRT); // path to *.crt witch generate on Step 2 (README).
+
+        await this.dbConnector.initialize();
 
         this.app = await NestFactory.create(AppModule, {
             logger: ['error', 'warn', 'debug'],

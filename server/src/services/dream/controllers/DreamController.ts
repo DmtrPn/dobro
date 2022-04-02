@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { DreamService } from '@modules/dream/services';
+import { DreamService } from '../../dream/services';
 
 @Controller('dream')
 export class DreamController {

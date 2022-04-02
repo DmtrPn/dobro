@@ -1,3 +1,4 @@
+const path = require('path');
 const {
     FRONT_SERVER_HOST,
     FRONT_SERVER_PORT,
@@ -7,7 +8,14 @@ const {
     REDIS_PASSWORD,
     BACKEND_HOST,
     BACKEND_PORT,
+    DB_HOST,
+    DB_PORT,
+    DB_NAME,
+    DB_USERNAME,
+    DB_PASSWORD,
 } = process.env;
+
+const { servicesDir } = require('./dirs.js');
 
 module.exports = {
     server: {
@@ -24,7 +32,26 @@ module.exports = {
         port: Number(REDIS_PORT || 6379),
         username: REDIS_USER_NAME,
         password: REDIS_PASSWORD,
-        keyPrefix: 'local',
+        keyPrefix: 'dobro',
+    },
+    db: {
+        type: 'postgres',
+        host: DB_HOST || '127.0.0.1',
+        port: DB_PORT || 5432,
+        logging: true,
+        synchronize: true,
+        database: DB_NAME || 'dobro',
+        username: DB_USERNAME || 'gorod',
+        password: DB_PASSWORD || '123qwe',
+        // synchronize: false,
+        migrations: [
+            path.resolve(servicesDir, './**/infrastructure/migrations/*.js'),
+        ],
+        entities: [
+            // path.resolve(servicesDir, './**/infrastructure/**/*Model.js'),
+        ],
+        // maxQueryExecutionTime: Number(150),
+        // extra: { max: Number(200) },
     },
     log: {
         main: {

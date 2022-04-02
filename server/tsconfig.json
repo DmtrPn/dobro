@@ -22,7 +22,8 @@
     "paths": {
       "@core/*": ["core/*"],
       "@components/*": ["components/*"],
-      "@modules/*": ["modules/*"]
+      "@services/*": ["services/*"],
+      "@common/*": ["services/common/*"]
     },
     "typeRoots": [
       "node_modules/@types",

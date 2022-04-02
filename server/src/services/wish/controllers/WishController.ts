@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { WishService } from '@modules/wish/services';
+import { WishService } from '../../wish/services';
 
 @Controller('wish')
 export class WishController {

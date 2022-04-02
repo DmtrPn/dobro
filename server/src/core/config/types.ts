@@ -1,14 +1,12 @@
 import { RedisOptions } from 'ioredis';
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 export enum ConfigName {
     Server = 'server',
     Services = 'services',
     Log = 'log',
     Redis = 'redis',
-    Google = 'google',
-    Configuration = 'configuration',
-    Sip = 'sip',
-    Openid = 'openid',
+    Db = 'db',
 }
 
 export interface ServerConfig {
@@ -31,38 +29,16 @@ export interface RedisConfig extends RedisOptions {
     port: number;
 }
 
-export interface GoogleConfig {
-    clientID: string;
-    clientSecret: string;
-    callbackURL: string;
-}
-
-export interface ConfigurationConfig {
-    loggedInTimeout: number;
-}
-
-export interface SipConfig {
-    sipuri: string;
+export interface DbConfig extends PostgresConnectionOptions {
+    type: 'postgres';
+    host: string;
+    database: string;
+    username: string;
     password: string;
-    websocket: string;
-}
-
-export interface OpenidConfig {
-    issuerBaseUrl: string;
-    issuerLogoutUrl: string;
-    clientId: string;
-    clientSecret: string;
-    scope: string;
-    loginRedirectUri: string;
-    logoutRedirectUri: string;
-    responseType: string;
 }
 
 export type ConfigType =
     ServerConfig
     | ServicesConfig
     | RedisConfig
-    | ConfigurationConfig
-    | GoogleConfig
-    | SipConfig
-    | OpenidConfig;
+    | DbConfig;

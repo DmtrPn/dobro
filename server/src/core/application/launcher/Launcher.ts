@@ -23,7 +23,7 @@ class Launcher {
     protected startServer(): void {
         const host = this.config.host;
         let port: number;
-        port = argv.port || this.config.port;
+        port = this.config.port || argv.port;
         this.app.listen(port, host, () => {
             LoggerFactory.getLogger().info(`Server started at http://${host}:${port}`);
         });
