@@ -357,6 +357,11 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+autobind@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/autobind/-/autobind-1.0.3.tgz#c0d82ed2f6f12fb1331da388b89ad51a3bf968fa"
+  integrity sha1-wNgu0vbxL7EzHaOIuJrVGjv5aPo=
+
 autoprefixer@9.6.0:
   version "9.6.0"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.6.0.tgz#0111c6bde2ad20c6f17995a33fad7cf6854b4c87"

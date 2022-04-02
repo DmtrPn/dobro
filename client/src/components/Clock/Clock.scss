@@ -1,0 +1,143 @@
+.root {
+    position: relative;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+    background-color: #ffffff;
+}
+
+.clock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+    background: url(https://user-images.githubusercontent.com/42720361/80282419-a293a400-8711-11ea-81c7-1c44e2980db2.png);
+    background-size: cover;
+    box-shadow: 0 -15px 15px rgba(255,255,255,0.05),
+    inset 0 -15px 15px rgba(255,255,255,0.05),
+    0 15px 15px rgba(0,0,0,0.3),
+    inset 0 15px 15px rgba(0,0,0,0.3);
+}
+
+.sun {
+    position: absolute;
+    //z-index: 25px;
+    top: 50%;
+    left: 50%;
+
+    display: block;
+
+    width: 9%;
+    height: 4px;
+
+    content: '';
+    transform-origin: left;
+    animation: clock_animate 7s linear infinite;
+
+    background: transparent;
+}
+
+.sun:after {
+    position: absolute;
+    top: 36px;
+    right: 36px;
+
+    width: 25px;
+    height: 25px;
+
+    content: '';
+
+    border-radius: 50%;
+    background: #f8ff00;
+    box-shadow: 0 0 20px red;
+}
+
+.clock:before {
+    position: absolute;
+    z-index: 10000;
+
+    width: 15px;
+    height: 15px;
+
+    content: '';
+
+    border-radius: 50%;
+    background: #ff0000;
+}
+.clock .hour,
+.clock .min,
+.clock .sec {
+    position: absolute;
+}
+.clock .hour, .hr {
+    width: 160px;
+    height: 160px;
+}
+.clock .min, .mn {
+    width: 210px;
+    height: 210px;
+}
+.clock .sec, .sc {
+    width: 230px;
+    height: 230px;
+}
+.hr, .mn, .sc {
+    /*align-items: center;*/
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+
+    border-radius: 50%;
+}
+.hr:before {
+    position: absolute;
+    z-index: 10;
+
+    width: 7px;
+    height: 40px;
+
+    content: '';
+
+    border-top: 75px solid #000000;
+    border-radius: 50%;
+}
+.mn:before {
+    position: absolute;
+    z-index: 11;
+
+    width: 4px;
+    height: 20px;
+
+    content: '';
+
+    border-top: 99px solid #000000;
+    border-radius: 50%;
+}
+.sc:before {
+    position: absolute;
+    z-index: 12;
+
+    width: 2px;
+    height: 150px;
+
+    content: '';
+
+    border-radius: 6px 6px 0 0;
+    background: #ff0000;
+}
+
+@keyframes clock_animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
