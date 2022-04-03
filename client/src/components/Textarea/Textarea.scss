@@ -1,0 +1,54 @@
+@import '../mixins/mixin';
+//@import '../mixins/commonStyles';
+
+.root {
+    position: relative;
+
+    width: 100%;
+
+
+    &:hover {
+        .textarea {
+            border-color: $Grey;
+        }
+    }
+
+    &.active {
+        .textarea {
+            border-color: $Grey;
+        }
+    }
+}
+
+.textarea {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    overflow: hidden;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: 6px 8px;
+
+    resize: none;
+    transition: background-color 0.15s ease-in;
+    text-decoration: none;
+    word-break: break-word;
+
+    color: $FontColor;
+    border: 1px solid $GreyBorder;
+    border-radius: 12px;
+    outline: 0;
+
+    font-size: 14px;
+    line-height: 20px;
+
+    &::placeholder {
+        color: $Grey;
+    }
+}
+
+.title {
+    margin-bottom: 8px;
+}

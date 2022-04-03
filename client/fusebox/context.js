@@ -41,6 +41,7 @@ context(
                     '@dream/*': '~/modules/dream/',
                     '@common/*': '~/modules/common/',
                     '@components/*': '~/components/',
+                    '@hoc/*': '~/components/HOC/',
                     '@utils/*': '~/utils/',
                     '@core/*': '~/core/',
                     '@facades/*': '~/facades/',

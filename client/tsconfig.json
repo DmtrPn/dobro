@@ -41,6 +41,7 @@
       "@modules/*": ["modules/*"],
       "@dream/*": ["modules/dream/*"],
       "@components/*": ["components/*"],
+      "@hoc/*": ["components/HOC/*"],
       "@common/*": ["modules/common/*"],
       "@utils/*": ["utils/*"]
     }

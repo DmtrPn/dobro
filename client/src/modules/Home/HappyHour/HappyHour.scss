@@ -1,0 +1,39 @@
+.root {
+    position: relative;
+
+    text-align: center;
+
+    color: #e8b9ff;
+
+    font-size: 60px;
+}
+
+.happyClock {
+    display: inline-flex;
+
+    margin: 0 auto;
+
+    list-style: none;
+
+    padding-inline: 0;
+}
+.time {
+    display: inline;
+}
+.separator {
+    display: inline;
+
+    animation: separator_fade 1s ease infinite;
+}
+
+@keyframes separator_fade {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
