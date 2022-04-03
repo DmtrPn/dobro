@@ -9,6 +9,10 @@ export class MovieCrudService extends TransactionManager {
         return this.manager.find<MovieModel>(MovieModel)
     }
 
+    public async getById(id: string): Promise<MovieModel> {
+        return this.manager.findOneBy<MovieModel>(MovieModel, { id })
+    }
+
     public async create(params: Attributes<MovieModel>): Promise<void> {
         await this.manager.transaction(entityManager =>
             entityManager

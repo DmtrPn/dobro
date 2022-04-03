@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryColumn } from 'typeorm';
 
-import { MovieStatus } from '@core/common/enums';
+import { MovieStatus } from 'dobro-types/enums';
 import { BaseModel } from '@common/infrastructure/BaseModel';
 
 

@@ -1,5 +1,6 @@
 module.exports = {
     db: {
-        logging: false,
+        database: 'dobro_test',
+        logging: true,
     }
 }
