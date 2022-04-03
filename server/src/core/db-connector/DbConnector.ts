@@ -28,7 +28,6 @@ export class DbConnector {
     }
 
     public getRepository<Entity>(entity: EntityTarget<Entity>): Repository<Entity> {
-        this.dataSource.migrations
         return this.dataSource.getRepository<Entity>(entity);
     }
 

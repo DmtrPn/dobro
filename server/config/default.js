@@ -39,19 +39,18 @@ module.exports = {
         host: DB_HOST || '127.0.0.1',
         port: DB_PORT || 5432,
         logging: true,
-        synchronize: true,
         database: DB_NAME || 'dobro',
         username: DB_USERNAME || 'gorod',
         password: DB_PASSWORD || '123qwe',
-        // synchronize: false,
+        migrationsRun: false,
         migrations: [
             path.resolve(servicesDir, './**/infrastructure/migrations/*.js'),
         ],
         entities: [
-            // path.resolve(servicesDir, './**/infrastructure/**/*Model.js'),
+            path.resolve(servicesDir, './**/infrastructure/**/*Model.js'),
         ],
-        // maxQueryExecutionTime: Number(150),
-        // extra: { max: Number(200) },
+        maxQueryExecutionTime: Number(150),
+        extra: { max: Number(200) },
     },
     log: {
         main: {

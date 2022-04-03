@@ -19,7 +19,7 @@ export class MovieModel extends BaseModel<MovieModel> {
     @Column()
     public description?: string;
 
-    @Column()
+    @Column({ name: 'author_id' })
     public authorId: string;
 
     @Column()
