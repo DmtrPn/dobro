@@ -1,5 +1,4 @@
 @import '../mixins/mixin';
-//@import '../mixins/commonStyles';
 
 .root {
     position: relative;
@@ -17,6 +16,12 @@
         .textarea {
             border-color: $Grey;
         }
+    }
+}
+
+.disabled {
+    .textarea {
+        border-color: $Grey;
     }
 }
 
