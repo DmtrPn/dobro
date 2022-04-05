@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classnames from 'classnames';
+import { Helmet } from 'react-helmet';
 
 import style from './Home.scss';
 import commonStyles from '@components/mixins/commonStyles.scss';
@@ -26,6 +27,9 @@ export function HomePage({
 }: Props): JSX.Element {
     return (
         <div className={style.root}>
+            <Helmet>
+                <title>Внешнее проявляет то, что у тебя есть внутри</title>
+            </Helmet>
             <div className={style.content}>
                 <div className={commonStyles.field}>
                     <HappyHour />
