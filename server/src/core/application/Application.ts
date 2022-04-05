@@ -20,7 +20,7 @@ const PUBLIC_PATH = path.join(__dirname, '../../../../public');
 const INDEX_HTML_PATH = path.join(PUBLIC_PATH, 'index.html');
 const API_BASIC_URL = '/api';
 
-const withHttps = process.env.CURRENT_ENV === 'development';
+const withHttps = process.env.DOBRO_ENV === 'development';
 
 class Application {
 

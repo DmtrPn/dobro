@@ -54,6 +54,6 @@ Response data: ${JSON.stringify(error.response.data)}`);
     }
 });
 
-if (!process.env.CURRENT_ENV) {
-    process.env.CURRENT_ENV = 'dev';
+if (!process.env.DOBRO_ENV) {
+    process.env.DOBRO_ENV = 'dev';
 }

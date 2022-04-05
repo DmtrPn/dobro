@@ -5,7 +5,7 @@ import './reset.scss';
 
 import { Router } from '@core/Router';
 
-import { Header } from './Header';
+// import { Header } from './Header';
 
 export interface PageProps {
     children?: React.ReactNode;
@@ -14,7 +14,7 @@ export interface PageProps {
 export function Page(): JSX.Element {
     return (
     <div className={style.root}>
-        <Header />
+        {/*<Header />*/}
         <div className={style.content}>
             <Router />
         </div>
