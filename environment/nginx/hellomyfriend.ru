@@ -6,16 +6,16 @@ upstream dobro_server {
 server {
     listen 80;
 
-    server_name hellomylove.ru;
+    server_name hellomyfriend.ru;
 
     return 301 https://$host$request_uri;
 }
 
 server {
     listen                      443 ssl;
-    server_name                 hellomylove.ru;
+    server_name                 hellomyfriend.ru;
 
-    access_log                  /var/log/nginx/hellomylove.access.log combined;
+    access_log                  /var/log/nginx/hellomyfriend.access.log combined;
     error_log                   /var/log/nginx/v.error.log warn;
 
     charset                     utf-8;
@@ -24,6 +24,9 @@ server {
 
     gzip            on;
     gzip_types      text/plain text/css application/json application/x-javascript application/xml+rss text/javascript application/javascript;
+
+    ssl_certificate /etc/letsencrypt/live/hellomyfriend.ru/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/hellomyfriend.ru/privkey.pem; # managed by Certbot
 
     location /api/ {
         proxy_set_header        X-Real-IP $remote_addr;

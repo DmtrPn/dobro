@@ -5,8 +5,8 @@ if [ -f /opt/environment.sh ]; then
     source /opt/environment.sh
 fi
 
-TARGET_FILE="/etc/nginx/sites-enabled/hellomylove.ru"
-SOURCE_FILE="/opt/dobro/environment/nginx/hellomylove.ru"
+TARGET_FILE="/etc/nginx/sites-enabled/hellomyfriend.ru"
+SOURCE_FILE="/opt/dobro/environment/nginx/hellomyfriend.ru"
 
 echo "[NGINX POSTINSTALL HOOK]: Making new Nginx config link..."
 if [ -f $TARGET_FILE ]; then
