@@ -6,11 +6,13 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 const expressSession = require('express-session');
+import passport from 'passport';
 
 import { DefaultFilter } from '@components/exeptions-filters';
 import { sessionConfig } from '@components/middlewares/Session';
 import { LoggingInterceptor, LoggerFactory } from '@components/logging';
 import { Config, ConfigName, ServerConfig } from '@core/config';
+import { LocalAuthGuard } from '@components/auth/local';
 
 import { Launcher, ClusterLauncher } from './launcher';
 import { AppModule } from '../../AppModule';
@@ -47,6 +49,7 @@ class Application {
 
         this.app.setGlobalPrefix('api');
 
+        this.app.useGlobalGuards(new LocalAuthGuard());
         this.app.useGlobalFilters(new DefaultFilter({ logger: LoggerFactory.getLogger() }));
 
         this.app.use(hemlet());
@@ -55,6 +58,9 @@ class Application {
 
         this.app.use(express.static(PUBLIC_PATH));
         this.app.use(expressSession(sessionConfig));
+
+        this.app.use(passport.initialize());
+        this.app.use(passport.session());
 
         this.app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
             if (!req.url.startsWith(API_BASIC_URL)) {

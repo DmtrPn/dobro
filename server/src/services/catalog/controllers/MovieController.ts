@@ -1,5 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 
+// import { Public } from '@components/decorators/Pubic';
+
 import { MovieCrudService } from '@services/catalog/infrastructure/movie/MovieCrudService';
 import { MovieModel } from '@services/catalog/infrastructure/movie/MovieModel';
 

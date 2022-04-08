@@ -1,0 +1,33 @@
+##!/usr/bin/env bash
+##!/bin/bash
+#
+#echo "Install node modules"
+#yarn install --pure-lockfile
+#
+#echo "[BUILD] start"
+#yarn build
+#echo "[BUILD] finish"
+#
+#echo ""
+#
+#echo "[COPY] start"
+#
+#echo "make copy of old package"
+#cp -rf /opt/dobro/client /opt/dobro/old
+#echo "finish make copy of old package"
+#
+#echo "remove old package"
+#rm -r /opt/dobro/client/*
+#echo "finish remove package"
+#
+#cd ../
+#
+#cp -rf ./client /opt/dobro
+#
+#echo "[COPY] finish"
+#
+#echo ""
+#
+#cd /opt/dobro/client || exit
+#
+#yarn --pure-lockfile --production
