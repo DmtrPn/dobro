@@ -1,4 +1,5 @@
 import { DbConnector } from '@core/db-connector';
+import '@core/di/testContainers';
 
 const dbConnector = DbConnector.getInstance();
 

@@ -17,7 +17,7 @@ describe('MovieController', () => {
     describe('findAll', () => {
         test('should return an array of movies', async () => {
             const result = [];
-            const movies = await movieController.find();
+            const { movies } = await movieController.find();
 
             expect(movies.length).toEqual(result.length);
         });

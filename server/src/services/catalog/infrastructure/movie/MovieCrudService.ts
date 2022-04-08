@@ -2,8 +2,9 @@ import { TransactionManager } from '@common/infrastructure/TransactionManager';
 import { Attributes } from 'dobro-types/common';
 
 import { MovieModel } from './MovieModel';
+import { IMovieCrudService } from '@services/catalog/domain/movie/IMovieCrudService';
 
-export class MovieCrudService extends TransactionManager {
+export class MovieCrudService extends TransactionManager implements IMovieCrudService {
 
     public async find(): Promise<MovieModel[]> {
         return this.manager.find<MovieModel>(MovieModel)

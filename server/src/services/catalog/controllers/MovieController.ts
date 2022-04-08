@@ -1,18 +1,25 @@
 import { Controller, Get } from '@nestjs/common';
+import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import { Inject } from 'typescript-ioc';
 
-// import { Public } from '@components/decorators/Pubic';
+import { Public } from '@components/decorators/Pubic';
 
-import { MovieCrudService } from '@services/catalog/infrastructure/movie/MovieCrudService';
-import { MovieModel } from '@services/catalog/infrastructure/movie/MovieModel';
+import { MovieListResponse } from './responces';
+import { IMovieCrudService } from '@services/catalog/domain/movie/IMovieCrudService';
 
+@ApiTags('Фильмы')
 @Controller('catalog/movie')
 export class MovieController {
 
-    private movieCrudService = new MovieCrudService();
+    @Inject
+    private movieCrudService: IMovieCrudService;
 
+    @Public()
+    @ApiOkResponse({ type: MovieListResponse })
     @Get('/')
-    public async find(): Promise<MovieModel[]> {
-        return await this.movieCrudService.find();
+    public async find(): Promise<MovieListResponse> {
+        const movies = await this.movieCrudService.find();
+        return { movies };
     }
 
 }
