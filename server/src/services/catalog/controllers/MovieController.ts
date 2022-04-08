@@ -5,7 +5,7 @@ import { Inject } from 'typescript-ioc';
 import { Public } from '@components/decorators/Pubic';
 
 import { MovieListResponse } from './responces';
-import { IMovieCrudService } from '@services/catalog/domain/movie/IMovieCrudService';
+import { IMovieCrudService } from '@catalog/domain/movie/IMovieCrudService';
 
 @ApiTags('Фильмы')
 @Controller('catalog/movie')

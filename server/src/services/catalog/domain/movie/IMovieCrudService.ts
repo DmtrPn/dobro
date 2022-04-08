@@ -1,7 +1,7 @@
 import { Attributes } from 'dobro-types/common';
 
 import { TransactionManager } from '@common/infrastructure/TransactionManager';
-import { MovieModel } from '@services/catalog/infrastructure/movie/MovieModel';
+import { MovieModel } from '@catalog/infrastructure/movie/MovieModel';
 
 export abstract class IMovieCrudService extends TransactionManager {
     public abstract find(): Promise<MovieModel[]>;

@@ -4,9 +4,10 @@ import { PassportModule } from '@nestjs/passport';
 import { middlewares } from '@components/middlewares';
 import { LocalStrategy, SessionSerializer } from '@components/auth/local';
 
-import { DreamModule } from '@services/dream/DreamModule';
-import { WishModule } from '@services/wish/WishModule';
-import { CatalogModule } from '@services/catalog/CatalogModule';
+import { DreamModule } from '@dream/DreamModule';
+import { WishModule } from '@wish/WishModule';
+import { CatalogModule } from '@catalog/CatalogModule';
+import { UserModule } from '@user/UserModule';
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import { CatalogModule } from '@services/catalog/CatalogModule';
         DreamModule,
         WishModule,
         CatalogModule,
+        UserModule,
     ],
     providers: [LocalStrategy, SessionSerializer],
 })

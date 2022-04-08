@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 import { MovieStatus } from 'dobro-types/enums';
 import { BaseModel } from '@common/infrastructure/BaseModel';
-import { UserModel } from '@services/user/infrastructure/user/UserModel';
+import { UserModel } from '@user/infrastructure/user/UserModel';
 
 
 @Entity('movie')

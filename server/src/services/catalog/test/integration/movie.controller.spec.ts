@@ -1,7 +1,7 @@
 import '@core/test/testRunner';
 
-import { MovieController } from '@services/catalog/controllers';
-import { MovieCrudService } from '@services/catalog/infrastructure/movie/MovieCrudService';
+import { MovieController } from '@catalog/controllers';
+import { MovieCrudService } from '@catalog/infrastructure/movie/MovieCrudService';
 
 import { getFakeMovieCreationParams } from '../utils/movieFakeData';
 

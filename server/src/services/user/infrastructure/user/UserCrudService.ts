@@ -2,8 +2,9 @@ import { TransactionManager } from '@common/infrastructure/TransactionManager';
 import { Attributes, Optional } from 'dobro-types/common';
 
 import { UserModel } from './UserModel';
+import { IUserCrudService } from '@user/domain/user/IUserCrudService';
 
-export class UserCrudService extends TransactionManager {
+export class UserCrudService extends TransactionManager implements IUserCrudService {
 
     public async find(): Promise<UserModel[]> {
         return this.manager.find<UserModel>(UserModel)

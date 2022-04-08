@@ -3,10 +3,10 @@ import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
 
 // import { Public } from '@components/decorators/Pubic';
 
-// import { MovieCrudService } from '@services/catalog/infrastructure/movie/MovieCrudService';
+// import { MovieCrudService } from '@catalog/infrastructure/movie/MovieCrudService';
 import { UserListResponse } from './responces';
 
-@ApiTags('Авторизация')
+@ApiTags('Пользователя')
 @Controller('user')
 export class UserController {
 

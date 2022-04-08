@@ -3513,6 +3513,11 @@ passport@0.5.2:
     passport-strategy "1.x.x"
     pause "0.0.1"
 
+password-crygen@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/password-crygen/-/password-crygen-1.0.0.tgz#6d09288757101449f14e4c8c949b05aae0609ffa"
+  integrity sha512-c1ab3c8bvce7HrJOrPj3MuA0H3XQuzlQs6mk5iJi7y78Ltd+7uAJSi6zBOa1C9jNHdr+DO65VbkA6ida7g7oHg==
+
 path-exists@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/path-exists/-/path-exists-2.1.0.tgz#0feb6c64f0fc518d9a754dd5efb62c7022761f4b"

@@ -1,6 +1,6 @@
 import { Attributes } from 'dobro-types/common';
 
-import { MovieModel } from '@services/catalog/infrastructure/movie/MovieModel';
+import { MovieModel } from '@catalog/infrastructure/movie/MovieModel';
 import { FakeParams } from '@core/test/FakeParams';
 import { MovieStatus } from 'dobro-types/enums';
 

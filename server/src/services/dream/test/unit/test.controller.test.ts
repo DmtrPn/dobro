@@ -1,6 +1,6 @@
 import '@core/test/testRunner';
 
-import { DreamController } from '@services/dream/controllers';
+import { DreamController } from '@dream/controllers';
 
 describe('DreamController', () => {
     let dreamController: DreamController;

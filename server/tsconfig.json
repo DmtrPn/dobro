@@ -22,7 +22,10 @@
     "paths": {
       "@core/*": ["core/*"],
       "@components/*": ["components/*"],
-      "@services/*": ["services/*"],
+      "@catalog/*": ["services/catalog/*"],
+      "@dream/*": ["services/dream/*"],
+      "@wish/*": ["services/wish/*"],
+      "@user/*": ["services/user/*"],
       "@common/*": ["services/common/*"]
     },
     "typeRoots": [

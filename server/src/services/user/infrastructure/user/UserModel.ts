@@ -3,7 +3,7 @@ import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
 import { UserStatus } from 'dobro-types/enums';
 
 import { BaseModel } from '@common/infrastructure/BaseModel';
-import { MovieModel } from '@services/catalog/infrastructure/movie/MovieModel';
+import { MovieModel } from '@catalog/infrastructure/movie/MovieModel';
 
 @Entity('users')
 export class UserModel extends BaseModel<UserModel> {
