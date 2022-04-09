@@ -2,6 +2,7 @@ import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 
 import { WishStore, wishService } from '@store/Wish';
+import { privatePage } from '@core/decorators/privatePage';
 
 interface Props extends StoreProps, WishProps {
 }
@@ -16,11 +17,13 @@ const injectableStores: (keyof StoreProps)[] = [
     WishStore.Name,
 ];
 
+
+@privatePage
 @inject(...injectableStores)
 @observer
-export class WishContainer extends React.Component<Props> {
+export class Component extends React.Component<Props> {
 
-    public async componentDidMount() {
+    public async componentDidMount(): Promise<void> {
         await wishService.load();
     }
 
@@ -30,3 +33,5 @@ export class WishContainer extends React.Component<Props> {
         return React.createElement(Wish, { wishes });
     }
 }
+
+export const WishContainer = Component; // privatePageHOC(Component);

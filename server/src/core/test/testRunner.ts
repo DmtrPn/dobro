@@ -1,4 +1,5 @@
 import { DbConnector } from '@core/db-connector';
+import '@core/di/IoC';
 
 const dbConnector = DbConnector.getInstance();
 

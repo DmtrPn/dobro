@@ -21,9 +21,12 @@ module.exports = {
     ],
     testTimeout: 50000,
     moduleNameMapper: {
-        '^@services/(.*)': '<rootDir>/dist/services/$1',
         '^@components/(.*)': '<rootDir>/dist/components/$1',
         '^@core/(.*)': '<rootDir>/dist/core/$1',
-        '^@common/(.*)': '<rootDir>/dist/services/common/$1',
+        '^@common/(.*)': '<rootDir>/dist/components/common/$1',
+        '^@catalog/(.*)': '<rootDir>/dist/services/catalog$1',
+        '^@dream/(.*)': '<rootDir>/dist/services/dream',
+        '^@wish/(.*)': '<rootDir>/dist/services/wish',
+        '^@user/(.*)': '<rootDir>/dist/services/user',
     }
 }

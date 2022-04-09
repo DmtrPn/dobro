@@ -4,7 +4,7 @@ import { Catch, ArgumentsHost, HttpServer } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 
 import { Request } from '@core/types';
-import { identifyHttpCode, HttpError as CoreHttpError } from '@core/http-error';
+import { identifyHttpCode, HttpError as CoreHttpError, ErrorCode } from '@core/http-error';
 import { createCoreHttpError } from '@components/error-handlers';
 
 interface Dependency {
@@ -71,7 +71,7 @@ code: ${error.code}`);
             this.logger.error(`Error: ${error}`);
         }
 
-        res.status(code).json(data);
+        res.status(code ?? ErrorCode.InternalServerError).json(data);
 
         return res;
     }

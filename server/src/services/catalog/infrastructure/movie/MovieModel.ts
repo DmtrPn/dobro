@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 import { MovieStatus } from 'dobro-types/enums';
 import { BaseModel } from '@common/infrastructure/BaseModel';
+import { UserModel } from '@user/infrastructure/user/UserModel';
 
 
 @Entity('movie')
@@ -27,5 +28,9 @@ export class MovieModel extends BaseModel<MovieModel> {
 
     @Column({ type: 'int' })
     public rating: number;
+
+    @ManyToOne(() => UserModel, model => model.movies)
+    @JoinColumn({ name: 'author_id', referencedColumnName: 'id' })
+    public author?: UserModel;
 
 }

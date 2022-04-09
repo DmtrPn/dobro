@@ -9,7 +9,7 @@ export class MovieCreate1648923457136 implements MigrationInterface {
                 link TEXT NOT NULL,
                 name TEXT NOT NULL,
                 description TEXT,
-                author_id UUID,
+                author_id UUID NOT NULL REFERENCES users(user_id),
                 status TEXT NOT NULL,
                 rating INT
             );

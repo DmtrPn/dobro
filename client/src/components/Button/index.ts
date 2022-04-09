@@ -1,1 +1,1 @@
-export { Button, ButtonParams, ButtonTheme, ButtonModifiers } from './Button';
+export { Button, ButtonProps, ButtonTheme, ButtonModifiers } from './Button';

@@ -11,15 +11,20 @@ export class ClockContainer extends React.Component<Props> {
     private hourRef: RefObject<HTMLDivElement> = React.createRef();
     private minuteRef: RefObject<HTMLDivElement> = React.createRef();
     private secondRef: RefObject<HTMLDivElement> = React.createRef();
+    private interval!: number;
 
     public componentDidMount() {
         // this.setTime();
         this.rotateClock();
 
-        setInterval(() => {
+        this.interval = setInterval(() => {
             this.rotateClock();
             // this.setTime();
         }, 1000);
+    }
+
+    public componentWillUnmount(): void {
+        clearInterval(this.interval);
     }
 
     public render() {
