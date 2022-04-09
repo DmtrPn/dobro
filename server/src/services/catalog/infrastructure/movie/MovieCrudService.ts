@@ -1,43 +1,20 @@
-import { TransactionManager } from '@common/infrastructure/TransactionManager';
-import { Attributes } from 'dobro-types/common';
+import { Attributes, Class } from 'dobro-types/common';
+
+import { IMovieCrudService } from '@catalog/domain/movie/IMovieCrudService';
+import { MovieFindOptions } from '@catalog/domain/movie/types';
 
 import { MovieModel } from './MovieModel';
-import { IMovieCrudService } from '@catalog/domain/movie/IMovieCrudService';
+import { MovieFindCommand } from './MovieFindCommand';
+import { IdentityCrudService } from '@common/infrastructure/IdentityCrudService';
+import { FindCommand } from '@common/infrastructure/FindCommand';
 
-export class MovieCrudService extends TransactionManager implements IMovieCrudService {
+export class MovieCrudService
+    extends IdentityCrudService<MovieModel, Attributes<MovieModel>, MovieFindOptions>
+    implements IMovieCrudService {
 
-    public async find(): Promise<MovieModel[]> {
-        return this.manager.find<MovieModel>(MovieModel)
+    protected findCommand: Class<FindCommand<MovieModel, MovieFindOptions>, any> = MovieFindCommand;
+
+    protected enrichCreationParams(params: Attributes<MovieModel>): MovieModel {
+        return new MovieModel(params);
     }
-
-    public async getById(id: string): Promise<MovieModel> {
-        return this.manager.findOneBy<MovieModel>(MovieModel, { id })
-    }
-
-    public async create(params: Attributes<MovieModel>): Promise<void> {
-        await this.manager.transaction(entityManager =>
-            entityManager
-                .createQueryBuilder()
-                .insert()
-                .into(MovieModel)
-                .values(params)
-                .execute()
-        );
-    }
-
-    public async update(id: string, params: Attributes<MovieModel>): Promise<void> {
-        await this.manager.transaction(entityManager =>
-            entityManager
-                .createQueryBuilder()
-                .update(MovieModel)
-                .set(params)
-                .where({ id })
-                .execute()
-        );
-    }
-
-    public async remove(id: string): Promise<void> {
-        await this.manager.delete(MovieModel, { id });
-    }
-
 }

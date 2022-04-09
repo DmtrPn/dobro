@@ -11,14 +11,13 @@ import { IMovieCrudService } from '@catalog/domain/movie/IMovieCrudService';
 @Controller('catalog/movie')
 export class MovieController {
 
-    @Inject
-    private movieCrudService: IMovieCrudService;
+    @Inject private movieCrudService: IMovieCrudService;
 
     @Public()
     @ApiOkResponse({ type: MovieListResponse })
     @Get('/')
     public async find(): Promise<MovieListResponse> {
-        const movies = await this.movieCrudService.find();
+        const movies = await this.movieCrudService.find({});
         return { movies };
     }
 

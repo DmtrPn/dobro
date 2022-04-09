@@ -21,12 +21,12 @@
     "baseUrl": "src",
     "paths": {
       "@core/*": ["core/*"],
+      "@common/*": ["components/common/*"],
       "@components/*": ["components/*"],
       "@catalog/*": ["services/catalog/*"],
       "@dream/*": ["services/dream/*"],
       "@wish/*": ["services/wish/*"],
-      "@user/*": ["services/user/*"],
-      "@common/*": ["services/common/*"]
+      "@user/*": ["services/user/*"]
     },
     "typeRoots": [
       "node_modules/@types",
