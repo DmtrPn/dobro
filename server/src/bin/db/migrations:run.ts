@@ -9,7 +9,6 @@ async function migrations(): Promise<void> {
     await dataSource.initialize();
     await dataSource.runMigrations();
     await dataSource.destroy();
-
 }
 
 migrations();
