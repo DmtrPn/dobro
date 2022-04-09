@@ -13,6 +13,7 @@ export class HappyHourContainer extends React.Component<Props> {
     @observable private hours = '00';
     @observable private minutes = '00';
     @observable private seconds = '00';
+    private interval!: number;
 
     constructor(props: Props) {
         super(props)
@@ -23,9 +24,13 @@ export class HappyHourContainer extends React.Component<Props> {
     public componentDidMount() {
         this.setTime();
 
-        setInterval(() => {
+        this.interval = setInterval(() => {
             this.setTime();
         }, 1000);
+    }
+
+    public componentWillUnmount(): void {
+        clearInterval(this.interval);
     }
 
     public render() {
