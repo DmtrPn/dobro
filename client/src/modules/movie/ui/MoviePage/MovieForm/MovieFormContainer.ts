@@ -5,15 +5,15 @@ import { observable, makeObservable } from 'mobx';
 
 import { MovieCreateData } from 'dobro-types/frontend';
 
-import { CreateForm, CreateFormProps } from './CreateForm';
+import { MovieForm, MovieFormProps } from './MovieForm';
 import { movieService } from '@movie/services';
 
-interface Props extends CreateFormProps {
+interface Props extends MovieFormProps {
     onFinishCreate(): void;
 }
 
 @observer
-export class CreateFormContainer extends React.Component<Props> {
+export class MovieFormContainer extends React.Component<Props> {
 
     @observable private movie: Omit<MovieCreateData, 'id'> = {
         name: 'Название',
@@ -28,7 +28,7 @@ export class CreateFormContainer extends React.Component<Props> {
     }
 
     public render() {
-        return React.createElement(CreateForm, {
+        return React.createElement(MovieForm, {
             ...this.movie,
             onTextChange: this.onTextChange,
             onSaveClick: this.onSaveClick,

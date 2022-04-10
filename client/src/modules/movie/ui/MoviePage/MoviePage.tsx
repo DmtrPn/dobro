@@ -6,7 +6,7 @@ import commonStyle from '@components/mixins/commonStyles.scss';
 
 import { SaveButton } from '@components/ActionButtons/SaveButton';
 
-import { CreateForm } from './CreateForm';
+import { CreateForm } from './MovieForm';
 import { Movie } from './Movie';
 
 export interface MoviePageProps {

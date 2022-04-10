@@ -1,6 +1,6 @@
 import React from 'react';
 
-import style from './CreateForm.scss';
+import style from './MovieForm.scss';
 
 import { MovieCreateData } from 'dobro-types/frontend';
 
@@ -9,24 +9,20 @@ import { Textarea } from '@components/Textarea';
 import { SaveButton } from '@components/ActionButtons/SaveButton';
 import { CancelButton } from '@components/ActionButtons/CancelButton';
 
-export interface CreateFormProps {
+export interface MovieFormProps {
 }
 
-interface Props extends CreateFormProps, Omit<MovieCreateData, 'id'> {
-    // movie: Omit<MovieCreateData, 'id'>;
+interface Props extends MovieFormProps, Omit<MovieCreateData, 'id'> {
     onTextChange(event: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>): void;
     onSaveClick(): void;
     onCancelClick(): void;
 }
 
-export function CreateForm({
-    // movie: {
-        name,
-        link,
-        description,
-        // status,
-        rating,
-    // },
+export function MovieForm({
+    name,
+    link,
+    description,
+    rating,
     onTextChange,
     onSaveClick,
     onCancelClick,

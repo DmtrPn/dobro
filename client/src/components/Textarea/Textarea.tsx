@@ -48,7 +48,7 @@ export function Textarea({
             {title && <FieldTitle title={title} />}
             <TextareaAutosize
                 className={style.textarea}
-                minRows={minRows || 2}
+                minRows={minRows || 1}
                 placeholder={placeholder ?? ''}
                 disabled={disabled}
                 ref={textareaRef}
