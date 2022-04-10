@@ -38,6 +38,7 @@ context(
                     '@store/*': '~/store/',
                     '@api/*': '~/api/',
                     '@modules/*': '~/modules/',
+                    '@movie/*': '~/modules/movie/',
                     '@dream/*': '~/modules/dream/',
                     '@common/*': '~/modules/common/',
                     '@components/*': '~/components/',

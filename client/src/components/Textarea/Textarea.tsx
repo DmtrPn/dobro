@@ -3,6 +3,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import classnames from 'classnames';
 
 import style from './Textarea.scss';
+import { FieldTitle } from '@components/FieldTitle';
 
 export const TextareaModifiers = {
 };
@@ -44,9 +45,10 @@ export function Textarea({
             disabled && style.disabled,
             ...modifiers,
         ])}>
+            {title && <FieldTitle title={title} />}
             <TextareaAutosize
                 className={style.textarea}
-                minRows={minRows || 2}
+                minRows={minRows || 1}
                 placeholder={placeholder ?? ''}
                 disabled={disabled}
                 ref={textareaRef}

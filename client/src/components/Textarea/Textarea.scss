@@ -47,13 +47,8 @@
     outline: 0;
 
     font-size: 14px;
-    line-height: 20px;
 
     &::placeholder {
         color: $Grey;
     }
-}
-
-.title {
-    margin-bottom: 8px;
 }

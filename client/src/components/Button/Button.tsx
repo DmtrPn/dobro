@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import style from './Button.scss';
 
-export interface ButtonParams extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     theme?: ButtonTheme;
     modifiers?: ButtonModifiers[];
     label?: string;
@@ -20,7 +20,7 @@ export enum ButtonTheme {
 export enum ButtonModifiers {
 }
 
-interface Props extends ButtonParams {
+interface Props extends ButtonProps {
 }
 
 export function Button({

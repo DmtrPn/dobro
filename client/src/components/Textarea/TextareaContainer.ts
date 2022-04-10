@@ -36,11 +36,8 @@ class TextareaContainer extends React.Component<WithHOCProps> {
             onBlur,
             handleBlur,
             handleFocus,
-            // @ts-ignore
-            onCountryChange,
             ...props
         } = this.props;
-        // const { currentValue } = this.state;
 
         const textareaValue = isNil(this.currentValue)
             ? isNil(value)
