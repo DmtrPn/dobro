@@ -6,7 +6,7 @@ import commonStyle from '@components/mixins/commonStyles.scss';
 
 import { SaveButton } from '@components/ActionButtons/SaveButton';
 
-import { CreateForm } from './MovieForm';
+import { MovieForm } from './MovieForm';
 import { Movie } from './Movie';
 
 export interface MoviePageProps {
@@ -27,19 +27,23 @@ export function MoviePage({
 }: Props): JSX.Element {
     return (
         <div className={style.root}>
-            {ids.map(id => (
-                <div
-                    key={id}
-                    className={classnames([
-                        style.card,
-                        commonStyle.field,
-                    ])}
-                >
-                    <Movie id={id} />
-                </div>
-            ))}
+            <div className={style.cards}>
+                {ids.map(id => (
+                    <div
+                        key={id}
+                        className={classnames([
+                            style.card,
+                            commonStyle.field,
+                        ])}
+                    >
+                        <Movie id={id} />
+                    </div>
+                ))}
+            </div>
             {addMode
-                ? <CreateForm onFinishCreate={onFinishCreate} />
+                ? <div className={style.card}>
+                    <MovieForm onFinishCreate={onFinishCreate} />
+                </div>
                 : <SaveButton onSaveClick={onAddClick} label={'Добавить'} />
             }
         </div>

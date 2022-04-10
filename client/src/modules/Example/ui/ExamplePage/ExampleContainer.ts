@@ -13,7 +13,6 @@ interface Props extends ExampleProps {
 // const injectableStores: (keyof StoreProps)[] = [
 // ];
 
-// @inject(...injectableStores)
 // @observer
 export class ExampleContainer extends React.Component<Props> {
 
@@ -23,3 +22,5 @@ export class ExampleContainer extends React.Component<Props> {
         });
     }
 }
+
+// export const ExampleContainer = inject<Props, StoreProps>(...injectableStores)(Component);

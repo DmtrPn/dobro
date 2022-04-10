@@ -40,8 +40,6 @@ class InputContainer extends React.PureComponent<WithHOCProps, State> {
             onFocus,
             handleFocus,
             handleBlur,
-            placeholder,
-            title,
             autoComplete,
             ...props
         } = this.props;
@@ -55,9 +53,8 @@ class InputContainer extends React.PureComponent<WithHOCProps, State> {
 
         return React.createElement(Input, {
             ...props,
-            title,
+            isActive: isOnFocus,
             autoComplete: autoComplete || 'off',
-            placeholder: !!title ? undefined : placeholder,
             value: inputValue,
             onChange: this.handleInputChange,
             onBlur: this.handleInputBlur,
@@ -89,11 +86,11 @@ class InputContainer extends React.PureComponent<WithHOCProps, State> {
 
         event.target.name = name!;
 
-        handleFocus();
-
         if (onFocus) {
             await onFocus(event);
         }
+
+        handleFocus();
     }
 
     @autobind

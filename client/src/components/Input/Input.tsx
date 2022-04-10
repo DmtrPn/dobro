@@ -9,6 +9,10 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
     modifiers?: string[];
 }
 
+interface Props extends InputProps {
+    isActive: boolean;
+}
+
 export const InputModifier = {
 };
 
@@ -16,10 +20,14 @@ export function Input({
     modifiers = [],
     type = 'text',
     title,
+    isActive,
     ...props
-}: InputProps): JSX.Element {
+}: Props): JSX.Element {
     return (
-        <div className={style.root}>
+        <div className={classnames([
+            style.root,
+            isActive && style.active,
+        ])}>
             {title && <FieldTitle title={title} />}
             <input
                 {...props}

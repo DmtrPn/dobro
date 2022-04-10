@@ -56,8 +56,11 @@ export function MovieForm({
                 value={rating}
                 onBlur={onTextChange}
             />
-            <SaveButton onSaveClick={onSaveClick}/>
-            <CancelButton onCancelClick={onCancelClick}/>
+            <div className={style.buttons}>
+                <SaveButton onSaveClick={onSaveClick}/>
+                <CancelButton onCancelClick={onCancelClick}/>
+            </div>
+
         </div>
     );
 }

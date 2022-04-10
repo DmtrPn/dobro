@@ -18,9 +18,9 @@ const injectableStores: (keyof StoreProps)[] = [
     MovieStore.Name,
 ];
 
-@inject(...injectableStores)
 @observer
-class Container extends React.Component<Props & StoreProps> {
+class Container extends React.Component<Props> {
+    readonly declare props: Props & StoreProps;
 
     public render() {
         const { movieStore: { movieList }, id } = this.props;
@@ -38,4 +38,4 @@ class Container extends React.Component<Props & StoreProps> {
     }
 }
 
-export const MovieContainer = Container as unknown as React.ComponentType<Props>;
+export const MovieContainer = inject(...injectableStores)(Container)

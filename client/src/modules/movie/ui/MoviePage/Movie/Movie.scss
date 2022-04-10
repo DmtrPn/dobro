@@ -1,11 +1,17 @@
+@import '../../../../../components/mixins/mixin';
+
 .root {
     position: relative;
 
     display: grid;
 
     width: inherit;
-    padding: 8px;
+    padding: 16px;
 
-    grid-template-columns: 200px 300px 100px;
+    border: 1px solid $GreyBorder;
+    border-radius: 10px;
+    background: #ffffff;
+
+    grid-template-columns: 50fr 60fr 50px;
     grid-column-gap: 16px;
 }
