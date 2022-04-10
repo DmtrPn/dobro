@@ -1,4 +1,4 @@
-import '@core/test/testRunner';
+import '@core/test/unitTestRanner';
 
 import { DreamController } from '@dream/controllers';
 

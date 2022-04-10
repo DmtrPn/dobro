@@ -8,10 +8,11 @@ import { FindCommand } from '@common/infrastructure/FindCommand';
 export abstract class CrudService<
     M extends object,
     CreationParams extends Partial<M>,
+    UpdateParams = Omit<Attributes<M>, 'id'>,
     FO extends object = {},
 >  extends TransactionManager {
 
-    protected modelClass: Class<M>;
+    protected abstract modelClass: Class<M>;
     protected abstract findCommand: Class<FindCommand<M, FO>>;
 
     public find(options: FO): Promise<M[]> {
@@ -34,7 +35,7 @@ export abstract class CrudService<
         );
     }
 
-    public async update(id: string, params: Omit<Attributes<M>, 'id'>): Promise<void> {
+    public async update(id: string, params: UpdateParams): Promise<void> {
         await this.executeInTransaction(entityManager =>
             entityManager
                 .createQueryBuilder()

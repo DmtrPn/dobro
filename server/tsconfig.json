@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "outDir": "dist",
     "rootDir": "src",
-    "sourceMap": false,
+    "sourceMap": true,
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

@@ -7,7 +7,7 @@ export class MovieViewModel {
     @ApiResponseProperty()
     public id!: string;
 
-    @ApiProperty({ enumName: 'MovieStatus' })
+    @ApiProperty({ enum: MovieStatus, enumName: 'MovieStatus' })
     public status!: MovieStatus;
 
     @ApiResponseProperty()
@@ -19,8 +19,8 @@ export class MovieViewModel {
     @ApiPropertyOptional()
     public description?: string;
 
-    @ApiResponseProperty()
-    public rating: number;
+    @ApiPropertyOptional()
+    public rating?: number;
 
     @ApiResponseProperty()
     public authorId: string;

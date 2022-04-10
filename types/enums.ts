@@ -1,10 +1,10 @@
-export const enum MovieStatus {
+export enum MovieStatus {
     New = 'new',
     Viewed = 'viewed',
     Rejected = 'rejected',
 }
 
-export const enum UserStatus {
+export enum UserStatus {
     Active = 'active',
     Archive = 'archive',
 }
