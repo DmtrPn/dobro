@@ -22,6 +22,11 @@ export class AppStore {
     }
 
     @computed
+    public get authUserId(): Optional<string> {
+        return this.authUser?.id;
+    }
+
+    @computed
     public get authUserName(): Optional<string> {
         return this.authUser?.name;
     }

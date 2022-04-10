@@ -1,0 +1,22 @@
+@import '../mixins/mixin';
+
+.root {
+    cursor: pointer;
+    text-decoration: none;
+
+    color: $FontColor;
+
+    &:hover {
+        text-decoration: underline;
+
+        color: $Blue;
+    }
+}
+
+.root_highlighted {
+    color: $Red;
+
+    &:hover {
+        color: $Red;
+    }
+}

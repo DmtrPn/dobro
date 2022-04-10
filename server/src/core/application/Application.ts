@@ -17,6 +17,7 @@ import { LocalAuthGuard } from '@components/auth/local';
 import { Launcher, ClusterLauncher } from './launcher';
 import { AppModule } from '../../AppModule';
 import { DbConnector } from '@core/db-connector';
+import { DefaultValidationPipe } from '@components/pipes/DefaultValidationPipe';
 
 const PUBLIC_PATH = path.join(__dirname, '../../../../public');
 const INDEX_HTML_PATH = path.join(PUBLIC_PATH, 'index.html');
@@ -48,6 +49,12 @@ class Application {
         this.app.use(bodyParser.urlencoded({ extended: true }));
 
         this.app.setGlobalPrefix('api');
+        this.app.useGlobalPipes(new DefaultValidationPipe({
+            whitelist: true,
+            forbidNonWhitelisted: true,
+            transform: true,
+            transformOptions: { enableImplicitConversion: true },
+        }));
 
         this.app.useGlobalGuards(new LocalAuthGuard());
         this.app.useGlobalFilters(new DefaultFilter({ logger: LoggerFactory.getLogger() }));

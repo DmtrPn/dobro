@@ -1,6 +1,6 @@
 import { ApiResponseProperty, ApiPropertyOptional, ApiProperty } from '@nestjs/swagger';
 
-import { MovieStatus } from 'dobro-types/enums';
+import { MovieStatus } from '@components/common/enums';
 
 export class MovieViewModel {
 

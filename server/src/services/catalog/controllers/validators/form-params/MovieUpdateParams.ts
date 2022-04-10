@@ -1,8 +1,9 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsInt, Min, Max, IsString, IsEnum, IsOptional } from 'class-validator';
+import { Transform } from 'class-transformer';
 
 import { MovieUpdateData } from '@catalog/domain/movie/types';
-import { MovieStatus } from 'dobro-types/enums';
+import { MovieStatus } from '@components/common/enums';
 
 export class MovieUpdateParams implements MovieUpdateData {
 
@@ -24,11 +25,12 @@ export class MovieUpdateParams implements MovieUpdateData {
     @IsEnum(MovieStatus)
     @IsOptional()
     @ApiPropertyOptional()
-    public status?: MovieStatus;
+    public status?: MovieStatus | any;
 
     @IsInt()
     @Min(0)
     @Max(10)
+    @Transform(({ value }) => Number(value))
     @IsOptional()
     @ApiPropertyOptional()
     public rating?: number;

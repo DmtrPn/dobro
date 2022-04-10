@@ -39,6 +39,7 @@
       "@api": ["api/"],
       "@api/*": ["api/*"],
       "@modules/*": ["modules/*"],
+      "@movie/*": ["modules/movie/*"],
       "@dream/*": ["modules/dream/*"],
       "@components/*": ["components/*"],
       "@hoc/*": ["components/HOC/*"],

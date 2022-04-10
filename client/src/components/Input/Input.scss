@@ -1,13 +1,92 @@
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    margin: 0;
+
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+    margin: 0;
+
+    -webkit-appearance: none;
+}
+
+/* Hide placeholder on focus */
+/* Chrome <=56, Safari < 10 */
+::-webkit-input-placeholder {
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+
+    opacity: 1;
+}
+/* FF 4-18 */
+:-moz-placeholder {
+    -moz-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+
+    opacity: 1;
+}
+/* FF 19-51 */
+::-moz-placeholder {
+    -moz-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+
+    opacity: 1;
+}
+/* IE 10+ */
+:-ms-input-placeholder {
+    -ms-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+
+    opacity: 1;
+}
+/* Modern Browsers */
+::placeholder {
+    transition: opacity 0.5s;
+
+    opacity: 1;
+}
+
+/* Chrome <=56, Safari < 10 */
+*:focus::-webkit-input-placeholder {
+    opacity: 0;
+}
+
+/* FF 4-18 */
+*:focus:-moz-placeholder {
+    opacity: 0;
+}
+
+/* FF 19-50 */
+*:focus::-moz-placeholder {
+    opacity: 0;
+}
+
+/* IE 10+ */
+*:focus:-ms-input-placeholder {
+    opacity: 0;
+}
+
+/* Modern Browsers */
+*:focus::placeholder {
+    opacity: 0;
+}
+
 .root {
     position: relative;
 
     width: 100%;
-    height: 100%;
 }
 
 .input {
     width: inherit;
     height: inherit;
+    padding: 6px;
 
     text-align: inherit;
     text-indent: 4px;
@@ -18,10 +97,8 @@
     border-radius: 10px;
     outline: none;
     background-color: #ffffff;
-    box-shadow: 2px 4px 7px 0 rgba(0, 0, 0, 0.25);
 
     font-size: inherit;
-    font-weight: 500;
     font-style: normal;
 }
 

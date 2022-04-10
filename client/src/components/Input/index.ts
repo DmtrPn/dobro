@@ -1,1 +1,1 @@
-export { Input } from './Input';
+export { WithHOCInputContainer as Input } from './InputContainer';

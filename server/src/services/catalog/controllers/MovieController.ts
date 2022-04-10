@@ -13,7 +13,7 @@ import { MovieCreateForm, MovieUpdateForm } from './validators';
 import { Uuid } from '@common/controllers/validators/Uuid';
 
 @ApiTags('Фильмы')
-@Controller('catalog/movie')
+@Controller('movie')
 export class MovieController {
 
     @Inject private movieCrudService: IMovieCrudService;
@@ -23,7 +23,7 @@ export class MovieController {
     @Get('/')
     public async find(): Promise<MovieListResponse> {
         const movies = await this.movieCrudService.find({});
-        return { movies };
+        return { movies } as unknown as MovieListResponse;
     }
 
     @Post('/')
@@ -39,7 +39,7 @@ export class MovieController {
         @Param() { id }: Uuid,
         @Body() { movie }: MovieUpdateForm,
     ): Promise<void> {
-        await this.movieCrudService.update(id, movie);
+        await this.movieCrudService.update(id, movie as any);
     }
 
     @Delete('/:id')

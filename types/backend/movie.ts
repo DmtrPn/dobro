@@ -1,7 +1,4 @@
-export const enum MovieStatus {
-    New = 'new',
-    Viewed = 'Female',
-}
+import { MovieStatus } from '../enums';
 
 export interface MovieData {
     id: string;
@@ -10,7 +7,23 @@ export interface MovieData {
     description?: string;
     authorId: string;
     status: MovieStatus;
-    rating: number;
+    rating?: number;
+}
+
+export interface MovieCreateData {
+    id: string;
+    link: string;
+    name: string;
+    description?: string;
+    rating?: number;
+}
+
+export interface MovieUpdateData {
+    link?: string;
+    name?: string;
+    description?: string;
+    status?: MovieStatus;
+    rating?: number;
 }
 
 export interface MovieListResponse {
