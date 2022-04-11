@@ -70,7 +70,7 @@ export class AuthPageContainer extends React.Component<Props & StoreProps, State
 
         if (email.length > 1 && password.length > 3) {
             try {
-                await authService.login({ email, password });
+                await authService.login({ password: password.trim(), email: email.toLocaleLowerCase().trim() });
             } catch (e: any) {
                 console.error('e', e);
                 this.setState({ errorMessage: e.message });
