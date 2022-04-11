@@ -22,7 +22,7 @@ export function MovieForm({
     name,
     link,
     description,
-    rating,
+    // rating,
     onTextChange,
     onSaveClick,
     onCancelClick,
@@ -47,15 +47,15 @@ export function MovieForm({
                 value={description}
                 onBlur={onTextChange}
             />
-            <Input
-                title={'Рейтинг'}
-                type={'number'}
-                min={0}
-                max={10}
-                name={'rating'}
-                value={rating}
-                onBlur={onTextChange}
-            />
+            {/*<Input*/}
+            {/*    title={'Рейтинг'}*/}
+            {/*    type={'number'}*/}
+            {/*    min={0}*/}
+            {/*    max={10}*/}
+            {/*    name={'rating'}*/}
+            {/*    value={rating}*/}
+            {/*    onBlur={onTextChange}*/}
+            {/*/>*/}
             <div className={style.buttons}>
                 <SaveButton onSaveClick={onSaveClick}/>
                 <CancelButton onCancelClick={onCancelClick}/>

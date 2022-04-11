@@ -4,7 +4,7 @@ import style from './Movie.scss';
 
 import { MovieData } from 'dobro-types/frontend';
 
-import { Input } from '@components/Input';
+// import { Input } from '@components/Input';
 import { Textarea } from '@components/Textarea';
 import { TextLink } from '@components/TextLink';
 
@@ -29,20 +29,20 @@ export function Movie({
         <div className={style.root}>
             <TextLink link={link} label={name} />
             <Textarea
-                title={'Описание'}
+                // title={'Описание'}
                 name={'description'}
                 value={description}
                 onBlur={onTextChange}
             />
-            <Input
-                title={'Рейтинг'}
-                type={'number'}
-                min={0}
-                max={10}
-                name={'rating'}
-                value={rating}
-                onBlur={onTextChange}
-            />
+            {/*<Input*/}
+            {/*    title={'Рейтинг'}*/}
+            {/*    type={'number'}*/}
+            {/*    min={0}*/}
+            {/*    max={10}*/}
+            {/*    name={'rating'}*/}
+            {/*    value={rating}*/}
+            {/*    onBlur={onTextChange}*/}
+            {/*/>*/}
         </div>
     );
 }

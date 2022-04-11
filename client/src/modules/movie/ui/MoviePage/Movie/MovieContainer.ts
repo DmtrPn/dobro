@@ -5,6 +5,7 @@ import { observer, inject } from 'mobx-react';
 import { Movie, MovieProps } from './Movie';
 import { MovieStore } from '@movie/store';
 import { movieService } from '@movie/services';
+import { MovieData } from 'dobro-types/frontend';
 
 interface Props extends MovieProps {
     id: string;
@@ -23,9 +24,8 @@ class Container extends React.Component<Props> {
     readonly declare props: Props & StoreProps;
 
     public render() {
-        const { movieStore: { movieList }, id } = this.props;
         return React.createElement(Movie, {
-            movie: movieList.get(id),
+            movie: this.movie,
             onTextChange: this.onTextChange,
         });
     }
@@ -34,7 +34,14 @@ class Container extends React.Component<Props> {
     private async onTextChange({ target: { value, name } }: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>): Promise<void> {
         const { id } = this.props;
 
-        await movieService.update(id, { [name]: value });
+        if (this.movie[name] !== value) {
+            await movieService.update(id, { [ name ]: value });
+        }
+    }
+
+    private get movie(): MovieData {
+        const { movieStore: { movieList }, id } = this.props;
+        return movieList.get(id);
     }
 }
 

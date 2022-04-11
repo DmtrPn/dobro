@@ -1,14 +1,26 @@
+@import '../../../../components/mixins/media';
+
 .root {
     position: relative;
 
     width: inherit;
     padding: 60px;
-}
 
-.card {
-    width: 600px;
+    @include media-s {
+        padding: 16px;
+    }
 }
 
 .cards {
     margin-bottom: 16px;
+    //@include media-s {
+    //    padding: 0 8px;
+    //}
 }
+
+.card {
+    @include media-s {
+        width: 100%;
+    }
+}
+
