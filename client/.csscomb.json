@@ -321,6 +321,11 @@
             "line-height"
         ],
         [
+            "grid-template-columns",
+            "grid-column-gap",
+            "grid-row-gap"
+        ],
+        [
             "$include media-l"
         ],
         [
