@@ -6,5 +6,8 @@
     "backend/*",
     "client/*",
     "types"
-  ]
+  ],
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
 }

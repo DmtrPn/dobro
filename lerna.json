@@ -1,0 +1,10 @@
+{
+  "packages": [
+    "backend/*",
+    "client/*",
+    "types"
+  ],
+  "useWorkspaces": true,
+  "npmClient": "yarn",
+  "version": "independent"
+}
