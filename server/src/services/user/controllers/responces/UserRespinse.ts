@@ -4,7 +4,7 @@ import { UserViewModel } from './view-model';
 
 export class UserResponse {
 
-    @ApiResponseProperty({ type: UserViewModel })
+    @ApiResponseProperty()
     public user: UserViewModel;
 
 }

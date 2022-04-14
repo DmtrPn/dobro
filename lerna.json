@@ -1,10 +1,9 @@
 {
   "packages": [
-    "backend/*",
-    "client/*",
+    "server",
+    "client",
     "types"
   ],
-  "useWorkspaces": true,
   "npmClient": "yarn",
-  "version": "independent"
+  "version": "0.0.0"
 }

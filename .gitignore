@@ -8,3 +8,4 @@ IconType.ts
 *.log
 *.scss.d.ts
 *.css.d.ts
+.fusebox

@@ -24,8 +24,8 @@ export class MovieUpdateParams implements MovieUpdateData {
 
     @IsEnum(MovieStatus)
     @IsOptional()
-    @ApiPropertyOptional()
-    public status?: MovieStatus | any;
+    @ApiPropertyOptional({ type: String, enum: MovieStatus })
+    public status?: MovieStatus;
 
     @IsInt()
     @Min(0)
