@@ -6,7 +6,7 @@ import style from './Home.scss';
 import commonStyles from '@components/mixins/commonStyles.scss';
 
 import { StarBackground } from '@components/StarBackground';
-import { Clock } from '@components/Clock';
+// import { Clock } from '@components/Clock';
 import { Textarea } from '@components/Textarea';
 import { Button } from '@components/Button';
 
@@ -47,7 +47,7 @@ export function HomePage({
                 </div>
                 <div className={commonStyles.field}>
                     {isSent
-                        ? (<div className={style.sended}>
+                        ? (<div className={style.sent}>
                             Твое желание отправлено в космос!
                             Ожидай в радости и в лучшее время оно сбудется
                         </div>)
@@ -58,7 +58,9 @@ export function HomePage({
                         />}
                 </div>
                 <div className={commonStyles.field}>
-                    <Clock />
+                    <div className={style.affirmation}>
+                        отпусти знания в пользу чувств
+                    </div>
                 </div>
             </div>
             <StarBackground />

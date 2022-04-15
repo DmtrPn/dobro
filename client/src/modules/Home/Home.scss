@@ -1,16 +1,18 @@
+@import '../../components/mixins/mixin';
+
 .root {
     position: relative;
 
     height: 100%;
 }
 
-.sended {
+.sent {
     padding: 4px 8px;
 
     color: #ffffff;
     border: 1px solid #ab00ff;
     border-radius: 10px;
-    box-shadow: 0px 0px 6px 0px #0040ff;
+    box-shadow: 0 0 6px 0 #0040ff;
 
     font-size: 16px;
 }
@@ -31,4 +33,19 @@
 
 .textarea {
     width: 100%;
+}
+
+.affirmation {
+    padding: 14px;
+
+    text-align: center;
+
+    color: $White;
+    border: 1px solid #ab00ff;
+    border-radius: 28%;
+    background: rgba(80, 0, 255, 0.2);
+    box-shadow: 0 0 6px 0 #fcff00;
+
+    font-size: 16px;
+    line-height: 20px;
 }
