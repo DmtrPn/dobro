@@ -1,12 +1,12 @@
 {
-  "name": "client",
+  "name": "dobro-client",
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
   "scripts": {
     "build-dev": "yarn cache-clean && yarn tslint && yarn csscomb && yarn typedCss  && yarn checkTypes && node fuse dev",
     "build": "yarn cache-clean && NODE_ENV=production node fuse",
-    "tslint": "node_modules/tslint/bin/tslint -c tslint.json src/**/*.{ts,tsx} --fix",
+    "tslint": "tslint -c tslint.json src/**/*.{ts,tsx} --fix",
     "cache-clean": "rm -rf .fusebox/cache",
     "typedCss": "tcm -p 'src/**/*.scss'",
     "csscomb": "csscomb -c .csscomb.json ./src",
@@ -28,7 +28,7 @@
     "classnames": "2.2.6",
     "csscomb": "4.3.0",
     "date-fns": "2.28.0",
-    "dobro-types": "file:../types",
+    "dobro-types": "1.0.0",
     "fuse-box": "3.7.1",
     "http-proxy-middleware": "0.19.1",
     "lodash": "4.17.21",
@@ -51,5 +51,9 @@
     "uglify-es": "3.3.9",
     "uuid": "3.3.2"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "resolutions": {
+    "@types/react": "16.8.18",
+    "@types/react-dom": "16.8.4"
+  }
 }

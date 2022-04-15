@@ -1,19 +1,19 @@
-import { ApiResponseProperty, ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
-import { UserStatus } from 'dobro-types/enums';
+import { UserStatus } from '@common/enums';
 
 export class UserViewModel {
 
-    @ApiResponseProperty()
-    public id!: string;
+    @ApiProperty()
+    public id: string;
 
-    @ApiProperty({ enumName: 'UserStatus' })
-    public status!: UserStatus;
+    @ApiProperty({ enum: UserStatus, enumName: 'UserStatus' })
+    public status: UserStatus;
 
-    @ApiResponseProperty()
+    @ApiProperty()
     public name: string;
 
-    @ApiResponseProperty()
+    @ApiProperty()
     public email: string;
 
 }

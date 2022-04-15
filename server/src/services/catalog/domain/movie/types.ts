@@ -1,4 +1,4 @@
-import { MovieStatus } from 'dobro-types/enums';
+import { MovieStatus } from '@components/common/enums';
 
 import { BaseFindOptions } from '@common/domain/types';
 

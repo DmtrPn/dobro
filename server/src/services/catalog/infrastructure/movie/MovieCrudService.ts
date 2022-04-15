@@ -7,7 +7,7 @@ import { MovieModel } from './MovieModel';
 import { MovieFindCommand } from './MovieFindCommand';
 import { IdentityCrudService } from '@common/infrastructure/IdentityCrudService';
 import { FindCommand } from '@common/infrastructure/FindCommand';
-import { MovieStatus } from 'dobro-types/enums';
+import { MovieStatus } from '@components/common/enums';
 
 export class MovieCrudService
     extends IdentityCrudService<MovieModel, MovieCreateData, MovieUpdateData, MovieFindOptions>

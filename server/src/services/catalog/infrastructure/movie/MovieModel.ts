@@ -1,9 +1,8 @@
 import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 
-import { MovieStatus } from 'dobro-types/enums';
+import { MovieStatus } from '@components/common/enums';
 import { BaseModel } from '@common/infrastructure/BaseModel';
 import { UserModel } from '@user/infrastructure/user/UserModel';
-
 
 @Entity('movie')
 export class MovieModel extends BaseModel<MovieModel> {

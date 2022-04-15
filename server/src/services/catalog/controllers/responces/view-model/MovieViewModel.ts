@@ -1,19 +1,19 @@
-import { ApiResponseProperty, ApiPropertyOptional, ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 import { MovieStatus } from '@components/common/enums';
 
 export class MovieViewModel {
 
-    @ApiResponseProperty()
+    @ApiProperty()
     public id!: string;
 
     @ApiProperty({ enum: MovieStatus, enumName: 'MovieStatus' })
     public status!: MovieStatus;
 
-    @ApiResponseProperty()
+    @ApiProperty()
     public link: string;
 
-    @ApiResponseProperty()
+    @ApiProperty()
     public name: string;
 
     @ApiPropertyOptional()
@@ -22,7 +22,7 @@ export class MovieViewModel {
     @ApiPropertyOptional()
     public rating?: number;
 
-    @ApiResponseProperty()
+    @ApiProperty()
     public authorId: string;
 
 }

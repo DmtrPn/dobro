@@ -10,7 +10,7 @@ export const identifyHttpCode = (error: unknown): number => {
         code = error.code;
     } else if (!isUndefined(((error as any) as BodyParserError).status)) {
         code = ((error as any) as BodyParserError).status;
-    } else if (!isUndefined(error as any).statusCode) {
+    } else if (!isUndefined(error as any) && !!(error as any).statusCode) {
         code = (error as any).statusCode;
     }
 

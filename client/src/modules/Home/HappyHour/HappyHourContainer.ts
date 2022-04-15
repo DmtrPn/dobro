@@ -13,7 +13,7 @@ export class HappyHourContainer extends React.Component<Props> {
     @observable private hours = '00';
     @observable private minutes = '00';
     @observable private seconds = '00';
-    private interval!: number;
+    private interval!: any;
 
     constructor(props: Props) {
         super(props)

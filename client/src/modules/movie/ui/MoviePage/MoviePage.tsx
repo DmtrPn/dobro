@@ -2,7 +2,6 @@ import React from 'react';
 import classnames from 'classnames';
 
 import style from './MoviePage.scss';
-import commonStyle from '@components/mixins/commonStyles.scss';
 
 import { SaveButton } from '@components/ActionButtons/SaveButton';
 
@@ -33,7 +32,6 @@ export function MoviePage({
                         key={id}
                         className={classnames([
                             style.card,
-                            commonStyle.field,
                         ])}
                     >
                         <Movie id={id} />

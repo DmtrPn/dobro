@@ -2,7 +2,7 @@ import { Attributes } from 'dobro-types/common';
 
 import { MovieModel } from '@catalog/infrastructure/movie/MovieModel';
 import { FakeParams } from '@core/test/FakeParams';
-import { MovieStatus } from 'dobro-types/enums';
+import { MovieStatus } from '@components/common/enums';
 import { MovieUpdateData } from '@catalog/domain/movie/types';
 
 export const getFakeMovieCreationParams = (): Attributes<MovieModel> => {
