@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import { observable, action, makeObservable } from 'mobx';
 
 import { HomePage } from './Home';
+import { affirmationFacade } from '@affirmation/services/affirmationFacade';
 
 interface Props {
 }
@@ -19,6 +20,7 @@ export class HomeContainer extends React.Component<Props> {
 
     @observable private isSent = false;
     @observable private wish = '';
+    @observable private affirmation = 'Живи';
 
     constructor(props: Props) {
         super(props);
@@ -26,10 +28,16 @@ export class HomeContainer extends React.Component<Props> {
         makeObservable(this);
     }
 
+    public async componentDidMount(): Promise<void> {
+        const affirmations = await affirmationFacade.getRandom();
+        this.affirmation = affirmations[0]?.text ?? this.affirmation;
+    }
+
     public render() {
         return React.createElement(HomePage, {
             isSent: this.isSent,
             wish: this.wish,
+            affirmation: this.affirmation,
             onSendClick: this.onSendClick,
             onWishChange: this.onWishChange,
         });

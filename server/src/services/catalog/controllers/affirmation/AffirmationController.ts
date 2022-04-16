@@ -31,7 +31,7 @@ export class AffirmationController {
     @ApiOkResponse({ type: AffirmationListResponse })
     @Get('/random')
     public async getRandom(): Promise<AffirmationListResponse> {
-        const affirmations = await this.crudService.find({ random: true });
+        const affirmations = await this.crudService.getRandom();
         return { affirmations };
     }
 

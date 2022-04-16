@@ -15,6 +15,7 @@ import { HappyHour } from './HappyHour';
 interface Props {
     isSent: boolean;
     wish: string;
+    affirmation: string;
     onSendClick(): void;
     onWishChange(event: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
@@ -22,6 +23,7 @@ interface Props {
 export function HomePage({
     isSent,
     wish,
+    affirmation,
     onSendClick,
     onWishChange,
 }: Props): JSX.Element {
@@ -59,7 +61,7 @@ export function HomePage({
                 </div>
                 <div className={commonStyles.field}>
                     <div className={style.affirmation}>
-                        отпусти знания в пользу чувств
+                        {affirmation}
                     </div>
                 </div>
             </div>
