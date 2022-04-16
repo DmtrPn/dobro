@@ -24,7 +24,7 @@ export class MovieController {
     @Get('/')
     public async find(): Promise<MovieListResponse> {
         const movies = await this.movieCrudService.find({});
-        return { movies } as unknown as MovieListResponse;
+        return { movies };
     }
 
     @Post('/')

@@ -23,8 +23,16 @@ export class AffirmationController {
     @ApiOkResponse({ type: AffirmationListResponse })
     @Get('/')
     public async find(): Promise<AffirmationListResponse> {
-        const movies = await this.crudService.find({});
-        return { movies } as unknown as AffirmationListResponse;
+        const affirmations = await this.crudService.find({});
+        return { affirmations };
+    }
+
+    @Public()
+    @ApiOkResponse({ type: AffirmationListResponse })
+    @Get('/random')
+    public async getRandom(): Promise<AffirmationListResponse> {
+        const affirmations = await this.crudService.find({ random: true });
+        return { affirmations };
     }
 
     @Post('/')
