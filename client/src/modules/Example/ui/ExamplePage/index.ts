@@ -1,1 +1,1 @@
-export { ExampleContainer as Example } from './ExampleContainer';
+export { ExamplePageContainer as ExamplePage } from './ExamplePageContainer';
