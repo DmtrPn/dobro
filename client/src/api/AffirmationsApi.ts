@@ -17,7 +17,6 @@ export class AffirmationApi {
         return res.data.affirmations;
     }
 
-
     public static async getRandomList(): Promise<AffirmationData[]> {
         const res = await axios.get<AffirmationListResponse>(`${AFFIRMATION_URL}/random`);
 

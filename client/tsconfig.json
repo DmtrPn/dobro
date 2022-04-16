@@ -3,6 +3,7 @@
   "compilerOptions": {
     "target": "es2017",
     "jsx": "react",
+    "lib": ["es6", "ES2019", "dom"],
     "allowJs": true,
     "module": "es6",
     "experimentalDecorators": true,
@@ -21,7 +22,6 @@
     "useDefineForClassFields": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
-    "lib": ["es6", "ES2019", "dom"],
     "strictNullChecks": true,
     "strict": true,
     "inlineSources": true,

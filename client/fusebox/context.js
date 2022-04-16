@@ -17,7 +17,7 @@ context(
         getSWConfig() {
             return FuseBox.init({
                 homeDir: 'src/serviceWorker',
-                target: 'es6',
+                target: 'universal/es6',
                 output: '../public/$name.js',
                 useTypescriptCompiler: true,
             });
@@ -25,7 +25,7 @@ context(
         getConfig() {
             return FuseBox.init({
                 homeDir: 'src/',
-                target: 'browser@es6',
+                target: 'browser',
                 output: '../public/static/$name.js',
                 useTypescriptCompiler: true,
                 allowSyntheticDefaultImports: true,

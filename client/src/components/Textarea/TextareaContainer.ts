@@ -1,7 +1,7 @@
 import React from 'react';
 import autobind from 'autobind';
 import isNil from 'lodash/isNil';
-import { makeObservable, observable } from 'mobx';
+import { makeObservable, action, observable } from 'mobx';
 import { observer } from 'mobx-react';
 
 import { Nullable } from 'dobro-types/common';
@@ -57,7 +57,7 @@ class TextareaContainer extends React.Component<WithHOCProps> {
         );
     }
 
-    @autobind
+    @action.bound
     protected handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
         const { onChange } = this.props;
 
@@ -81,7 +81,7 @@ class TextareaContainer extends React.Component<WithHOCProps> {
         handleFocus();
     }
 
-    @autobind
+    @action.bound
     protected handleBlur(event: React.FocusEvent<HTMLTextAreaElement>) {
         const { onBlur, name, handleBlur } = this.props;
 
