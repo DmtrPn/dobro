@@ -1,7 +1,7 @@
 import { DreamStore } from '@dream/store/Dream';
-import { MovieStore } from '@movie/store';
+import { MovieStore } from '@movie/store/MovieStore';
 import { WishStore } from './Wish/Wish';
-import { AppStore } from '@store/App';
+import { AppStore } from '@store/App/AppStore';
 
 export interface StoreState {
     dreamStore: DreamStore;

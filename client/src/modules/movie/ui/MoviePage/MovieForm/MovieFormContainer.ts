@@ -6,7 +6,7 @@ import { observable, makeObservable } from 'mobx';
 import { MovieCreateData } from 'dobro-types/frontend';
 
 import { MovieForm, MovieFormProps } from './MovieForm';
-import { movieService } from '@movie/services';
+import { movieService } from '@movie/services/movieService';
 
 interface Props extends MovieFormProps {
     onFinishCreate(): void;

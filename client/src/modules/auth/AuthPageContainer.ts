@@ -2,8 +2,9 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import autobind from 'autobind';
 
-import { AppStore, authService } from '@store/App';
-import { AuthApi } from '@api';
+import { AppStore } from '@store/App/AppStore';
+import { authService } from '@store/App/service/authService';
+import { AuthApi } from '@api/AuthApi';
 
 import { AuthPage } from './AuthPage';
 

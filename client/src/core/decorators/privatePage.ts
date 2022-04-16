@@ -2,7 +2,8 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 
 import { AuthPage } from '@modules/auth';
-import { AppStore, authService } from '@store/App';
+import { AppStore } from '@store/App/AppStore';
+import { authService } from '@store/App/service/authService';
 
 export interface StoreProps {
     appStore: AppStore;

@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import { MovieCreateData, MovieUpdateData } from 'dobro-types/frontend';
 import { MovieStatus } from 'dobro-types/enums'
 
-import { MovieApi } from '@api';
+import { MovieApi } from '@api/MovieApi';
 import { store } from '@store';
 import { isDefined } from '@utils/isDefined';
 

@@ -12,7 +12,7 @@
     "data:fix": "node dist/bin/dataFix.js",
     "start": "node dist/app.js",
     "tslint": "tslint -c tslint.json src/**/*.ts",
-    "tslint:fix": "tslint --fix -c tslint.json src/**/*.ts",
+    "tslint:fix": "tslint -c tslint.json src/**/*.ts --fix",
     "migrate:test": "NODE_ENV=test yarn migrate",
     "migrate": "ts-node src/bin/db/migrations:run.ts",
     "migrate:undo": "ts-node src/bin/db/migrations:undo.ts",

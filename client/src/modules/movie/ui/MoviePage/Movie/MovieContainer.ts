@@ -3,8 +3,8 @@ import autobind from 'autobind';
 import { observer, inject } from 'mobx-react';
 
 import { Movie, MovieProps } from './Movie';
-import { MovieStore } from '@movie/store';
-import { movieService } from '@movie/services';
+import { MovieStore } from '@movie/store/MovieStore';
+import { movieService } from '@movie/services/movieService';
 import { MovieData } from 'dobro-types/frontend';
 
 interface Props extends MovieProps {

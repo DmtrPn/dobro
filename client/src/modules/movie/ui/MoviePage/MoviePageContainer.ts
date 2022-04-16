@@ -4,8 +4,8 @@ import { observer, inject } from 'mobx-react';
 import { observable, makeObservable } from 'mobx';
 
 import { MoviePage, MoviePageProps } from './MoviePage';
-import { MovieStore } from '@movie/store';
-import { movieService } from '@movie/services';
+import { MovieStore } from '@movie/store/MovieStore';
+import { movieService } from '@movie/services/movieService';
 import { privatePage } from '@core/decorators/privatePage';
 
 interface Props extends MoviePageProps {

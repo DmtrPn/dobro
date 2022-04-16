@@ -1,6 +1,6 @@
 import { LoginParams } from 'dobro-types/frontend';
 
-import { AuthApi } from '@api';
+import { AuthApi } from '@api/AuthApi';
 import { isDefined } from '@utils/isDefined';
 
 import { store } from '@store';
