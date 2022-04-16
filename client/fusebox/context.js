@@ -37,15 +37,16 @@ context(
                 alias: {
                     '@store/*': '~/store/',
                     '@api/*': '~/api/',
-                    '@modules/*': '~/modules/',
-                    '@movie/*': '~/modules/movie/',
-                    '@dream/*': '~/modules/dream/',
-                    '@common/*': '~/modules/common/',
                     '@components/*': '~/components/',
                     '@hoc/*': '~/components/HOC/',
                     '@utils/*': '~/utils/',
                     '@core/*': '~/core/',
                     '@facades/*': '~/facades/',
+                    '@modules/*': '~/modules/',
+                    '@movie/*': '~/modules/movie/',
+                    '@dream/*': '~/modules/dream/',
+                    '@common/*': '~/modules/common/',
+                    '@affirmation/*': '~/modules/affirmation/',
                 },
                 plugins: [
                     // WebIndexPlugin({

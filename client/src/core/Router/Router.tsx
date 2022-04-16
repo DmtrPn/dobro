@@ -4,7 +4,8 @@ import { Routes, Route } from 'react-router';
 import { locations } from './locations';
 import { NotFound } from '@modules/notFound';
 import { DreamRouter } from '@dream/routes/DreamRoter';
-import { MovieRouter } from '@modules/movie/routes/MovieRoter';
+import { MovieRouter } from '@movie/routes/MovieRoter';
+import { AffirmationRouter } from '@affirmation/routes/AffirmationRoter';
 
 export function Router(): JSX.Element {
     return (
@@ -18,6 +19,7 @@ export function Router(): JSX.Element {
             )}
             {DreamRouter()}
             {MovieRouter()}
+            {AffirmationRouter()}
             <Route path={'*'} element={React.createElement(NotFound)} />
         </Routes>
     );

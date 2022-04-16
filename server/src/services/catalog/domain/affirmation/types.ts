@@ -11,5 +11,5 @@ export interface AffirmationCreateData {
 }
 
 export interface AffirmationUpdateData {
-    text: string;
+    text?: string;
 }

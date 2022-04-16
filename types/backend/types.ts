@@ -12,7 +12,7 @@ export interface AffirmationUpdateForm {
     affirmation: AffirmationUpdateParams;
 }
 export interface AffirmationUpdateParams {
-    text: string;
+    text?: string;
 }
 export interface AffirmationViewModel {
     id: string;

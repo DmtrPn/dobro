@@ -39,13 +39,14 @@
       "@core/*": ["core/*"],
       "@api": ["api/"],
       "@api/*": ["api/*"],
-      "@modules/*": ["modules/*"],
-      "@movie/*": ["modules/movie/*"],
-      "@dream/*": ["modules/dream/*"],
       "@components/*": ["components/*"],
       "@hoc/*": ["components/HOC/*"],
       "@common/*": ["modules/common/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@modules/*": ["modules/*"],
+      "@movie/*": ["modules/movie/*"],
+      "@dream/*": ["modules/dream/*"],
+      "@affirmation/*": ["modules/affirmation/*"]
     }
   },
   "exclude": [
