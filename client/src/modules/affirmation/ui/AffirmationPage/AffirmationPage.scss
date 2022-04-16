@@ -1,0 +1,29 @@
+@import '../../../../components/mixins/media';
+
+.root {
+    position: relative;
+
+    width: inherit;
+    padding: 32px;
+
+    @include media-s {
+        padding: 16px;
+    }
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-bottom: 16px;
+
+    column-gap: 16px;
+    row-gap: 16px;
+}
+
+.card {
+    @include media-s {
+        width: 100%;
+    }
+}
+

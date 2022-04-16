@@ -1,11 +1,10 @@
-import { v4 as uuid } from 'uuid';
-
 import { MovieCreateData, MovieUpdateData } from 'dobro-types/frontend';
 import { MovieStatus } from 'dobro-types/enums'
 
-import { MovieApi } from '@api';
+import { MovieApi } from '@api/MovieApi';
 import { store } from '@store';
 import { isDefined } from '@utils/isDefined';
+import { getId } from '@utils/getId';
 
 class MovieService {
 
@@ -23,7 +22,7 @@ class MovieService {
         const { movieStore: { movieList }, appStore: { authUserId } } = store;
 
         if (isDefined(authUserId)) {
-            const id = uuid();
+            const id = getId();
             await MovieApi.create({ id, ...createParams });
 
             movieList.add([{

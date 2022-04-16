@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 
-import { WishStore, wishService } from '@store/Wish';
+import { WishStore } from '@store/Wish/Wish';
+import { wishService } from '@store/Wish/wishService';
 import { privatePage } from '@core/decorators/privatePage';
 
 interface Props extends StoreProps, WishProps {

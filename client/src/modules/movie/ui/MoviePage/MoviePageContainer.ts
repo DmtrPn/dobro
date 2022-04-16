@@ -1,11 +1,10 @@
 import React from 'react';
-import autobind from 'autobind';
 import { observer, inject } from 'mobx-react';
-import { observable, makeObservable } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 
 import { MoviePage, MoviePageProps } from './MoviePage';
-import { MovieStore } from '@movie/store';
-import { movieService } from '@movie/services';
+import { MovieStore } from '@movie/store/MovieStore';
+import { movieService } from '@movie/services/movieService';
 import { privatePage } from '@core/decorators/privatePage';
 
 interface Props extends MoviePageProps {
@@ -46,12 +45,12 @@ export class MoviePageContainer extends React.Component<Props & StoreProps> {
         });
     }
 
-    @autobind
+    @action.bound
     private onAddClick(): void {
         this.addMode = true;
     }
 
-    @autobind
+    @action.bound
     private onFinishCreate(): void {
         this.addMode = false;
     }

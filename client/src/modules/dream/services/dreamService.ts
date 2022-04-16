@@ -1,4 +1,4 @@
-import { DreamApi } from '@api';
+import { DreamApi } from '@api/DreamApi';
 import { store } from '@store';
 
 class DreamService {

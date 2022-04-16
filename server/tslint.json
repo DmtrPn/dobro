@@ -8,6 +8,7 @@
     "function-name": false,
     "curly": true,
     "no-increment-decrement": false,
+    "no-boolean-literal-compare": false,
     "cyclomatic-complexity": [
       true,
       15
@@ -31,13 +32,35 @@
     ],
     "max-line-length": [
       true,
-      150
+      { "limit": 150, "ignore-pattern": "^( +\\* |.+`)" }
     ],
-    "member-access": true,
+    "member-access": false,
     "member-ordering": [
       true,
       {
-        "order": "fields-first"
+        "order": [
+          "public-static-field",
+          "protected-static-field",
+          "private-static-field",
+          "public-static-accessor",
+          "public-static-method",
+          "protected-static-accessor",
+          "protected-static-method",
+          "private-static-accessor",
+          "private-static-method",
+          "public-instance-field",
+          "protected-instance-field",
+          "private-instance-field",
+          "public-constructor",
+          "protected-constructor",
+          "private-constructor",
+          "public-instance-accessor",
+          "public-instance-method",
+          "protected-instance-accessor",
+          "protected-instance-method",
+          "private-instance-accessor",
+          "private-instance-method"
+        ]
       }
     ],
     "no-default-export": true,
@@ -80,7 +103,12 @@
     "trailing-comma": [
       true, {
         "esSpecCompliant": true,
-        "multiline": "always",
+        "multiline": {
+          "objects": "always",
+          "arrays": "always",
+          "functions": "ignore",
+          "typeLiterals": "always"
+        },
         "singleline": "never"
       }
     ],

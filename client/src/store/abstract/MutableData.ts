@@ -22,6 +22,10 @@ export abstract class MutableData<D extends object> {
         updateAttributes(this as unknown as D, this.formatData(params));
     }
 
+    public getValue(name: string): any {
+        return this[name];
+    }
+
     protected init(data: D): void {
         const fields: any = {};
 

@@ -12,12 +12,13 @@
     "data:fix": "node dist/bin/dataFix.js",
     "start": "node dist/app.js",
     "tslint": "tslint -c tslint.json src/**/*.ts",
-    "migrate-test": "NODE_ENV=test yarn migrate",
+    "tslint:fix": "tslint -c tslint.json src/**/*.ts --fix",
+    "migrate:test": "NODE_ENV=test yarn migrate",
     "migrate": "ts-node src/bin/db/migrations:run.ts",
     "migrate:undo": "ts-node src/bin/db/migrations:undo.ts",
     "test:unit": "NODE_ENV=test jest --detectOpenHandles .*.test.ts",
     "test:integration": "NODE_ENV=test jest --detectOpenHandles .*.spec.ts",
-    "test": "yarn migrate-test && yarn test:unit && yarn test:integration",
+    "test": "yarn migrate:test && yarn test:unit && yarn test:integration",
     "generate:types": "node ./dist/bin/generate-api-types.js"
   },
   "dependencies": {
@@ -68,7 +69,7 @@
     "ts-jest": "27.1.4",
     "ts-node": "10.7.0",
     "tslint": "5.17.0",
-    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-airbnb": "5.11.1",
     "typescript": "4.5.5"
   }
 }

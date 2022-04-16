@@ -33,11 +33,11 @@ function buildConfig() {
 
 async function main() {
     const app = await NestFactory.create(AppModule);
-    const document = SwaggerModule.createDocument(app, buildConfig())
+    const document = SwaggerModule.createDocument(app, buildConfig());
 
     const types = await dtsgenerator({
-        contents: [document],
         typeNameConvertor,
+        contents: [document],
         namespaceName: '',
         // ignoredNamespaces: ['Responses'],
     });

@@ -6,7 +6,8 @@
   "scripts": {
     "build-dev": "yarn cache-clean && yarn tslint && yarn csscomb && yarn typedCss  && yarn checkTypes && node fuse dev",
     "build": "yarn cache-clean && NODE_ENV=production node fuse",
-    "tslint": "tslint -c tslint.json src/**/*.{ts,tsx} --fix",
+    "tslint": "tslint -c tslint.json src/**/*.{ts,tsx}",
+    "tslint:fix": "tslint -c tslint.json src/**/*.{ts,tsx} --fix",
     "cache-clean": "rm -rf .fusebox/cache",
     "typedCss": "tcm -p 'src/**/*.scss'",
     "csscomb": "csscomb -c .csscomb.json ./src",
@@ -49,7 +50,8 @@
     "typed-css-modules": "0.4.2",
     "typescript": "4.5.5",
     "uglify-es": "3.3.9",
-    "uuid": "3.3.2"
+    "uuid": "3.4.0",
+    "uuid-browser": "3.1.0"
   },
   "dependencies": {},
   "resolutions": {
