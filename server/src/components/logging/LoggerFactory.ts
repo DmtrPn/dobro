@@ -80,6 +80,10 @@ export class LoggerFactory {
             throw new Error(`Appender config of type ${categoryConfig.type} is not defined`);
         }
 
+        if (process.env.JEST_WORKER_ID) {
+            appender.type = 'stdout';
+        }
+
         if (categoryConfig.pattern) {
             appender.layout = {
                 type: 'pattern',

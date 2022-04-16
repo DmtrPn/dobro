@@ -10,5 +10,4 @@ export class MovieCreateCommand extends MovieCommand<Params> {
         return undefined;
     }
 
-
 }

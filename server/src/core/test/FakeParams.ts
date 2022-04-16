@@ -18,7 +18,7 @@ export class FakeParams {
         return this.change.word();
     };
 
-    public static getTest(): string {
+    public static getText(): string {
         return this.change.sentence();
     };
 

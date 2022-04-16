@@ -1,3 +1,23 @@
+export interface AffirmationCreateForm {
+    affirmation: AffirmationCreateParams;
+}
+export interface AffirmationCreateParams {
+    id: string; // uuid
+    text: string;
+}
+export interface AffirmationListResponse {
+    readonly affirmations: AffirmationViewModel[];
+}
+export interface AffirmationUpdateForm {
+    affirmation: AffirmationUpdateParams;
+}
+export interface AffirmationUpdateParams {
+    text: string;
+}
+export interface AffirmationViewModel {
+    id: string;
+    text: string;
+}
 export interface MovieCreateForm {
     movie: MovieCreateParams;
 }
@@ -37,7 +57,7 @@ declare namespace Parameters {
 export interface PathParameters {
     id: Parameters.Id;
 }
-export type RequestBody = MovieUpdateForm;
+export type RequestBody = AffirmationUpdateForm;
 declare namespace Responses {
     export type $200 = UserResponse;
 }

@@ -1,0 +1,53 @@
+import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import { Inject } from 'typescript-ioc';
+
+import { AuthUserData } from 'dobro-types/backend';
+
+import { Uuid } from '@common/controllers/validators/Uuid';
+import { Public } from '@components/decorators/Pubic';
+import { IMovieCrudService } from '@catalog/domain/movie/IMovieCrudService';
+import { User } from '@components/decorators';
+
+import { MovieListResponse } from './responces/MovieListResponse';
+import { MovieCreateForm } from './validators/MovieCreateForm';
+import { MovieUpdateForm } from './validators/MovieUpdateForm';
+
+@ApiTags('Фильмы')
+@Controller('movie')
+export class MovieController {
+
+    @Inject private movieCrudService: IMovieCrudService;
+
+    @Public()
+    @ApiOkResponse({ type: MovieListResponse })
+    @Get('/')
+    public async find(): Promise<MovieListResponse> {
+        const movies = await this.movieCrudService.find({});
+        return { movies } as unknown as MovieListResponse;
+    }
+
+    @Post('/')
+    public async create(
+        @Body() { movie }: MovieCreateForm,
+        @User() user: AuthUserData,
+    ): Promise<void> {
+        await this.movieCrudService.create({ ...movie, authorId: user.id });
+    }
+
+    @Put('/:id')
+    public async update(
+        @Param() { id }: Uuid,
+        @Body() { movie }: MovieUpdateForm,
+    ): Promise<void> {
+        await this.movieCrudService.update(id, movie);
+    }
+
+    @Delete('/:id')
+    public async remove(
+        @Param() { id }: Uuid,
+    ): Promise<void> {
+        await this.movieCrudService.remove(id);
+    }
+
+}

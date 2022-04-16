@@ -16,7 +16,7 @@ async function clearDb(): Promise<void> {
         GRANT ALL ON SCHEMA public TO public;
     `);
 
-    await dataSource.destroy()
+    await dataSource.destroy();
 }
 
-clearDb()
+clearDb();
