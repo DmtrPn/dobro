@@ -5,6 +5,7 @@ import { observable, action, makeObservable } from 'mobx';
 
 import { HomePage } from './Home';
 import { affirmationFacade } from '@affirmation/services/affirmationFacade';
+import { authService } from '@store/App/service/authService';
 
 interface Props {
 }
@@ -29,7 +30,10 @@ export class HomeContainer extends React.Component<Props> {
     }
 
     public async componentDidMount(): Promise<void> {
-        const affirmations = await affirmationFacade.getRandom();
+        const [affirmations] = await Promise.all([
+            affirmationFacade.getRandom(),
+            authService.loadAuthorizedUser(),
+        ]);
         this.affirmation = affirmations[0]?.text ?? this.affirmation;
     }
 
