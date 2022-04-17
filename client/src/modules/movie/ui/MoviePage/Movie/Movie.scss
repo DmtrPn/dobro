@@ -6,7 +6,7 @@
 
     display: grid;
 
-    width: 400px;
+    width: inherit;
     padding: 16px;
 
     border: 1px solid $GreyBorder;
@@ -19,4 +19,20 @@
     @include media-s {
         width: inherit;
     }
+}
+
+.editButton {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.statusIcon {
+    color: $Grey;
+    margin-right: 8px;
+}
+
+.statusIcon_viewed {
+    color: $Green;
+    margin-right: 8px;
 }

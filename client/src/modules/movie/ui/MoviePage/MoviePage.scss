@@ -22,6 +22,8 @@
 }
 
 .card {
+    width: 400px;
+
     @include media-s {
         width: 100%;
     }

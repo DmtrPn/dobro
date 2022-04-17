@@ -1,11 +1,15 @@
 import React from 'react';
-import autobind from 'autobind';
-import { observer, inject } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
+import { action, makeObservable, observable } from 'mobx';
 
-import { Movie, MovieProps } from './Movie';
-import { MovieStore } from '@movie/store/MovieStore';
-import { movieService } from '@movie/services/movieService';
 import { MovieData } from 'dobro-types/frontend';
+import { MovieStatus } from 'dobro-types/enums';
+
+import { MovieStore } from '@movie/store/MovieStore';
+
+import { MovieForm } from '../MovieForm';
+import { Movie, MovieProps } from './Movie';
+import { movieService } from '@movie/services/movieService';
 
 interface Props extends MovieProps {
     id: string;
@@ -20,23 +24,44 @@ const injectableStores: (keyof StoreProps)[] = [
 ];
 
 @observer
-class Container extends React.Component<Props> {
-    readonly declare props: Props & StoreProps;
+class Container extends React.Component<Props & StoreProps> {
 
-    public render() {
-        return React.createElement(Movie, {
-            movie: this.movie,
-            onTextChange: this.onTextChange,
-        });
+    @observable private editMode = false;
+
+    constructor(props: Props & StoreProps) {
+        super(props);
+
+        makeObservable(this);
     }
 
-    @autobind
-    private async onTextChange({ target: { value, name } }: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>): Promise<void> {
-        const { id } = this.props;
+    public render() {
+        return this.editMode
+            ? React.createElement(MovieForm, {
+                id: this.props.id,
+                data: this.movie,
+                onFinish: this.onFinish,
+            })
+            : React.createElement(Movie, {
+                movie: this.movie,
+                onEditClick: this.onEditClick,
+                toggleStatus: this.toggleStatus,
+            });
+    }
 
-        if (this.movie[name] !== value) {
-            await movieService.update(id, { [ name ]: value });
-        }
+    @action.bound
+    private onEditClick(): void {
+        this.editMode = true;
+    }
+
+    @action.bound
+    private async toggleStatus(): Promise<void> {
+        const status = this.movie.status === MovieStatus.New ? MovieStatus.Viewed : MovieStatus.New;
+        await movieService.update(this.movie.id, { status });
+    }
+
+    @action.bound
+    private onFinish(): void {
+        this.editMode = false;
     }
 
     private get movie(): MovieData {
@@ -45,4 +70,4 @@ class Container extends React.Component<Props> {
     }
 }
 
-export const MovieContainer = inject(...injectableStores)(Container)
+export const MovieContainer = inject<Props, StoreProps>(...injectableStores)(Container)

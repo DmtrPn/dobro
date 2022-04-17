@@ -40,7 +40,7 @@ export function MoviePage({
             </div>
             {addMode
                 ? <div className={style.card}>
-                    <MovieForm onFinishCreate={onFinishCreate} />
+                    <MovieForm onFinish={onFinishCreate} />
                 </div>
                 : <SaveButton onSaveClick={onAddClick} label={'Добавить'} />
             }
