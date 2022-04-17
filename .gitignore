@@ -4,7 +4,6 @@ node_modules/
 /public
 /dist
 server/config/local.js
-IconType.ts
 *.log
 *.scss.d.ts
 *.css.d.ts

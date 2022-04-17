@@ -4,12 +4,14 @@ import autobind from 'autobind';
 import { MovieCreateData } from 'dobro-types/frontend';
 
 import { movieService } from '@movie/services/movieService';
-import { MovieMutableDataParams } from '@movie/store/models/MovieMuttableData';
+import { MovieMutableData, MovieMutableDataParams } from '@movie/store/models/MovieMuttableData';
 
 import { FieldType, Form, FormFiledParams } from '@components/Form';
 
 interface Props {
-    onFinishCreate(): void;
+    id?: string;
+    data?: MovieMutableDataParams;
+    onFinish(): void;
 }
 
 export class MovieFormContainer extends React.Component<Props> {
@@ -20,9 +22,9 @@ export class MovieFormContainer extends React.Component<Props> {
 
     public render() {
         return React.createElement(Form, {
-            mutableData: MovieMutableDataParams,
+            mutableData: MovieMutableData,
             filedParams: this.makeFiledParams(),
-            data: {
+            data: this.props.data ?? {
                 name: 'Название',
                 link: 'Ссылка',
                 description: ''
@@ -34,13 +36,18 @@ export class MovieFormContainer extends React.Component<Props> {
 
     @autobind
     private async onSaveClick(movie: Omit<MovieCreateData, 'id'>): Promise<void> {
-        await movieService.create(movie);
-        this.props.onFinishCreate()
+        const { id, onFinish } = this.props;
+        if (!!id) {
+            await movieService.update(id, movie);
+        } else {
+            await movieService.create(movie);
+        }
+        onFinish()
     }
 
     @autobind
     private async onCancelClick(): Promise<void> {
-        this.props.onFinishCreate()
+        this.props.onFinish()
     }
 
     private makeFiledParams(): FormFiledParams[] {

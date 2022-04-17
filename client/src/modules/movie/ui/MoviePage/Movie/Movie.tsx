@@ -3,46 +3,50 @@ import React from 'react';
 import style from './Movie.scss';
 
 import { MovieData } from 'dobro-types/frontend';
+import { MovieStatus } from 'dobro-types/enums';
 
-// import { Input } from '@components/Input';
-import { Textarea } from '@components/Textarea';
+import { IconButton } from '@components/ActionButtons/IconButton';
+import { EditButton } from '@components/ActionButtons/EditButton';
+import { TextTruncate } from '@components/TextTruncate';
 import { TextLink } from '@components/TextLink';
+import { IconType } from '@components/Icon';
 
 export interface MovieProps {
 }
 
 interface Props extends MovieProps {
     movie: MovieData;
-    onTextChange(event: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>): void;
+    onEditClick(): void;
+    toggleStatus(): void;
 }
 
 export function Movie({
     movie: {
         name,
         link,
-        description,
-        rating,
+        description = '',
+        status,
     },
-    onTextChange,
+    onEditClick,
+    toggleStatus,
 }: Props): JSX.Element {
+    const isNew = status === MovieStatus.New;
     return (
         <div className={style.root}>
-            <TextLink link={link} label={name} />
-            <Textarea
-                // title={'Описание'}
-                name={'description'}
-                value={description}
-                onBlur={onTextChange}
-            />
-            {/*<Input*/}
-            {/*    title={'Рейтинг'}*/}
-            {/*    type={'number'}*/}
-            {/*    min={0}*/}
-            {/*    max={10}*/}
-            {/*    name={'rating'}*/}
-            {/*    value={rating}*/}
-            {/*    onBlur={onTextChange}*/}
-            {/*/>*/}
+            <div className={style.editButton}>
+                <EditButton onEditClick={onEditClick} />
+            </div>
+            <div>
+                <span className={isNew ? style.statusIcon : style.statusIcon_viewed}>
+                    <IconButton
+                        inheritColor
+                        icon={IconType.CHECK}
+                        onButtonClick={toggleStatus}
+                    />
+                </span>
+                <TextLink link={link} label={name} />
+            </div>
+            <TextTruncate text={description} />
         </div>
     );
 }

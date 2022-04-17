@@ -2,14 +2,17 @@ const {
     FuseBox,
     WebIndexPlugin,
 } = require('fuse-box');
+const fs = require('fs');
 
 module.exports = async context => {
+    const sprites = fs.readFileSync('../public/static/sprite.svg', 'utf8');
+
     const fuse = FuseBox.init({
         homeDir: 'src/',
         output: '../public/$name.js',
         plugins: [
             WebIndexPlugin({
-                templateString : getHtmlString(process.env.NODE_ENV === 'production'),
+                templateString : getHtmlString(process.env.NODE_ENV === 'production', sprites),
             }),
         ]
     });
@@ -19,7 +22,7 @@ module.exports = async context => {
 
 
 
-const getHtmlString = (isProduction) => `
+const getHtmlString = (isProduction, sprites) => `
 <!-- index.html -->
 <!DOCTYPE html>
 <html>
@@ -48,6 +51,9 @@ const getHtmlString = (isProduction) => `
     <body>
         <div id="app"></div>
         <script type="text/javascript" src="/static/app.js?${Date.now()}"></script>
+        <div hidden>
+            ${sprites}
+        </div>
     </body>
 </html>
 `;

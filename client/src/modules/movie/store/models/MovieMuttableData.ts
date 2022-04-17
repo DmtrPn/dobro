@@ -5,7 +5,7 @@ import { MutableData } from '@store/abstract/MutableData';
 export interface MovieMutableDataParams extends Pick<MovieData, keyof MovieUpdateData> {
 }
 
-export class MovieMutableDataParams extends MutableData<MovieMutableDataParams> {
+export class MovieMutableData extends MutableData<MovieMutableDataParams> {
 
     protected numbersFields = new Set(['rating']);
     protected mutableKeys: (keyof MovieMutableDataParams)[] = [

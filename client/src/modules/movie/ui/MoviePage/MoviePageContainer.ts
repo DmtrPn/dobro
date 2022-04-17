@@ -1,11 +1,14 @@
 import React from 'react';
-import { observer, inject } from 'mobx-react';
-import { observable, action, makeObservable } from 'mobx';
+import { inject, observer } from 'mobx-react';
+import { action, makeObservable, observable } from 'mobx';
 
-import { MoviePage, MoviePageProps } from './MoviePage';
+import { MovieStatus } from 'dobro-types/enums';
+
 import { MovieStore } from '@movie/store/MovieStore';
 import { movieService } from '@movie/services/movieService';
 import { privatePage } from '@core/decorators/privatePage';
+
+import { MoviePage, MoviePageProps } from './MoviePage';
 
 interface Props extends MoviePageProps {
 }
@@ -38,7 +41,11 @@ export class MoviePageContainer extends React.Component<Props & StoreProps> {
     public render() {
         const { movieStore: { movieList } } = this.props;
         return React.createElement(MoviePage, {
-            ids: movieList.ids,
+            ids: [
+                ...movieList.getFilteredValuesIds({ status: MovieStatus.New }),
+                ...movieList.getFilteredValuesIds({ status: MovieStatus.Viewed }),
+                ...movieList.getFilteredValuesIds({ status: MovieStatus.Rejected }),
+            ],
             addMode: this.addMode,
             onAddClick: this.onAddClick,
             onFinishCreate: this.onFinishCreate,

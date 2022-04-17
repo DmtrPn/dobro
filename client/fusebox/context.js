@@ -6,6 +6,7 @@ const {
     QuantumPlugin,
     CSSModulesPlugin,
     CSSPlugin,
+    SVGPlugin,
     CSSResourcePlugin,
     PostCSSPlugin,
 } = require('fuse-box');
@@ -49,6 +50,7 @@ context(
                     '@affirmation/*': '~/modules/affirmation/',
                 },
                 plugins: [
+                    SVGPlugin(),
                     // WebIndexPlugin({
                     //     template : 'src/index.html'
                     // }),
