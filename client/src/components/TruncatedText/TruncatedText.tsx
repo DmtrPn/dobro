@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import style from './TruncatedText.scss';
 
-import { TextTruncate } from '@components/TextTruncate';
+import { TextTruncate } from './TextTruncate';
 
 export interface TruncatedTextProps {
     additionalClassName?: string;
