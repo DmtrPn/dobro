@@ -7,7 +7,7 @@ import { MovieStatus } from 'dobro-types/enums';
 
 import { IconButton } from '@components/ActionButtons/IconButton';
 import { EditButton } from '@components/ActionButtons/EditButton';
-import { TextTruncate } from '@components/TextTruncate';
+import { TruncatedText } from '@components/TruncatedText';
 import { TextLink } from '@components/TextLink';
 import { IconType } from '@components/Icon';
 
@@ -46,7 +46,7 @@ export function Movie({
                 </span>
                 <TextLink link={link} label={name} />
             </div>
-            <TextTruncate text={description} />
+            <TruncatedText text={description} maxLine={3} />
         </div>
     );
 }
