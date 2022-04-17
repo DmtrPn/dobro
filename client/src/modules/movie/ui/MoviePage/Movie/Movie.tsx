@@ -31,6 +31,7 @@ export function Movie({
             <Textarea
                 // title={'Описание'}
                 name={'description'}
+                maxRows={3}
                 value={description}
                 onBlur={onTextChange}
             />

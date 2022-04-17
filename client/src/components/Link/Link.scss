@@ -1,0 +1,23 @@
+@import '../../components/mixins/mixin';
+
+.link {
+    text-align: left;
+    text-decoration: none;
+
+    color: $GreyText;
+
+    font-size: 16px;
+    &:hover {
+        color: $Violet;
+    }
+}
+
+.link_active {
+    cursor: default;
+
+    color: $Purple;
+
+    &:hover {
+        color: $Purple;
+    }
+}

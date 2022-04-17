@@ -4,6 +4,7 @@ import * as style from './Page.scss';
 import './reset.scss';
 
 import { Router } from '@core/Router';
+import { NavMenu } from './NavMenu';
 
 // import { Header } from './Header';
 
@@ -15,6 +16,7 @@ export function Page(): JSX.Element {
     return (
     <div className={style.root}>
         {/*<Header />*/}
+        <NavMenu />
         <div className={style.content}>
             <Router />
         </div>
