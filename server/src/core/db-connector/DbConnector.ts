@@ -1,6 +1,7 @@
 import { DataSource, EntityManager, Repository, EntityTarget } from 'typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { initializeTransactionalContext } from 'typeorm-transactional-cls-hooked';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 import { Config, ConfigName, DbConfig } from '@core/config';
 import { LoggerFactory } from '@components/logging';
@@ -16,6 +17,7 @@ export class DbConnector {
 
     private constructor() {
         this.dataSource = new DataSource(this.dbConfig as PostgresConnectionOptions);
+        this.dataSource.namingStrategy = new SnakeNamingStrategy();
     }
 
     public static getInstance(): DbConnector {

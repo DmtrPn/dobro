@@ -20,7 +20,7 @@ export class MovieModel extends BaseModel<MovieModel> {
     @Column()
     public description?: string;
 
-    @Column({ name: 'author_id' })
+    @Column()
     public authorId: string;
 
     @Column()
@@ -30,8 +30,7 @@ export class MovieModel extends BaseModel<MovieModel> {
     @JoinColumn({ name: 'author_id', referencedColumnName: 'id' })
     public author?: UserModel;
 
-    @OneToMany(() => MovieRatingModel, model => model.movieId)
-    @JoinColumn({ name: 'movie_id', referencedColumnName: 'id' })
+    @OneToMany(() => MovieRatingModel, model => model.movie)
     public ratings?: MovieRatingModel[];
 
 }

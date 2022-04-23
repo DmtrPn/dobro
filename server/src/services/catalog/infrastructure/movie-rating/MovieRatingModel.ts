@@ -1,8 +1,9 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, ManyToOne, Column, JoinColumn } from 'typeorm';
 
 import { BaseModel } from '@common/infrastructure/BaseModel';
+import { MovieModel } from '@catalog/infrastructure/movie/MovieModel';
 
-@Entity('MovieRating')
+@Entity('movie_rating')
 export class MovieRatingModel extends BaseModel<MovieRatingModel> {
 
     @PrimaryColumn()
@@ -13,5 +14,9 @@ export class MovieRatingModel extends BaseModel<MovieRatingModel> {
 
     @Column({ type: 'int' })
     public rating: number;
+
+    @ManyToOne(() => MovieModel, model => model.ratings)
+    @JoinColumn({ name: 'movie_id', referencedColumnName: 'id' })
+    public movie?: MovieModel;
 
 }
