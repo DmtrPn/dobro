@@ -1,15 +1,19 @@
-import { MovieData } from 'dobro-types/frontend';
+import { MovieData, MovieUpdateData } from 'dobro-types/frontend';
 import { MovieStatus } from 'dobro-types/enums';
 
-import { SimpleList } from '@store/models/SimpleList';
+import { EntityList } from '@store/models/EntityList';
+
+import { Movie } from './Movie';
 
 interface FilterParams {
     status?: MovieStatus;
 }
 
-export class MovieList extends SimpleList<MovieData, FilterParams> {
+export class MovieList extends EntityList<Movie, MovieData, MovieUpdateData, FilterParams> {
 
-    protected filterValue(value: MovieData, { status }: FilterParams): boolean {
-        return !!status ? value.status === status : true;
+    protected entityClass = Movie;
+
+    protected filterValue(value: Movie, { status }: FilterParams): boolean {
+        return !!status ? value.serialize().status === status : true;
     }
 }

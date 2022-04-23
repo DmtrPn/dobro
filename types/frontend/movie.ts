@@ -1,6 +1,6 @@
-import * as BackendTypes from '../backend';
+import * as BackendTypes from '../backend/types';
 
-export interface MovieData extends BackendTypes.MovieData {}
+export interface MovieData extends BackendTypes.MovieViewModel {}
 export interface MovieListResponse extends BackendTypes.MovieListResponse {}
-export interface MovieCreateData extends BackendTypes.MovieCreateData {}
-export interface MovieUpdateData extends BackendTypes.MovieUpdateData {}
+export interface MovieCreateData extends BackendTypes.MovieCreateParams {}
+export interface MovieUpdateData extends BackendTypes.MovieUpdateParams {}

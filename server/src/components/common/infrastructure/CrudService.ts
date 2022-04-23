@@ -1,5 +1,4 @@
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
-import { Transactional } from 'typeorm-transactional-cls-hooked';
 
 import { Class, Attributes } from 'dobro-types/common';
 
@@ -21,26 +20,28 @@ export abstract class CrudService<
         return command.execute();
     };
 
-    @Transactional()
     public async create(params: CreationParams): Promise<void> {
         const theParams = this.enrichCreationParams(params);
 
-        await this.manager
-            .createQueryBuilder()
-            .insert()
-            .into(this.modelClass)
-            .values(theParams)
-            .execute();
+        await this.executeInTransaction(entityManager =>
+            entityManager
+                .createQueryBuilder()
+                .insert()
+                .into(this.modelClass)
+                .values(theParams)
+                .execute()
+        );
     }
 
-    @Transactional()
     public async update(id: string, params: UpdateParams): Promise<void> {
-        await this.manager
-            .createQueryBuilder()
-            .update(this.modelClass)
-            .set(params as unknown as QueryDeepPartialEntity<M>) //  as UpdateQueryBuilder<M>)
-            .where({ id })
-            .execute();
+        await this.executeInTransaction(entityManager =>
+            entityManager
+                .createQueryBuilder()
+                .update(this.modelClass)
+                .set(params as unknown as QueryDeepPartialEntity<M>) //  as UpdateQueryBuilder<M>)
+                .where({ id })
+                .execute()
+        );
     }
 
     protected abstract enrichCreationParams(params: CreationParams): M;

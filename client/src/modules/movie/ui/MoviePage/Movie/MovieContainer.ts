@@ -66,7 +66,7 @@ class Container extends React.Component<Props & StoreProps> {
 
     private get movie(): MovieData {
         const { movieStore: { movieList }, id } = this.props;
-        return movieList.get(id);
+        return movieList.get(id).serialize();
     }
 }
 

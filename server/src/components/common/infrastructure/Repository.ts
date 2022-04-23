@@ -54,12 +54,12 @@ export abstract class Repository<E, M, FO> extends TransactionManager {
     }
 
     protected async saveOne(entity: E): Promise<void> {
-        await this.manager.save(this.modelFrom(entity));
+        await this.executeInTransaction(entityManager => entityManager.save(this.modelFrom(entity)));
     }
 
     protected async saveAll(list: E[]): Promise<void> {
         const models = list.map(it => this.modelFrom(it));
-        await this.manager.save(models);
+        await this.executeInTransaction(entityManager => entityManager.save(models));
     }
 
     protected abstract create(model: M): E;

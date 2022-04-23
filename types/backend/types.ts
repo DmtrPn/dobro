@@ -31,6 +31,11 @@ export interface MovieCreateParams {
 export interface MovieListResponse {
     readonly movies: MovieViewModel[];
 }
+export interface MovieRatingModel {
+    movieId: string;
+    userId: string;
+    rating: number;
+}
 export interface MovieRatingUpdateForm {
     movieRating: MovieRatingUpdateParams;
 }
@@ -58,6 +63,7 @@ export interface MovieViewModel {
     description?: string;
     rating?: number;
     authorId: string;
+    ratings?: MovieRatingModel[];
 }
 declare namespace Parameters {
     export type Id = string;

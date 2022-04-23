@@ -1,12 +1,9 @@
 import { DataSource, EntityManager, Repository, EntityTarget } from 'typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
-import { initializeTransactionalContext } from 'typeorm-transactional-cls-hooked';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 import { Config, ConfigName, DbConfig } from '@core/config';
 import { LoggerFactory } from '@components/logging';
-
-initializeTransactionalContext();
 
 export class DbConnector {
 
