@@ -3,6 +3,14 @@ upstream dobro_server {
     keepalive                   16;
 }
 
+servet {
+    listen       80;
+    listen       443 ssl;
+    server_name  hellomylove.ru www.hellomylove.ru;
+
+    return 301 https://hellomyfriend.ru$request_uri;
+}
+
 server {
     listen 80;
 
