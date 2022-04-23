@@ -50,6 +50,7 @@
     "source-map-support": "0.5.21",
     "tsconfig-paths": "3.14.1",
     "typeorm": "0.3.4",
+    "typeorm-transactional-cls-hooked": "0.1.21",
     "typescript-ioc": "3.2.2",
     "uuid": "8.3.2",
     "yargs": "13.2.4"

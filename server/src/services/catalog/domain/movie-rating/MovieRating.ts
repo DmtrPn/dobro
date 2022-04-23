@@ -1,21 +1,23 @@
-import { assignParams } from '@utils/assignParams';
-
 import {
     MovieRatingCreateData,
     MovieRatingUpdateData,
     MovieRatingDTO,
 } from './types';
 import { InvalidRating } from './errors/InvalidRating';
+import { SerializableEntity } from '@common/domain/SerializableEntity';
 
-export class MovieRating {
+export class MovieRating extends SerializableEntity<MovieRatingCreateData, MovieRatingUpdateData, MovieRatingDTO> {
 
     private readonly movieId!: string;
     private readonly userId!: string;
     private rating!: number;
 
+    public static newInstance(params: MovieRatingCreateData): MovieRating {
+        return new MovieRating(params);
+    }
+
     constructor(params: MovieRatingCreateData) {
-        this.checkRating(params.rating);
-        assignParams<MovieRatingCreateData>(this as unknown as MovieRatingCreateData, params);
+        super(params);
     }
 
     public get dto(): MovieRatingDTO {
@@ -30,6 +32,10 @@ export class MovieRating {
         this.checkRating(rating);
         this.rating = rating;
 
+    }
+
+    protected checkCreateParams({ rating }: MovieRatingCreateData) {
+        this.checkRating(rating);
     }
 
     private checkRating(rating: number): void {

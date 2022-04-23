@@ -11,4 +11,8 @@ export enum SortingOrder {
     DESC = 'desc',
 }
 
+export type Identifiable<Id = unknown> = {
+    id: Id;
+};
+
 export type FunctionType<P, R> = (params: P) => R;

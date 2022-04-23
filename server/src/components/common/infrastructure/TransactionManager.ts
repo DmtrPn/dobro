@@ -9,7 +9,4 @@ export abstract class TransactionManager {
         return this.dbConnector.getDataSource().manager;
     }
 
-    protected async executeInTransaction(runInTransaction: (entityManager: EntityManager) => Promise<unknown>): Promise<void> {
-        await this.manager.transaction(runInTransaction);
-    }
 }
