@@ -21,6 +21,7 @@
     "baseUrl": "src",
     "paths": {
       "@core/*": ["core/*"],
+      "@utils/*": ["core/utils/*"],
       "@common/*": ["components/common/*"],
       "@components/*": ["components/*"],
       "@catalog/*": ["services/catalog/*"],

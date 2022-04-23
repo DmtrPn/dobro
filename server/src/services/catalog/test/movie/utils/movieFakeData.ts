@@ -13,7 +13,6 @@ export const getFakeMovieCreationParams = (): Attributes<MovieModel> => {
         description: FakeParams.getText(),
         authorId: FakeParams.getId(),
         status: MovieStatus.New,
-        rating: FakeParams.getInteger(),
     }
 }
 
@@ -22,6 +21,5 @@ export const getFakeMovieUpdateParams = (): MovieUpdateData => {
         link: FakeParams.getUrl(),
         name: FakeParams.getName(),
         description: FakeParams.getText(),
-        rating: FakeParams.getInteger(),
     }
 }

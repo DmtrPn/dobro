@@ -2,7 +2,7 @@ import '@core/test/unitTestRanner';
 
 import { DreamController } from '@dream/controllers';
 
-describe('DreamController', () => {
+describe.skip('DreamController', () => {
     let dreamController: DreamController;
 
     beforeEach(() => {

@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import 'source-map-support/register';
 import dotenv from 'dotenv';
+import '@jest-decorated/core/globals';
 
 const tsConfig = require('../tsconfig.json');
 const tsConfigPaths = require('tsconfig-paths');
