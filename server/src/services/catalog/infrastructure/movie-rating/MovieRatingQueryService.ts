@@ -1,6 +1,3 @@
-import { Class } from 'dobro-types/common';
-
-import { FindCommand } from '@common/infrastructure/FindCommand';
 import { QueryService } from '@common/infrastructure/QueryService';
 
 import { IMovieRatingQueryService } from '@catalog/domain/movie-rating/IMovieRatingQueryService';
@@ -14,6 +11,6 @@ export class MovieRatingQueryService
     implements IMovieRatingQueryService {
 
     protected modelClass = MovieRatingModel;
-    protected findCommand: Class<FindCommand<MovieRatingModel, MovieRatingFindOptions>, any> = MovieRatingFindCommand;
+    protected findCommand = MovieRatingFindCommand;
 
 }
