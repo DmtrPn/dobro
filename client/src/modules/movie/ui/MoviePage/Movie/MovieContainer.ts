@@ -10,6 +10,7 @@ import { MovieStore } from '@movie/store/MovieStore';
 import { MovieForm } from '../MovieForm';
 import { Movie, MovieProps } from './Movie';
 import { movieService } from '@movie/services/movieService';
+import { OptionType } from '@components/Select/types';
 
 interface Props extends MovieProps {
     id: string;
@@ -27,6 +28,7 @@ const injectableStores: (keyof StoreProps)[] = [
 class Container extends React.Component<Props & StoreProps> {
 
     @observable private editMode = false;
+    @observable private userRating?: number;
 
     constructor(props: Props & StoreProps) {
         super(props);
@@ -44,9 +46,11 @@ class Container extends React.Component<Props & StoreProps> {
             })
             : React.createElement(Movie, {
                 movie: this.movie,
+                userRating: this.userRating,
                 rating: movieList.get(id).rating,
                 onEditClick: this.onEditClick,
                 toggleStatus: this.toggleStatus,
+                onRatingChange: this.onRatingChange,
             });
     }
 
@@ -64,6 +68,11 @@ class Container extends React.Component<Props & StoreProps> {
     @action.bound
     private onFinish(): void {
         this.editMode = false;
+    }
+
+    @action.bound
+    private onRatingChange(option: OptionType<number>): void {
+        this.userRating = option.value;
     }
 
     private get movie(): MovieData {

@@ -12,6 +12,9 @@ import { EditButton } from '@components/ActionButtons/EditButton';
 import { TextTruncate } from '@components/TextTruncate';
 import { TextLink } from '@components/TextLink';
 import { IconType } from '@components/Icon';
+import { OptionType } from '@components/Select/types';
+// import { Select } from '@components/Select';
+// import { movieRatingOptions } from '@movie/store/types';
 
 export interface MovieProps {
 }
@@ -19,8 +22,10 @@ export interface MovieProps {
 interface Props extends MovieProps {
     movie: MovieData;
     rating: string;
+    userRating?: number;
     onEditClick(): void;
     toggleStatus(): void;
+    onRatingChange(option: OptionType<number>): void;
 }
 
 export function Movie({
@@ -30,8 +35,10 @@ export function Movie({
         description = '',
         status,
     },
+    userRating,
     rating,
     onEditClick,
+    onRatingChange,
     toggleStatus,
 }: Props): JSX.Element {
     const isNew = status === MovieStatus.New;
@@ -56,6 +63,12 @@ export function Movie({
                     {rating}
                 </span>
             </div>
+            {/*<Select*/}
+            {/*    title={'Мой рейтинг'}*/}
+            {/*    selectedValue={userRating}*/}
+            {/*    options={movieRatingOptions}*/}
+            {/*    onChange={onRatingChange}*/}
+            {/*/>*/}
             <TextTruncate text={description} />
         </div>
     );

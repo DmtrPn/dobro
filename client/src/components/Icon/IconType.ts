@@ -5,6 +5,7 @@
 enum IconType {
     PEN = 'pen',
     CHECK = 'check',
+    ARROW_DOWN = 'arrow_down',
     ALARM = 'alarm',
 }
 

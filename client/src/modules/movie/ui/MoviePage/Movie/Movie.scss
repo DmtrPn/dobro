@@ -22,11 +22,12 @@
 }
 
 .rating {
+    margin: 0 4px;
+    padding: 4px;
+
     color: $Black;
     border: solid 1px $GreyBorder;
     border-radius: 50%;
-    padding: 4px;
-    margin: 0 4px;
 }
 
 .editButton {

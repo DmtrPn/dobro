@@ -1,0 +1,305 @@
+@import '../mixins/mixin';
+
+.component_select__root {
+    position: relative;
+
+    width: inherit;
+
+    text-align: left;
+
+    font-size: 14px;
+    font-weight: normal;
+
+    .simplebar-content-wrapper {
+        background-color: #ffffff;
+    }
+
+    .react-select__indicator {
+        height: inherit;
+        padding-right: 0;
+        padding-bottom: 1px;
+
+        transform: scale(0.7);
+
+        color: $GreyBorder;
+
+        &:hover {
+            color: $Black;
+        }
+    }
+
+    .react-select__control {
+        align-items: flex-end;
+
+        border-top: none;
+        border-right: none;
+        border-bottom: 1px solid $GreyBorder;
+        border-left: none;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+
+        &:focus {
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid $Blue;
+            border-left: none;
+        }
+
+        &:hover {
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid $Grey;
+            border-left: none;
+        }
+    }
+
+    .react-select__control--is-disabled {
+        padding-left: 0;
+
+        opacity: 0.5;
+        background: #ffffff;
+    }
+
+    .react-select__value-container {
+        padding: 0 0 2px;
+    }
+
+    .react-select__control--menu-is-open {
+        padding-bottom: 1px;
+
+        border-radius: 4px 4px 0 0;
+        box-shadow: none;
+
+        .component_select__open_icon {
+            transform: rotate(315deg);
+        }
+    }
+
+    .react-select__indicator-separator {
+        display: none;
+    }
+
+    .react-select__menu {
+        z-index: 100;
+
+        height: 40px;
+        margin: 0;
+
+        box-shadow: none;
+    }
+
+    .react-select__menu-list {
+        overflow: visible;
+
+        padding: 0;
+
+        text-align: left;
+
+        border: 1px solid #ebecee;
+        border-top: none;
+        border-radius: 0 0 4px 4px;
+        background: #ffffff;
+        box-shadow: none;
+    }
+
+    .react-select__option {
+        overflow: hidden;
+
+        min-height: 32px;
+
+        cursor: pointer;
+        white-space: normal;
+        word-break: break-word;
+
+        color: $Black;
+        border-bottom: none;
+        background-color: #ffffff;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &:hover {
+            background-color: #fafafb;
+        }
+    }
+
+    .react-select__option--is-selected {
+        cursor: default;
+
+        font-weight: 500;
+    }
+
+    .react-select__dropdown-indicator {
+        padding: 8px 1px 8px 0;
+
+        cursor: pointer;
+    }
+
+    .react-select__indicators {
+        cursor: pointer;
+    }
+
+    .print_label {
+        padding-top: 16px;
+    }
+}
+
+.component_select__root_redesign {
+    font-family: $Black;
+
+    .react-select__control {
+        height: 40px;
+
+        border: 2px solid $GreyBorder;
+        border-radius: 12px;
+        background-color: #ffffff;
+    }
+
+    .react-select__control--is-disabled {
+        opacity: 1;
+        border: 2px solid $GreyBorder !important;
+
+        .component_select__open_icon,
+        .component_select__open_icon_redesign {
+            border-color: $GreyBorder;
+        }
+    }
+
+    .react-select__control--menu-is-open {
+        border: 2px solid $Violet;
+
+        .component_select__open_icon {
+            transform: rotate(315deg) translateY(4px) translateX(-4px);
+        }
+
+        .component_select__open_icon_redesign {
+            transform: rotate(180deg);
+        }
+    }
+
+    .react-select__value-container {
+        min-height: 38px;
+        padding: 0 0 0 16px;
+
+        font-size: 15px;
+    }
+
+    .react-select__single-value {
+        max-width: calc(100% - 12px);
+        margin-left: 0;
+    }
+
+    .component_select__open_icon {
+        width: 14px;
+        height: 14px;
+
+        transform: rotate(135deg) skewY(4deg) skewX(4deg);
+    }
+
+    .react-select__indicators {
+        height: inherit;
+    }
+
+    .react-select__indicator {
+        padding-right: 16px;
+
+        transform: scale(1);
+    }
+
+    .react-select__menu {
+        top: calc(100% + 4px);
+        right: 0;
+
+        width: auto;
+        min-width: calc(100% - 16px);
+        max-width: 100%;
+
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .react-select__menu-list {
+        overflow: hidden;
+
+        width: auto;
+
+        border-radius: 12px;
+        box-shadow: 0 12px 12px -6px rgba(0, 0, 0, 0.16), 0px 0px 1px rgba(0, 0, 0, 0.4);
+    }
+
+    .react-select__option {
+        min-height: unset;
+
+        font-size: 15px;
+
+        &:hover {
+            background-color: $Purple03;
+        }
+    }
+
+    &:focus {
+        .react-select__control {
+            border: 2px solid $Purple;
+        }
+    }
+
+    &:hover {
+        .react-select__control {
+            border: 2px solid $Purple;
+        }
+    }
+}
+
+.component_select__root_smallMenuWidth {
+    .react-select__menu-list {
+        width: 240px;
+    }
+}
+
+.component_select__option_disabled {
+    .react-select__option {
+        cursor: default;
+
+        opacity: 0.5;
+    }
+}
+
+.component_select__option_blocked {
+    .react-select__option,
+    .react-select__single-value {
+        color: $Red;
+    }
+}
+
+.component_select__link_option {
+    .react-select__option {
+        padding: 10px 12px;
+
+        color: $Blue;
+
+        font-size: 12px;
+        font-weight: 500;
+    }
+}
+
+.component_select__open_icon {
+    display: flex;
+    align-items: center;
+
+    width: 17px;
+    height: auto;
+
+    transition: all 0.1s;
+    transform: rotate(0deg);
+
+    color: $Blue;
+    border-top: none;
+    border-top: 1px solid $Blue;
+    border-right: none;
+    border-right: 1px solid $Blue;
+
+    font-size: 17px;
+}
