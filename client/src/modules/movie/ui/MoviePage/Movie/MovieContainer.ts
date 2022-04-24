@@ -35,6 +35,7 @@ class Container extends React.Component<Props & StoreProps> {
     }
 
     public render() {
+        const { movieStore: { movieList }, id } = this.props;
         return this.editMode
             ? React.createElement(MovieForm, {
                 id: this.props.id,
@@ -43,6 +44,7 @@ class Container extends React.Component<Props & StoreProps> {
             })
             : React.createElement(Movie, {
                 movie: this.movie,
+                rating: movieList.get(id).rating,
                 onEditClick: this.onEditClick,
                 toggleStatus: this.toggleStatus,
             });

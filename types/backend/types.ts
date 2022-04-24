@@ -26,7 +26,6 @@ export interface MovieCreateParams {
     name: string;
     link: string;
     description?: string;
-    rating?: number;
 }
 export interface MovieListResponse {
     readonly movies: MovieViewModel[];
@@ -53,7 +52,6 @@ export interface MovieUpdateParams {
     link?: string;
     description?: string;
     status?: "new" | "viewed" | "rejected";
-    rating?: number;
 }
 export interface MovieViewModel {
     id: string;
@@ -61,7 +59,6 @@ export interface MovieViewModel {
     link: string;
     name: string;
     description?: string;
-    rating?: number;
     authorId: string;
     ratings?: MovieRatingModel[];
 }

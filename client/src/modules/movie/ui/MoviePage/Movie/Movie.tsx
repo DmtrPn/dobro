@@ -1,6 +1,8 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import style from './Movie.scss';
+import commonStyle from '@components/mixins/commonStyles.scss';
 
 import { MovieData } from 'dobro-types/frontend';
 import { MovieStatus } from 'dobro-types/enums';
@@ -16,6 +18,7 @@ export interface MovieProps {
 
 interface Props extends MovieProps {
     movie: MovieData;
+    rating: string;
     onEditClick(): void;
     toggleStatus(): void;
 }
@@ -27,6 +30,7 @@ export function Movie({
         description = '',
         status,
     },
+    rating,
     onEditClick,
     toggleStatus,
 }: Props): JSX.Element {
@@ -45,6 +49,12 @@ export function Movie({
                     />
                 </span>
                 <TextLink link={link} label={name} />
+                <span className={classnames([
+                    style.rating,
+                    commonStyle.font_text,
+                ])}>
+                    {rating}
+                </span>
             </div>
             <TextTruncate text={description} />
         </div>

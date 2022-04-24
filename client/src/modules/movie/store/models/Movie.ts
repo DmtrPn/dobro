@@ -1,16 +1,18 @@
-import { observable, makeObservable, action } from 'mobx';
+import { observable, computed, makeObservable, action } from 'mobx';
 
 import { MovieData, MovieRatingData, MovieUpdateData } from 'dobro-types/frontend';
 
-import { MovieMutableData } from './MovieMuttableData';
+import { IEntry } from '@store/models/IEntry';
 import { toArrayFromIterable } from '@utils/toArrayFromIterable';
 
-export class Movie {
+import { MovieMutableData } from './MovieMuttableData';
+
+export class Movie implements IEntry<MovieData, MovieUpdateData> {
 
     @observable public readonly id: string;
     @observable public readonly authorId: string;
-    public data: MovieMutableData;
     @observable private readonly ratings: Map<string, MovieRatingData>;
+    private data: MovieMutableData;
 
     constructor({ id, authorId, ratings = [], ...data }: MovieData) {
         makeObservable(this);
@@ -21,9 +23,22 @@ export class Movie {
         this.data = new MovieMutableData(data);
     }
 
+    @computed
+    public get rating(): string {
+        const total = toArrayFromIterable<MovieRatingData>(this.ratings)
+            .reduce((acc, { rating }) => acc + rating, 0);
+
+        return (total / this.ratings.size).toFixed(1);
+    }
+
     @action
     public update(params: MovieUpdateData) {
         this.data.update(params);
+    }
+
+    @action
+    public updateRating(movieRating: MovieRatingData) {
+        this.ratings.set(this.makeRatingKey(movieRating), movieRating);
     }
 
     public serialize(): MovieData {
