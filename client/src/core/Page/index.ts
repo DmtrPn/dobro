@@ -1,6 +1,1 @@
-import { Page, PageProps } from './Page';
-
-export {
-    Page,
-    PageProps
-};
+export { Page } from './Page';

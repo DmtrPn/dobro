@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as style from './Page.scss';
+import style from './Page.scss';
 import './reset.scss';
 
 import { Router } from '@core/Router';
@@ -8,7 +8,7 @@ import { NavMenu } from './NavMenu';
 
 // import { Header } from './Header';
 
-export interface PageProps {
+interface PageProps {
     children?: React.ReactNode;
 }
 
