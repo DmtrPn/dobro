@@ -4,12 +4,13 @@ const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
 
-module.exports = async () => {
+module.exports = async function buildSvgSprite() {
     const spriter = new SVGSpriter({
         dest: '.',
         mode: {
             symbol: {
-                sprite: '../../public/static/sprite.svg'
+                sprite: '../public/static/sprite.svg'
+                // sprite: '../../public/static/sprite.svg'
             }
         },
         shape: {
@@ -46,3 +47,5 @@ module.exports = async () => {
         });
     });
 }
+
+// module.exports = { buildSvgSprite }

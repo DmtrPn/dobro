@@ -6,16 +6,9 @@ import './reset.scss';
 import { Router } from '@core/Router';
 import { NavMenu } from './NavMenu';
 
-// import { Header } from './Header';
-
-interface PageProps {
-    children?: React.ReactNode;
-}
-
 export function Page(): JSX.Element {
     return (
     <div className={style.root}>
-        {/*<Header />*/}
         <NavMenu />
         <div className={style.content}>
             <Router />

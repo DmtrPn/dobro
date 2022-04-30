@@ -1,3 +1,5 @@
+'use strict';
+
 const SVGSpriter = require('svg-sprite');
 const mkdirp = require('mkdirp');
 const path = require('path');

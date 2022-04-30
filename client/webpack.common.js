@@ -2,10 +2,12 @@ const path = require('path');
 // const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const { ESBuildMinifyPlugin } = require('esbuild-loader')
+// const { ESBuildMinifyPlugin } = require('esbuild-loader')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { ProvidePlugin } = require('webpack');
+// const TerserPlugin = require("terser-webpack-plugin");
 
-const getLocalIdent = require('./scripts/getLocalIdent');
+const getLocalIdent = require('./build-scripts/getLocalIdent');
 
 module.exports = {
     entry: './src/app.ts',
@@ -20,9 +22,8 @@ module.exports = {
                 test: /\.tsx?$/,
                 loader: 'esbuild-loader',
                 options: {
-                    loader: 'tsx',  // Or 'ts' if you don't need tsx
+                    loader: 'tsx',
                     target: 'es2017',
-                    tsconfigRaw: require('./tsconfig.json')
                 },
             },
             {
@@ -58,45 +59,38 @@ module.exports = {
                         }
                     }
                 ]
-                // exclude: /node_modules/,
             },
-            // {
-            //     test: /\.svg$/,
-            //     use: [
-            //         {
-            //             loader: "babel-loader"
-            //         },
-            //     ]
-            // },
-            // {
-            //     test: /\.(gif|png|jpg|jpeg)$/i,
-            //     use: [
-            //         {
-            //             loader: 'file-loader',
-            //             options: {
-            //                 name: '[name].[ext]',
-            //                 publicPath: '/static/',
-            //                 outputPath: 'assets/'
-            //             }
-            //         }
-            //     ],
-            // }
         ]
     },
     optimization: {
-        concatenateModules: true,
+        // concatenateModules: true,
+        // minimize: false,
         minimizer: [
-            new ESBuildMinifyPlugin({ target: 'es2017' }),
-            new CssMinimizerPlugin({
-                minimizerOptions: {
-                    preset: [
-                        "default",
-                        {
-                            discardComments: { removeAll: true },
-                        },
-                    ],
+            new TerserPlugin({
+                // test: /\.tsx?$/,
+                // Default
+                // terserOptions: {
+                //     compress: true,
+                // },
+                // esBuild
+                minify: TerserPlugin.esbuildMinify,
+                terserOptions: {
+                    target: 'es2017',
+                    loader: 'tsx',
+                    legalComments: 'none',
+                    minifyWhitespace: true,
+                    minifyIdentifiers: true,
+                    minifySyntax: true,
                 },
             }),
+            // new ESBuildMinifyPlugin({
+            //     target: 'es2017',
+            //     loader: 'tsx',
+            //     minifyWhitespace: true,
+            //     minifyIdentifiers: true,
+            //     minifySyntax: true,
+            //     css: true,
+            // }),
         ],
         splitChunks: {
             cacheGroups: {
@@ -114,6 +108,10 @@ module.exports = {
         // new NodePolyfillPlugin(),
         new MiniCssExtractPlugin({
             filename: "[name].css",
+
+        }),
+        new ProvidePlugin({
+            React: 'react',
         }),
     ],
     resolve: {
