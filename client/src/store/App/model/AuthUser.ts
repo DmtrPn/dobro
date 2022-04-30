@@ -16,5 +16,4 @@ export class AuthUser {
         assignParams<AuthUserData>(this, user);
     }
 
-
 }

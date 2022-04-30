@@ -17,7 +17,7 @@ export function Link({
         className={({ isActive }) => classnames([
             style.link,
             commonStyle.font_title,
-            isActive && style.link_active
+            isActive && style.link_active,
         ])}
         {...props}
     >

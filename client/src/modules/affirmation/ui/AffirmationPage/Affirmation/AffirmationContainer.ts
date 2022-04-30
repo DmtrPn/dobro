@@ -45,4 +45,4 @@ class Container extends React.Component<Props> {
     }
 }
 
-export const AffirmationContainer = inject(...injectableStores)(Container)
+export const AffirmationContainer = inject(...injectableStores)(Container);

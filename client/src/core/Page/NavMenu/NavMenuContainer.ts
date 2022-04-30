@@ -50,7 +50,7 @@ class Component extends React.Component<Props & StoreProps> {
     private makeNavItems(): NavItemData[] {
         return [
             ...this.getCommonNavItems(),
-            ...(this.props.appStore.isAuthorized ? this.getAuthUserNavItems() : [])
+            ...(this.props.appStore.isAuthorized ? this.getAuthUserNavItems() : []),
         ];
     }
 
@@ -58,8 +58,8 @@ class Component extends React.Component<Props & StoreProps> {
         return [
             {
                 to: '/',
-                title: 'Желания'
-            }
+                title: 'Желания',
+            },
         ];
     }
 
@@ -73,7 +73,7 @@ class Component extends React.Component<Props & StoreProps> {
             //     to: '/affirmation',
             //     title: 'Аффирмации',
             // },
-        ]
+        ];
     }
 }
 

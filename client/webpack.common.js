@@ -82,7 +82,6 @@ module.exports = {
     },
     plugins: [
         // new BundleAnalyzerPlugin(),
-        // new NodePolyfillPlugin(),
         new HtmlWebpackPlugin({
             minify: false,
             template: './src/template.ejs',
@@ -96,9 +95,6 @@ module.exports = {
             filename: "static/[name].css",
 
         }),
-        // new ProvidePlugin({
-        //     React: 'react',
-        // }),
     ],
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '*'],

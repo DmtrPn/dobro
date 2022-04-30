@@ -18,7 +18,6 @@ const injectableStores: (keyof StoreProps)[] = [
     WishStore.Name,
 ];
 
-
 @privatePage
 @inject(...injectableStores)
 @observer

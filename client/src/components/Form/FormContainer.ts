@@ -10,7 +10,7 @@ import { removeUndefinedKeys } from '@utils/removeUndefinedKeys';
 
 import { Form, FormProps, FiledParams } from './Form';
 
-export interface FormFiledParams extends Omit<FiledParams, 'value'> {};
+export interface FormFiledParams extends Omit<FiledParams, 'value'> {}
 
 interface Props extends FormProps {
     mutableData: Class<MutableData<any>>;
@@ -60,6 +60,6 @@ export class FormContainer extends React.Component<Props> {
 
     @autobind
     private async onCancelClick(): Promise<void> {
-        this.props.onCancelClick()
+        this.props.onCancelClick();
     }
 }
