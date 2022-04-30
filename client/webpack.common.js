@@ -1,19 +1,27 @@
-const path = require('path');
 // const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 // const { ESBuildMinifyPlugin } = require('esbuild-loader')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const { ProvidePlugin } = require('webpack');
-// const TerserPlugin = require("terser-webpack-plugin");
+// const { ProvidePlugin } = require('webpack');
+
+const path = require('path');
+const fs = require('fs');
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const getLocalIdent = require('./build-scripts/getLocalIdent');
+
+const { PUBLIC_PATH } = require('./build-scripts/constants');
+
+const sprites = fs.readFileSync('./dist/sprite.svg', 'utf8');
 
 module.exports = {
     entry: './src/app.ts',
     output: {
-        filename: 'dobro.js',
-        path: path.resolve(__dirname, 'public/')
+        filename: 'static/dobro.js',
+        path: PUBLIC_PATH
     },
     mode: 'production',
     module: {
@@ -64,11 +72,20 @@ module.exports = {
     },
     optimization: {
         // concatenateModules: true,
-        // minimize: false,
+        minimize: true,
         minimizer: [
+            new CssMinimizerPlugin({
+                minimizerOptions: {
+                    preset: [
+                        "default",
+                        {
+                            discardComments: { removeAll: true },
+                        },
+                    ],
+                },
+            }),
             new TerserPlugin({
-                // test: /\.tsx?$/,
-                // Default
+                // Default чуть меньше размером но чуть дольше
                 // terserOptions: {
                 //     compress: true,
                 // },
@@ -83,6 +100,7 @@ module.exports = {
                     minifySyntax: true,
                 },
             }),
+            // Оригинальный на пару килобайт больше но на 2 сек быстрее + стили компресует
             // new ESBuildMinifyPlugin({
             //     target: 'es2017',
             //     loader: 'tsx',
@@ -106,18 +124,24 @@ module.exports = {
     plugins: [
         // new BundleAnalyzerPlugin(),
         // new NodePolyfillPlugin(),
+        new HtmlWebpackPlugin({
+            minify: false,
+            template: './src/template.ejs',
+            inject: false,
+            templateParameters: {
+                sprites,
+                isProduction: false,
+            },
+        }),
         new MiniCssExtractPlugin({
-            filename: "[name].css",
+            filename: "static/[name].css",
 
         }),
-        new ProvidePlugin({
-            React: 'react',
-        }),
+        // new ProvidePlugin({
+        //     React: 'react',
+        // }),
     ],
     resolve: {
-        // fallback: {
-        //     fs: "empty"
-        // },
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '*'],
         alias: {
             '@facades': path.resolve(__dirname, './src/facades'),
