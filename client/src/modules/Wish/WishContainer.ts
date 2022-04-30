@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { observer, inject } from 'mobx-react';
 
 import { WishStore } from '@store/Wish/Wish';
@@ -17,7 +17,6 @@ interface StoreProps {
 const injectableStores: (keyof StoreProps)[] = [
     WishStore.Name,
 ];
-
 
 @privatePage
 @inject(...injectableStores)

@@ -37,12 +37,12 @@ export class AffirmationFormContainer extends React.Component<Props> {
             await affirmationService.create(affirmation);
         }
 
-        onFinish()
+        onFinish();
     }
 
     @autobind
     private async onCancelClick(): Promise<void> {
-        this.props.onFinish()
+        this.props.onFinish();
     }
 
     private makeFiledParams(): FormFiledParams[] {

@@ -13,8 +13,8 @@ import { TextTruncate } from '@components/TextTruncate';
 import { TextLink } from '@components/TextLink';
 import { IconType } from '@components/Icon';
 import { OptionType } from '@components/Select/types';
-// import { Select } from '@components/Select';
-// import { movieRatingOptions } from '@movie/store/types';
+import { Select } from '@components/Select';
+import { movieRatingOptions } from '@movie/store/types';
 
 export interface MovieProps {
 }
@@ -63,12 +63,12 @@ export function Movie({
                     {rating}
                 </span>
             </div>
-            {/*<Select*/}
-            {/*    title={'Мой рейтинг'}*/}
-            {/*    selectedValue={userRating}*/}
-            {/*    options={movieRatingOptions}*/}
-            {/*    onChange={onRatingChange}*/}
-            {/*/>*/}
+            <Select
+                title={'Мой рейтинг'}
+                selectedValue={userRating}
+                options={movieRatingOptions}
+                onChange={onRatingChange}
+            />
             <TextTruncate text={description} />
         </div>
     );

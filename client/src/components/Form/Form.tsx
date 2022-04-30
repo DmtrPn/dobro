@@ -20,7 +20,7 @@ const FIELD_COMPONENTS: {
 } = {
     [FieldType.Input]: Input,
     [FieldType.Textarea]: Textarea,
-}
+};
 
 export interface FiledParams {
     type: FieldType;
@@ -50,7 +50,7 @@ export function Form({
                     title: field.title,
                     name: field.name,
                     value: field.value,
-                    onBlur: onTextChange
+                    onBlur: onTextChange,
                 })
             ))}
             <div className={style.buttons}>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { HomePage } from '@modules/Home';
 import { WishPage } from '@modules/Wish';

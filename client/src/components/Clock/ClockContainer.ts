@@ -49,7 +49,7 @@ export class ClockContainer extends React.Component<Props> {
     //     this.minuteRef.current!.innerHTML = (hours < 10 ? '0' : '') + time;
     //     this.hourRef.current!.innerHTML = (hours < 10 ? '0' : '') + time;
     // }
-    
+
     @autobind
     private rotateClock() {
         const deg = 6;

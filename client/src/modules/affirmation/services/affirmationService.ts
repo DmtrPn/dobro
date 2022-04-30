@@ -5,7 +5,6 @@ import { store } from '@store';
 import { isDefined } from '@utils/isDefined';
 import { getId } from '@utils/getId';
 
-
 class AffirmationService {
 
     public async load(): Promise<void> {

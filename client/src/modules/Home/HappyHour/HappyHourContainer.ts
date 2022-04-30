@@ -16,7 +16,7 @@ export class HappyHourContainer extends React.Component<Props> {
     private interval!: any;
 
     constructor(props: Props) {
-        super(props)
+        super(props);
 
         makeObservable(this);
     }

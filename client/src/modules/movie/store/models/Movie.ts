@@ -47,7 +47,7 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
             authorId: this.authorId,
             ratings: toArrayFromIterable<MovieRatingData>(this.ratings),
             ...this.data.serialize(),
-        }
+        };
     }
 
     private makeRatingKey({ userId }: MovieRatingData): string {

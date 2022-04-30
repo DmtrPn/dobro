@@ -81,4 +81,4 @@ class Container extends React.Component<Props & StoreProps> {
     }
 }
 
-export const MovieContainer = inject<Props, StoreProps>(...injectableStores)(Container)
+export const MovieContainer = inject<Props, StoreProps>(...injectableStores)(Container);

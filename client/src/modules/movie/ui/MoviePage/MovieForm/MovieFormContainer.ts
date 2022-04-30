@@ -27,7 +27,7 @@ export class MovieFormContainer extends React.Component<Props> {
             data: this.props.data ?? {
                 name: 'Название',
                 link: 'Ссылка',
-                description: ''
+                description: '',
             },
             onSaveClick: this.onSaveClick,
             onCancelClick: this.onCancelClick,
@@ -42,12 +42,12 @@ export class MovieFormContainer extends React.Component<Props> {
         } else {
             await movieService.create(movie);
         }
-        onFinish()
+        onFinish();
     }
 
     @autobind
     private async onCancelClick(): Promise<void> {
-        this.props.onFinish()
+        this.props.onFinish();
     }
 
     private makeFiledParams(): FormFiledParams[] {

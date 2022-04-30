@@ -1,2 +1,3 @@
 export { WithHOCTextareaContained as Textarea } from './TextareaContainer';
-export { TextareaProps, TextareaModifiers } from './Textarea';
+export { TextareaModifiers } from './Textarea';
+export type { TextareaProps } from './Textarea';
