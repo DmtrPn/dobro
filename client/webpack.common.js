@@ -2,17 +2,16 @@
 // const { ESBuildMinifyPlugin } = require('esbuild-loader')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // const { ProvidePlugin } = require('webpack');
+// const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+// const TerserPlugin = require('terser-webpack-plugin');
 
 const path = require('path');
 const fs = require('fs');
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 
 const getLocalIdent = require('./build-scripts/getLocalIdent');
-
 const { PUBLIC_PATH } = require('./build-scripts/constants');
 
 const sprites = fs.readFileSync('./dist/sprite.svg', 'utf8');
@@ -23,7 +22,6 @@ module.exports = {
         filename: 'static/dobro.js',
         path: PUBLIC_PATH
     },
-    mode: 'production',
     module: {
         rules: [
             {
@@ -71,45 +69,6 @@ module.exports = {
         ]
     },
     optimization: {
-        // concatenateModules: true,
-        minimize: true,
-        minimizer: [
-            new CssMinimizerPlugin({
-                minimizerOptions: {
-                    preset: [
-                        "default",
-                        {
-                            discardComments: { removeAll: true },
-                        },
-                    ],
-                },
-            }),
-            new TerserPlugin({
-                // Default чуть меньше размером но чуть дольше
-                // terserOptions: {
-                //     compress: true,
-                // },
-                // esBuild
-                minify: TerserPlugin.esbuildMinify,
-                terserOptions: {
-                    target: 'es2017',
-                    loader: 'tsx',
-                    legalComments: 'none',
-                    minifyWhitespace: true,
-                    minifyIdentifiers: true,
-                    minifySyntax: true,
-                },
-            }),
-            // Оригинальный на пару килобайт больше но на 2 сек быстрее + стили компресует
-            // new ESBuildMinifyPlugin({
-            //     target: 'es2017',
-            //     loader: 'tsx',
-            //     minifyWhitespace: true,
-            //     minifyIdentifiers: true,
-            //     minifySyntax: true,
-            //     css: true,
-            // }),
-        ],
         splitChunks: {
             cacheGroups: {
                 styles: {

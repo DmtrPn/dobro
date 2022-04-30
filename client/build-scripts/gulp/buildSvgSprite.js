@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
 
-module.exports = async function buildSvgSprite() {
+async function buildSvgSprite() {
     const spriter = new SVGSpriter({
         dest: '.',
         mode: {
@@ -49,4 +49,4 @@ module.exports = async function buildSvgSprite() {
     });
 }
 
-// module.exports = { buildSvgSprite }
+module.exports = { buildSvgSprite }

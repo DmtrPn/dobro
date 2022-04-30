@@ -1,18 +1,36 @@
-const gulp = require('gulp');
-const { series } = require('gulp');
-const webpack = require('webpack-stream');
+const { series, parallel, watch, task } = require('gulp');
 
-const { PUBLIC_PATH } = require('./build-scripts/constants');
+const { cleanPublic } = require('./build-scripts/gulp/cleanPublic');
+const { buildBundle } = require('./build-scripts/gulp/buildBundle');
+const { buildDevBundle } = require('./build-scripts/gulp/buildDevBundle');
+const { buildSvgSprite } = require('./build-scripts/gulp/buildSvgSprite');
+const { serveFonts } = require('./build-scripts/gulp/serveFonts');
+const { serveExternalStyles } = require('./build-scripts/gulp/serveExternalStlyes');
+const { serveImages } = require('./build-scripts/gulp/serveImages');
 
-const buildSvgSprite = require('./build-scripts/gulp/buildSvgSprite');
+task('clean', cleanPublic);
+task('sprite', buildSvgSprite);
+task('assets', parallel(serveImages, serveExternalStyles, serveFonts))
+task('bundle', buildBundle);
+task('devBundle', buildDevBundle);
 
-gulp.task('build', function() {
-    return gulp.src('src/app.ts')
-        .pipe(webpack( require('./webpack.common.js') ))
-        .pipe(gulp.dest(PUBLIC_PATH));
+task('default', series(
+    'clean',
+    parallel('sprite', 'assets'),
+    'bundle'
+));
+
+
+task('watch', function() {
+    // You can use a single task
+    watch('src/*.ts', series('bundle'));
+    // Or a composed task
+    // watch('src/*.js', series(clean, javascript));
 });
 
-
-gulp.task('sprite', buildSvgSprite);
-
-gulp.task('default', series('sprite', 'build'));
+task('dev', series(
+    'clean',
+    parallel('sprite', 'assets'),
+    'devBundle',
+    'watch',
+));
