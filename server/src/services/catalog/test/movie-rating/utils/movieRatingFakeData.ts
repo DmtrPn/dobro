@@ -9,11 +9,11 @@ export const getFakeMovieRatingCreationParams = (): Attributes<MovieRatingModel>
         movieId: FakeParams.getId(),
         userId: FakeParams.getId(),
         rating: FakeParams.getInteger({ min: 0, max: 10 }),
-    }
-}
+    };
+};
 
 export const getFakeMovieRatingUpdateParams = (): MovieRatingUpdateData => {
     return {
         rating: FakeParams.getInteger({ min: 0, max: 10 }),
-    }
-}
+    };
+};

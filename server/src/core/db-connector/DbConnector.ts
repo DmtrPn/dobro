@@ -35,7 +35,7 @@ export class DbConnector {
 
     public getDataSource(): DataSource {
         if (!this.dataSource.isInitialized) {
-            this.logger.info(`DB does not initialized`);
+            this.logger.info('DB does not initialized');
         }
         return this.dataSource;
     }
@@ -44,9 +44,11 @@ export class DbConnector {
         if (!this.dataSource.isInitialized) {
             await this.createConnection()
                 .then((connection) => {
-                    connection.isInitialized ?
-                        this.logger.info(`Connection to the database: ${connection.options.database} is established`) :
-                        this.logger.error(`Connection to the database: ${connection.options.database} is not established`);
+                    if (connection.isInitialized) {
+                        this.logger.info(`Connection to the database: ${ connection.options.database } is established`);
+                    } else {
+                        this.logger.error(`Connection to the database: ${ connection.options.database } is not established`);
+                    }
                     this.dataSource = connection;
 
                 })

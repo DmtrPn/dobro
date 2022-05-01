@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner } from 'typeorm'
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class CreateMovieRatingTable1650714992705 implements MigrationInterface {
 

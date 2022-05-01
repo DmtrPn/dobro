@@ -3,16 +3,24 @@
 module.exports = {
     parser: '@typescript-eslint/parser',
     plugins: ['@typescript-eslint'],
-    ignorePatterns: '*.scss.d.ts',
     parserOptions: {
         tsconfigRootDir: __dirname,
         project: './tsconfig.json',
     },
     extends: [
-        'eslint-config-airbnb-typescript',
+        'airbnb-typescript/base',
     ],
     rules: {
-        '@typescript-eslint/indent': ['error', 4],
+        "indent": "off",
+        '@typescript-eslint/indent': [
+            'error',
+            4,
+            {
+                FunctionExpression: {
+                    parameters: 0,
+                },
+            }
+        ],
         'react/jsx-filename-extension': 0,
         'import/extensions': 0,
         'import/no-extraneous-dependencies': 0,

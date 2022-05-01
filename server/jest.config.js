@@ -1,23 +1,23 @@
 module.exports = {
-    name: "dobro",
-    testEnvironment: "node",
+    name: 'dobro',
+    testEnvironment: 'node',
     globals: {
-        "ts-jest": {
-            diagnostics: true
+        'ts-jest': {
+            diagnostics: true,
         },
     },
     transform: {
-        '^.+\\.tsx?$': 'ts-jest'
+        '^.+\\.tsx?$': 'ts-jest',
     },
     testRegex: '((\\.|/)(test.ts|spec.js|spec.ts))$',
     testURL: 'http://localhost/',
     moduleDirectories: [
         'node_modules',
-        'src'
+        'src',
     ],
     moduleFileExtensions: [
         'ts',
-        'js'
+        'js',
     ],
     testTimeout: 50000,
     moduleNameMapper: {
@@ -32,5 +32,5 @@ module.exports = {
     },
     setupFilesAfterEnv: [
         '@jest-decorated/core/globals',
-    ]
-}
+    ],
+};

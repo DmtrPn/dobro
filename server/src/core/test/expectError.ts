@@ -1,5 +1,5 @@
 export function expectError(error: { new (...args: any[]): any; }, message?: string | RegExp) {
-    return function(target: any, key: string, descriptor: PropertyDescriptor) {
+    return function (target: any, key: string, descriptor: PropertyDescriptor) {
         return {
             async value(...args: any[]) {
                 let isThrowError = false;

@@ -8,10 +8,10 @@ beforeAll(async () => {
     const entities = dbConnector.getDataSource().entityMetadatas;
     const manager = dbConnector.getDataSource().manager;
     await Promise.all(entities.map(entity =>
-        manager.query(`TRUNCATE TABLE ${entity.tableName}  RESTART IDENTITY CASCADE`)
+        manager.query(`TRUNCATE TABLE ${entity.tableName}  RESTART IDENTITY CASCADE`),
     ));
-})
+});
 
 afterAll(async () => {
     await dbConnector.closeConnection();
-})
+});

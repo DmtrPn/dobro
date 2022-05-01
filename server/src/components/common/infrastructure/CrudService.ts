@@ -18,7 +18,7 @@ export abstract class CrudService<
     public find(options: FO): Promise<M[]> {
         const command = new this.findCommand(options);
         return command.execute();
-    };
+    }
 
     public async create(params: CreationParams): Promise<void> {
         const theParams = this.enrichCreationParams(params);
@@ -29,7 +29,7 @@ export abstract class CrudService<
                 .insert()
                 .into(this.modelClass)
                 .values(theParams)
-                .execute()
+                .execute(),
         );
     }
 
@@ -40,7 +40,7 @@ export abstract class CrudService<
                 .update(this.modelClass)
                 .set(params as unknown as QueryDeepPartialEntity<M>) //  as UpdateQueryBuilder<M>)
                 .where({ id })
-                .execute()
+                .execute(),
         );
     }
 

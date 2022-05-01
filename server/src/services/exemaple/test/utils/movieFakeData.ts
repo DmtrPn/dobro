@@ -13,13 +13,13 @@ export const getFakeMovieCreationParams = (): Attributes<MovieModel> => {
         description: FakeParams.getText(),
         authorId: FakeParams.getId(),
         status: MovieStatus.New,
-    }
-}
+    };
+};
 
 export const getFakeMovieUpdateParams = (): MovieUpdateData => {
     return {
         link: FakeParams.getUrl(),
         name: FakeParams.getName(),
         description: FakeParams.getText(),
-    }
-}
+    };
+};

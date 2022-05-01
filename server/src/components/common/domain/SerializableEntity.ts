@@ -12,6 +12,6 @@ export abstract class SerializableEntity<CP, UP, Dto> {
         assignParams(this, params as any);
     }
 
-    protected checkCreateParams(params: CP): void {}
+    protected checkCreateParams(params_: CP): void {}
 
 }

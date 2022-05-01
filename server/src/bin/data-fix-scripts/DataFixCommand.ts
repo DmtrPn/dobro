@@ -44,7 +44,7 @@ export abstract class DataFixCommand extends TransactionManager implements IComm
     }
 
     protected async areTablesExist(...tableNames: string[]): Promise<boolean> {
-        const names = `'${tableNames.join(`','`)}'`;
+        const names = `'${tableNames.join('\',\'')}'`;
         const [{ count }] = await this.manager.query(`SELECT CAST(count(*) AS int) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME IN(${names})`);
         return tableNames.length === count;
     }

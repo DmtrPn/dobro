@@ -25,18 +25,18 @@ export abstract class Repository<E, M, FO> extends TransactionManager {
         return this.createList(models);
     }
 
-    public async save(entity: E): Promise<void>
-    public async save(entity: E[]): Promise<void>
+    public async save(entity: E): Promise<void>;
+    public async save(entity: E[]): Promise<void>;
     public async save(entity: E | E[]): Promise<void> {
         return Array.isArray(entity)
             ? this.saveAll(entity)
             : this.saveOne(entity);
     }
 
-    public async delete(entity: E): Promise<void>
-    public async delete(entity: E[]): Promise<void>
-    public async delete(entity: E | E[]): Promise<void> {
-        throw Error(`Delete methode for ${this.constructor.name} not implement`)
+    public async delete(entity: E): Promise<void>;
+    public async delete(entity: E[]): Promise<void>;
+    public async delete(entity_: E | E[]): Promise<void> {
+        throw Error(`Delete methode for ${this.constructor.name} not implement`);
     }
 
     protected get entityName(): string {

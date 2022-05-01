@@ -210,8 +210,8 @@ export class DateHelper {
     }
 
     public static setDate(
-        value: DateType,
-        { year, month, day }: { year?: number; month?: number; day?: number },
+    value: DateType,
+    { year, month, day }: { year?: number; month?: number; day?: number },
     ): Date {
         const date = new Date(value);
 

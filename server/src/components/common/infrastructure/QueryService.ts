@@ -14,6 +14,6 @@ export abstract class QueryService<
     public find(options: FO): Promise<M[]> {
         const command = new this.findCommand(options);
         return command.execute();
-    };
+    }
 
 }

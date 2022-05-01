@@ -25,14 +25,14 @@ export class MovieRatingDomainTest {
     @expectError(InvalidRating)
     public createMovieRatingWithNotValidMinRating(): void {
         const { rating, ...data } = getFakeMovieRatingCreationParams();
-        new MovieRating({ rating: -1, ...data })
+        new MovieRating({ rating: -1, ...data });
     }
 
     @Test()
     @expectError(InvalidRating)
     public createMovieRatingWithNotValidMaxRating(): void {
         const { rating, ...data } = getFakeMovieRatingCreationParams();
-        new MovieRating({ rating: 11, ...data })
+        new MovieRating({ rating: 11, ...data });
     }
 
     @Test()

@@ -51,9 +51,9 @@ export abstract class FindCommand<M, FO> extends TransactionManager {
     }
 
     protected filterBy<P extends keyof M & string>(
-        field: P,
-        values: ValueType<M, P>,
-        table = this.tableName
+    field: P,
+    values: ValueType<M, P>,
+    table = this.tableName,
     ): this {
         if (isUndefined(values)) {
             return this;
@@ -67,12 +67,12 @@ export abstract class FindCommand<M, FO> extends TransactionManager {
             this.checkListOnSetAndEmpty(values);
         }
         if (isNull(values)) {
-            this.qb.andWhere(`${columnName} IS NULL`)
+            this.qb.andWhere(`${columnName} IS NULL`);
         } else {
             this.qb.andWhere(
                 isArrayValues ? `${columnName} = ANY(:${field})` : `${columnName} = :${field}`,
                 { [field]: values },
-                )
+            );
         }
 
         return this;

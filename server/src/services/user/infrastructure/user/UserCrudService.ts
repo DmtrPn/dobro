@@ -7,15 +7,15 @@ import { IUserCrudService } from '@user/domain/user/IUserCrudService';
 export class UserCrudService extends TransactionManager implements IUserCrudService {
 
     public async find(): Promise<UserModel[]> {
-        return this.manager.find<UserModel>(UserModel)
+        return this.manager.find<UserModel>(UserModel);
     }
 
     public async getById(id: string): Promise<UserModel> {
-        return this.manager.findOneBy<UserModel>(UserModel, { id })
+        return this.manager.findOneBy<UserModel>(UserModel, { id });
     }
 
     public async getByEmail(email: string): Promise<Optional<UserModel>> {
-        return this.manager.findOneBy<UserModel>(UserModel, { email })
+        return this.manager.findOneBy<UserModel>(UserModel, { email });
     }
 
     public async create(params: Attributes<UserModel>): Promise<void> {
@@ -25,7 +25,7 @@ export class UserCrudService extends TransactionManager implements IUserCrudServ
                 .insert()
                 .into(UserModel)
                 .values(params)
-                .execute()
+                .execute(),
         );
     }
 
@@ -36,7 +36,7 @@ export class UserCrudService extends TransactionManager implements IUserCrudServ
                 .update(UserModel)
                 .set(params)
                 .where({ id })
-                .execute()
+                .execute(),
         );
     }
 

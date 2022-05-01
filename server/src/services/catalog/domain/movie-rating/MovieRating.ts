@@ -16,16 +16,12 @@ export class MovieRating extends SerializableEntity<MovieRatingCreateData, Movie
         return new MovieRating(params);
     }
 
-    constructor(params: MovieRatingCreateData) {
-        super(params);
-    }
-
     public get dto(): MovieRatingDTO {
         return {
             movieId: this.movieId,
             userId: this.userId,
             rating: this.rating,
-        }
+        };
     }
 
     public update({ rating }: MovieRatingUpdateData): void {

@@ -5,11 +5,11 @@ export const getFakeAffirmationCreationParams = (): AffirmationCreateData => {
     return {
         id: FakeParams.getId(),
         text: FakeParams.getText(),
-    }
-}
+    };
+};
 
 export const getFakeAffirmationUpdateParams = (): AffirmationUpdateData => {
     return {
         text: FakeParams.getText(),
-    }
-}
+    };
+};
