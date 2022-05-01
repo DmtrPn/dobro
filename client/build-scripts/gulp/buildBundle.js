@@ -9,4 +9,4 @@ function buildBundle() {
         .pipe(gulp.dest(PUBLIC_PATH));
 }
 
-module.exports = { buildBundle }
+module.exports = { buildBundle };

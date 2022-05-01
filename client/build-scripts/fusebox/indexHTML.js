@@ -4,24 +4,6 @@ const {
 } = require('fuse-box');
 const fs = require('fs');
 
-module.exports = async context => {
-    const sprites = fs.readFileSync('../public/static/sprite.svg', 'utf8');
-
-    const fuse = FuseBox.init({
-        homeDir: 'src/',
-        output: '../public/$name.js',
-        plugins: [
-            WebIndexPlugin({
-                templateString : getHtmlString(process.env.NODE_ENV === 'production', sprites),
-            }),
-        ]
-    });
-
-    await fuse.run();
-};
-
-
-
 const getHtmlString = (isProduction, sprites) => `
 <!-- index.html -->
 <!DOCTYPE html>
@@ -57,3 +39,19 @@ const getHtmlString = (isProduction, sprites) => `
     </body>
 </html>
 `;
+
+module.exports = async context => {
+    const sprites = fs.readFileSync('../public/static/sprite.svg', 'utf8');
+
+    const fuse = FuseBox.init({
+        homeDir: 'src/',
+        output: '../public/$name.js',
+        plugins: [
+            WebIndexPlugin({
+                templateString : getHtmlString(process.env.NODE_ENV === 'production', sprites),
+            }),
+        ],
+    });
+
+    await fuse.run();
+};

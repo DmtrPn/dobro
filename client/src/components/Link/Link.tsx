@@ -21,6 +21,6 @@ export function Link({
         ])}
         {...props}
     >
-            {children}
+        {children}
     </NavLink>);
 }

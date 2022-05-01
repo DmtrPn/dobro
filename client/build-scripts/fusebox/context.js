@@ -23,6 +23,7 @@ context(
                 useTypescriptCompiler: true,
             });
         }
+
         getConfig() {
             return FuseBox.init({
                 homeDir: 'src/',
@@ -32,7 +33,7 @@ context(
                 allowSyntheticDefaultImports: true,
                 log: {
                     enabled: !this.isProduction,
-                    showBundledFiles: false
+                    showBundledFiles: false,
                 },
                 cache: !this.isProduction,
                 alias: {
@@ -58,23 +59,23 @@ context(
                         SassPlugin(),
                         CSSModulesPlugin({
                             scopedName: getLocalIdent,
-                            useDefault: false
+                            useDefault: false,
                         }),
                         CSSResourcePlugin({ inline: true }),
                         PostCSSPlugin([
-                            require('autoprefixer')
+                            require('autoprefixer'),
                         ]),
                         CSSPlugin({
-                            minify: this.isProduction
+                            minify: this.isProduction,
                         }),
                     ],
                     [
                         CSSResourcePlugin({ inline: true }),
                         PostCSSPlugin([
-                            require('autoprefixer')
+                            require('autoprefixer'),
                         ]),
                         CSSPlugin({
-                            minify: this.isProduction
+                            minify: this.isProduction,
                         }),
                     ],
                     this.isProduction && QuantumPlugin({
@@ -85,9 +86,9 @@ context(
                         css: {
                             path: '/styles.css',
                         },
-                    })
-                ]
+                    }),
+                ],
             });
         }
-    }
+    },
 );

@@ -3,5 +3,5 @@ import { IconType } from './IconType';
 
 export {
     Icon,
-    IconType
+    IconType,
 };

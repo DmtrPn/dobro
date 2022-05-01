@@ -4,13 +4,13 @@ import { HomePage } from '@modules/Home';
 import { WishPage } from '@modules/Wish';
 // import { DreamPage } from '@modules/dream/ui/DreamPage';
 
-export interface Location {
+export interface PageLocation {
     url: string;
     path: string;
     Component: React.ComponentType<any>;
 }
 
-export const locations: Location[] = [
+export const locations: PageLocation[] = [
     {
         url: '/',
         path: '/',

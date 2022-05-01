@@ -14,4 +14,4 @@ module.exports = {
     STATIC_PATH,
     FONTS_PATH,
     IMAGES_PATH,
-}
+};

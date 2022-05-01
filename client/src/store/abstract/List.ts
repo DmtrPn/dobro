@@ -96,7 +96,7 @@ export abstract class List<
         return compact(ids.map(id => this.get(id)));
     }
 
-    public forEach(callbackfn: (value: ListParams, key: I) => void, thisArg?: any): void {
+    public forEach(callbackfn: (value: ListParams, key: I) => void, _?: any): void {
         this.list.forEach(callbackfn);
     }
 
@@ -183,6 +183,7 @@ export abstract class List<
         return params;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     protected filterValue(value: ListParams, filterParams: FilterParams): boolean {
         return true;
     }

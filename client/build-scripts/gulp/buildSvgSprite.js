@@ -10,18 +10,18 @@ async function buildSvgSprite() {
         mode: {
             symbol: {
                 dest: '.',
-                sprite: 'dist/sprite.svg'
+                sprite: 'dist/sprite.svg',
                 // sprite: '../../public/static/sprite.svg'
-            }
+            },
         },
         shape: {
             id: {
                 generator: (name) => {
                     let parsedPath = path.parse(name);
                     return parsedPath.name;
-                }
-            }
-        }
+                },
+            },
+        },
     });
 
     const cwd = path.resolve('src');
@@ -49,4 +49,4 @@ async function buildSvgSprite() {
     });
 }
 
-module.exports = { buildSvgSprite }
+module.exports = { buildSvgSprite };

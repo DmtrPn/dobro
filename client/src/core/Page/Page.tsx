@@ -8,10 +8,11 @@ import { NavMenu } from './NavMenu';
 
 export function Page(): JSX.Element {
     return (
-    <div className={style.root}>
-        <NavMenu />
-        <div className={style.content}>
-            <Router />
+        <div className={style.root}>
+            <NavMenu />
+            <div className={style.content}>
+                <Router />
+            </div>
         </div>
-    </div>);
+    );
 }

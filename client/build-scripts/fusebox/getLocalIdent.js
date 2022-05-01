@@ -10,7 +10,7 @@ module.exports = function getLocalIdent(localName, filePath) {
 
     let className = '';
 
-    if(/_.scss$/i.test(pathParts[lastIndex])) {
+    if (/_.scss$/i.test(pathParts[lastIndex])) {
         className = localName;
     } else {
         const local = pathParts[lastIndex - LOCAL_SUBTRAHEND];
@@ -19,11 +19,11 @@ module.exports = function getLocalIdent(localName, filePath) {
         const parts = [
             lodash.kebabCase(local),
             lodash.kebabCase(component),
-            localName
+            localName,
         ];
 
         className = parts.join('__');
     }
 
-    return className
+    return className;
 };

@@ -32,6 +32,35 @@ interface Props extends SelectProps {
     onFocus(): void;
     onBlur(): void;
 }
+
+export const DropdownIndicator = (props: any) => {
+    return (
+        // @ts-ignore
+        <components.DropdownIndicator {...props}>
+            <div className={style.component_select__open_icon}>
+                <Icon type={IconType.ARROW_DOWN} />
+            </div>
+        </components.DropdownIndicator>
+    );
+};
+
+export const Option = (props: any) => {
+    return (
+        <div className={classnames([
+            props.data.isDisabled && style.component_select__option_disabled,
+        ])}>
+            <components.Option {...props} />
+        </div>
+    );
+};
+
+export function noOptionsMessage({ inputValue }: { inputValue: string }): string {
+    return inputValue === ''
+        ? 'Введите значение'
+        : 'Ничего не найдено';
+
+}
+
 export function Select({
     options,
     title,
@@ -82,32 +111,4 @@ export function Select({
             />
         </div>
     );
-}
-
-export const DropdownIndicator = (props: any) => {
-    return (
-        // @ts-ignore
-        <components.DropdownIndicator {...props}>
-            <div className={style.component_select__open_icon}>
-                <Icon type={IconType.ARROW_DOWN} />
-            </div>
-        </components.DropdownIndicator>
-    );
-};
-
-export const Option = (props: any) => {
-    return (
-        <div className={classnames([
-            props.data.isDisabled && style.component_select__option_disabled,
-        ])}>
-            <components.Option {...props} />
-        </div>
-    );
-};
-
-export function noOptionsMessage({ inputValue }: { inputValue: string }): string {
-    return inputValue === ''
-        ? 'Введите значение'
-        : 'Ничего не найдено';
-
 }

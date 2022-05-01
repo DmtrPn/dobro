@@ -1,14 +1,14 @@
-// const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
+// const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 // const { ESBuildMinifyPlugin } = require('esbuild-loader')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // const { ProvidePlugin } = require('webpack');
-// const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+// const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 // const TerserPlugin = require('terser-webpack-plugin');
 
 const path = require('path');
 const fs = require('fs');
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const getLocalIdent = require('./build-scripts/getLocalIdent');
@@ -20,7 +20,7 @@ module.exports = {
     entry: './src/app.ts',
     output: {
         filename: 'static/dobro.js',
-        path: PUBLIC_PATH
+        path: PUBLIC_PATH,
     },
     module: {
         rules: [
@@ -45,7 +45,7 @@ module.exports = {
                             },
                             sourceMap: true,
                             importLoaders: 2,
-                        }
+                        },
                     },
                     {
                         loader: 'postcss-loader',
@@ -56,25 +56,25 @@ module.exports = {
                                     ['autoprefixer'],
                                 ],
                             },
-                        }
+                        },
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: true
-                        }
-                    }
-                ]
+                            sourceMap: true,
+                        },
+                    },
+                ],
             },
-        ]
+        ],
     },
     optimization: {
         splitChunks: {
             cacheGroups: {
                 styles: {
-                    name: "styles",
-                    type: "css/mini-extract",
-                    chunks: "all",
+                    name: 'styles',
+                    type: 'css/mini-extract',
+                    chunks: 'all',
                     enforce: true,
                 },
             },
@@ -92,7 +92,7 @@ module.exports = {
             },
         }),
         new MiniCssExtractPlugin({
-            filename: "static/[name].css",
+            filename: 'static/[name].css',
 
         }),
     ],
@@ -111,11 +111,11 @@ module.exports = {
             '@movie': path.resolve(__dirname, './src/modules/movie'),
             '@dream': path.resolve(__dirname, './src/modules/dream'),
             '@affirmation': path.resolve(__dirname, './src/modules/affirmation'),
-        }
+        },
     },
     performance: {
         hints: false,
         maxEntrypointSize: 512000,
-        maxAssetSize: 512000
-    }
+        maxAssetSize: 512000,
+    },
 };

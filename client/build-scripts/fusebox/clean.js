@@ -1,4 +1,4 @@
-const { src } = require("fuse-box/sparky");
+const { src } = require('fuse-box/sparky');
 
 module.exports = async context => {
     await src('./')

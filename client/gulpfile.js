@@ -11,18 +11,18 @@ const { runTslint } = require('./build-scripts/gulp/runTslint');
 
 task('clean', cleanPublic);
 task('sprite', buildSvgSprite);
-task('assets', parallel(serveImages, serveExternalStyles, serveFonts))
+task('assets', parallel(serveImages, serveExternalStyles, serveFonts));
 task('bundle', buildBundle);
 task('devBundle', buildDevBundle);
 task('tslint', runTslint);
 
 task('default', series(
     'clean',
-    parallel('sprite', 'assets'),
-    'bundle'
+    parallel('tslint', 'sprite', 'assets'),
+    'bundle',
 ));
 
-task('watch', function() {
+task('watch', function w() {
     watch([
         'src/**/*.ts',
         'src/**/*.tsx',

@@ -9,11 +9,12 @@ import { CancelButton } from '@components/ActionButtons/CancelButton';
 
 export interface FormProps {
 }
-
+/* eslint-disable @typescript-eslint/no-shadow */
 export const enum FieldType {
     Input = 'input',
     Textarea = 'textarea',
 }
+/* eslint-enable @typescript-eslint/no-shadow */
 
 const FIELD_COMPONENTS: {
     [key: string]: React.ComponentType<any>;

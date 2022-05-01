@@ -9,17 +9,17 @@ module.exports = async () => {
         dest: '.',
         mode: {
             symbol: {
-                sprite: '../../public/static/sprite.svg'
-            }
+                sprite: '../../public/static/sprite.svg',
+            },
         },
         shape: {
             id: {
                 generator: (name) => {
                     let parsedPath = path.parse(name);
                     return parsedPath.name;
-                }
-            }
-        }
+                },
+            },
+        },
     });
 
     const cwd = path.resolve('src');
@@ -45,4 +45,4 @@ module.exports = async () => {
 
         });
     });
-}
+};
