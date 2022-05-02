@@ -4,8 +4,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "yarn checkTypes && NODE_ENV=production gulp",
-    "build:dev": "yarn csscomb && yarn typedCss  && yarn checkTypes && gulp dev",
+    "build": "yarn typedCss && yarn checkTypes && NODE_ENV=production gulp",
+    "build:dev": "yarn csscomb && yarn typedCss && yarn checkTypes && gulp dev",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx ",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx  --fix",
     "cache-clean": "rm -rf .fusebox/cache",
