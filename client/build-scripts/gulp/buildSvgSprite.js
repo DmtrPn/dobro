@@ -26,7 +26,7 @@ async function buildSvgSprite() {
 
     const cwd = path.resolve('src');
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject_) => {
         glob.glob('**/*.svg', { cwd: cwd }, function (err, files) {
             files.forEach(function (file) {
                 const filePath = path.join(cwd, file);

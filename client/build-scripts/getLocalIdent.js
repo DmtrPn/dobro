@@ -4,7 +4,7 @@ const lodash = require('lodash');
 const LOCAL_SUBTRAHEND = 2;
 const COMPONENT_SUBTRAHEND = 1;
 
-module.exports = function getLocalIdent(context, localIdentName, localName, options) {
+module.exports = function getLocalIdent(context, localIdentName, localName, options_) {
 
     const filePath = context.resourcePath;
     const pathParts = filePath.split(path.sep);

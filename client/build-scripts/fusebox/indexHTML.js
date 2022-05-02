@@ -40,7 +40,7 @@ const getHtmlString = (isProduction, sprites) => `
 </html>
 `;
 
-module.exports = async context => {
+module.exports = async context_ => {
     const sprites = fs.readFileSync('../public/static/sprite.svg', 'utf8');
 
     const fuse = FuseBox.init({

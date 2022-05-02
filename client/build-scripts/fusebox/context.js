@@ -1,7 +1,7 @@
 const { context } = require('fuse-box/sparky');
 const {
     FuseBox,
-    WebIndexPlugin,
+    // WebIndexPlugin,
     SassPlugin,
     QuantumPlugin,
     CSSModulesPlugin,

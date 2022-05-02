@@ -12,7 +12,7 @@
     "typedCss": "tcm -p 'src/**/*.scss'",
     "csscomb": "csscomb -c .csscomb.json ./src",
     "checkTypes": "tsc --noEmit",
-    "generateIconType": "node ./scripts/generateIconType.js"
+    "generateIconType": "node ./build-scripts/generateIconType.js"
   },
   "devDependencies": {
     "@types/axios": "0.14.0",

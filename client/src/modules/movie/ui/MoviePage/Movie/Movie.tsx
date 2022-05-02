@@ -47,7 +47,7 @@ export function Movie({
             <div className={style.editButton}>
                 <EditButton onEditClick={onEditClick} />
             </div>
-            <div>
+            <div className={style.title}>
                 <span className={isNew ? style.statusIcon : style.statusIcon_viewed}>
                     <IconButton
                         inheritColor
@@ -63,6 +63,9 @@ export function Movie({
                     {rating}
                 </span>
             </div>
+            <div className={style.description}>
+                <TruncatedText text={description} maxLine={3} />
+            </div>
             <span className={style.ratingSelect}>
                 <Select
                     title={'Мой рейтинг'}
@@ -71,7 +74,6 @@ export function Movie({
                     onChange={onRatingChange}
                 />
             </span>
-            <TruncatedText text={description} maxLine={3} />
         </div>
     );
 }

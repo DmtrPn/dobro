@@ -13,7 +13,7 @@
 
 .cards {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
 
     margin-bottom: 16px;
 
@@ -22,10 +22,7 @@
 }
 
 .card {
-    width: 400px;
-
-    @include media-s {
-        width: 100%;
-    }
+    width: 100%;
+    max-width: 600px;
 }
 
