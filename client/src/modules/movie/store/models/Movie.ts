@@ -29,7 +29,7 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
         const total = toArrayFromIterable<MovieRatingData>(this.ratings)
             .reduce((acc, { rating }) => acc + rating, 0);
 
-        return (total / this.ratings.size).toFixed(1);
+        return (this.ratings.size > 0 ? (total / this.ratings.size) : 0).toFixed(1);
     }
 
     public getUserRating(userId: string): Optional<number> {
