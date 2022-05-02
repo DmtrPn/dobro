@@ -1,2 +1,4 @@
-export { FormContainer as Form, FormFiledParams } from './FormContainer';
+export { FormContainer as Form } from './FormContainer';
 export { FieldType } from './Form';
+
+export type { FormFiledParams } from './FormContainer';

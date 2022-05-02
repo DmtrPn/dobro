@@ -12,7 +12,7 @@ export class DreamController {
     @Public()
     @Get('/')
     public async getDreams(): Promise<{ id: number, name: string }[]> {
-        return await this.dreamService.getDreams();
+        return this.dreamService.getDreams();
     }
 
 }

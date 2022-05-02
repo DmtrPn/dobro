@@ -14,4 +14,11 @@ export class MovieFindCommand extends FindCommand<MovieModel, MovieFindOptions> 
         return this
             .filterBy('name', this.name);
     }
+
+    protected addRelations(): this {
+        this.qb
+            .leftJoinAndSelect('movie.ratings', 'ratings');
+
+        return this;
+    }
 }

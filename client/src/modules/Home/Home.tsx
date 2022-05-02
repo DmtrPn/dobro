@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { Helmet } from 'react-helmet';
 
@@ -37,9 +37,9 @@ export function HomePage({
                     <HappyHour />
                 </div>
                 <div className={classnames([
-                        commonStyles.field,
-                        style.textarea
-                    ])}>
+                    commonStyles.field,
+                    style.textarea,
+                ])}>
                     <Textarea
                         disabled={isSent}
                         placeholder={'Напиши свое желание'}

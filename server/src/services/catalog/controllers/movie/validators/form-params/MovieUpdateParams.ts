@@ -1,6 +1,5 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsInt, Min, Max, IsString, IsEnum, IsOptional } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { IsString, IsEnum, IsOptional } from 'class-validator';
 
 import { MovieUpdateData } from '@catalog/domain/movie/types';
 import { MovieStatus } from '@common/enums';
@@ -26,13 +25,5 @@ export class MovieUpdateParams implements MovieUpdateData {
     @IsOptional()
     @ApiPropertyOptional({ type: String, enum: MovieStatus })
     public status?: MovieStatus;
-
-    @IsInt()
-    @Min(0)
-    @Max(10)
-    @Transform(({ value }) => Number(value))
-    @IsOptional()
-    @ApiPropertyOptional()
-    public rating?: number;
 
 }

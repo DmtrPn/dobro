@@ -1,5 +1,6 @@
 import { DataSource, EntityManager, Repository, EntityTarget } from 'typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 import { Config, ConfigName, DbConfig } from '@core/config';
 import { LoggerFactory } from '@components/logging';
@@ -13,6 +14,7 @@ export class DbConnector {
 
     private constructor() {
         this.dataSource = new DataSource(this.dbConfig as PostgresConnectionOptions);
+        this.dataSource.namingStrategy = new SnakeNamingStrategy();
     }
 
     public static getInstance(): DbConnector {
@@ -33,7 +35,7 @@ export class DbConnector {
 
     public getDataSource(): DataSource {
         if (!this.dataSource.isInitialized) {
-            this.logger.info(`DB does not initialized`);
+            this.logger.info('DB does not initialized');
         }
         return this.dataSource;
     }
@@ -42,9 +44,11 @@ export class DbConnector {
         if (!this.dataSource.isInitialized) {
             await this.createConnection()
                 .then((connection) => {
-                    connection.isInitialized ?
-                        this.logger.info(`Connection to the database: ${connection.options.database} is established`) :
-                        this.logger.error(`Connection to the database: ${connection.options.database} is not established`);
+                    if (connection.isInitialized) {
+                        this.logger.info(`Connection to the database: ${ connection.options.database } is established`);
+                    } else {
+                        this.logger.error(`Connection to the database: ${ connection.options.database } is not established`);
+                    }
                     this.dataSource = connection;
 
                 })

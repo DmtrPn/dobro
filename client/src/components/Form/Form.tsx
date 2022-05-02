@@ -9,18 +9,19 @@ import { CancelButton } from '@components/ActionButtons/CancelButton';
 
 export interface FormProps {
 }
-
+/* eslint-disable @typescript-eslint/no-shadow */
 export const enum FieldType {
     Input = 'input',
     Textarea = 'textarea',
 }
+/* eslint-enable @typescript-eslint/no-shadow */
 
 const FIELD_COMPONENTS: {
     [key: string]: React.ComponentType<any>;
 } = {
     [FieldType.Input]: Input,
     [FieldType.Textarea]: Textarea,
-}
+};
 
 export interface FiledParams {
     type: FieldType;
@@ -50,7 +51,7 @@ export function Form({
                     title: field.title,
                     name: field.name,
                     value: field.value,
-                    onBlur: onTextChange
+                    onBlur: onTextChange,
                 })
             ))}
             <div className={style.buttons}>

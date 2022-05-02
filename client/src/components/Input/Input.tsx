@@ -38,4 +38,4 @@ export function Input({
                 type={type}
             />
         </div>);
-};
+}

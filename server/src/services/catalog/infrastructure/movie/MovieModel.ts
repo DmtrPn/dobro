@@ -1,8 +1,9 @@
-import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, OneToMany, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 import { MovieStatus } from '@components/common/enums';
 import { BaseModel } from '@common/infrastructure/BaseModel';
 import { UserModel } from '@user/infrastructure/user/UserModel';
+import { MovieRatingModel } from '@catalog/infrastructure/movie-rating/MovieRatingModel';
 
 @Entity('movie')
 export class MovieModel extends BaseModel<MovieModel> {
@@ -19,17 +20,17 @@ export class MovieModel extends BaseModel<MovieModel> {
     @Column()
     public description?: string;
 
-    @Column({ name: 'author_id' })
+    @Column()
     public authorId: string;
 
     @Column()
     public status: MovieStatus;
 
-    @Column({ type: 'int' })
-    public rating?: number;
-
     @ManyToOne(() => UserModel, model => model.movies)
     @JoinColumn({ name: 'author_id', referencedColumnName: 'id' })
     public author?: UserModel;
+
+    @OneToMany(() => MovieRatingModel, model => model.movie)
+    public ratings?: MovieRatingModel[];
 
 }

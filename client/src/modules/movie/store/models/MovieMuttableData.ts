@@ -13,7 +13,6 @@ export class MovieMutableData extends MutableData<MovieMutableDataParams> {
         'name',
         'description',
         'status',
-        'rating',
 
     ];
 

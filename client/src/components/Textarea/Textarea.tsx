@@ -16,7 +16,6 @@ export interface TextareaProps extends React.HTMLProps<HTMLTextAreaElement>  {
     maxRows?: number;
     modifiers?: string[];
     textareaRef?: React.RefObject<HTMLTextAreaElement>;
-    isRequired?: boolean;
     onHeightChange?(height: number): void;
     onChange?(event: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
@@ -35,7 +34,6 @@ export function Textarea({
     isActive,
     disabled,
     textareaRef,
-    isRequired = false,
     ...props
 }: Props): JSX.Element {
     return (

@@ -40,8 +40,7 @@ export function NavMenu({
                         onClick={closeMenu}
                     >
                         {title}
-                    </Link>
-                )}
+                    </Link>)}
             </Menu>
         </div>
     );

@@ -3,7 +3,7 @@ import compact from 'lodash/compact';
 
 import { Optional, SortingOrder } from 'dobro-types/common';
 
-export interface IList<ListParams, CreateParams, FilterParams = null, I = string> {
+export interface IList<ListParams, CreateParams, UpdateParams = CreateParams, FilterParams = null, I = string> {
     ids: I[];
     isDataSet: boolean;
     values: ListParams[];
@@ -22,7 +22,7 @@ export interface IList<ListParams, CreateParams, FilterParams = null, I = string
     set(params: CreateParams[]): void;
     add(params: CreateParams[]): void;
     addIfNotExist(params: CreateParams[]): void;
-    update(id: I, value: CreateParams): void;
+    update(id: I, value: UpdateParams): void;
     remove(id: I): void;
     reset(): void;
     serialize?(): CreateParams[];
@@ -40,23 +40,17 @@ export interface OrderParams {
 export abstract class List<
     ListParams,
     CreateParams,
+    UpdateParams = CreateParams,
     FilterParams = null,
     I = string,
-> implements IList<ListParams, CreateParams, FilterParams, I> {
+> implements IList<ListParams, CreateParams, UpdateParams, FilterParams, I> {
 
     protected readonly identifiableFieldName: string = 'id';
 
-    @observable
-    protected filterParams: FilterParams = {} as FilterParams;
-
-    @observable
-    protected orderParams: OrderParams = {} as OrderParams;
-
-    @observable
-    protected list: Map<I, ListParams> = new Map();
-
-    @observable
-    private isSetted = false;
+    @observable protected filterParams: FilterParams = {} as FilterParams;
+    @observable protected orderParams: OrderParams = {} as OrderParams;
+    @observable protected list: Map<I, ListParams> = new Map();
+    @observable private isSetted = false;
 
     constructor(params?: CreateParams[]) {
         makeObservable(this);
@@ -72,7 +66,7 @@ export abstract class List<
     }
 
     @computed
-    public get ids() {
+    public get ids(): I[] {
         return Array.from(this.list.keys());
     }
 
@@ -102,7 +96,7 @@ export abstract class List<
         return compact(ids.map(id => this.get(id)));
     }
 
-    public forEach(callbackfn: (value: ListParams, key: I) => void, thisArg?: any): void {
+    public forEach(callbackfn: (value: ListParams, key: I) => void, _?: any): void {
         this.list.forEach(callbackfn);
     }
 
@@ -130,10 +124,7 @@ export abstract class List<
         });
     }
 
-    @action
-    public update(id: I, value: CreateParams): void {
-        this.list.set(id, this.create(value));
-    }
+    public abstract update(id: I, value: UpdateParams): void;
 
     @action
     public remove(id: I): void {
@@ -192,6 +183,7 @@ export abstract class List<
         return params;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     protected filterValue(value: ListParams, filterParams: FilterParams): boolean {
         return true;
     }

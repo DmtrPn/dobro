@@ -1,5 +1,5 @@
 import { NotFound } from './NotFound';
 
 export {
-    NotFound
+    NotFound,
 };

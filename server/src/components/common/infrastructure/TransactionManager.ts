@@ -12,4 +12,5 @@ export abstract class TransactionManager {
     protected async executeInTransaction(runInTransaction: (entityManager: EntityManager) => Promise<unknown>): Promise<void> {
         await this.manager.transaction(runInTransaction);
     }
+
 }

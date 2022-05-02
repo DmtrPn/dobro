@@ -1,0 +1,209 @@
+@import '../mixins/mixin';
+
+.component_select__root {
+    position: relative;
+
+    width: inherit;
+
+    text-align: left;
+
+    font-size: 14px;
+    font-weight: normal;
+
+    .react-select__control {
+        align-items: flex-end;
+
+        height: 40px;
+
+        border: 1px solid $GreyBorder;
+        border-radius: 12px;
+        background-color: #ffffff;
+        box-shadow: none;
+
+        &:focus {
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid $Blue;
+            border-left: none;
+        }
+
+        &:hover {
+            border-top: none;
+            border-right: none;
+            border-bottom: 1px solid $Grey;
+            border-left: none;
+        }
+    }
+
+    .react-select__control--is-disabled {
+        padding-left: 0;
+
+        opacity: 1;
+        border: 1px solid $GreyBorder !important;
+
+        .component_select__open_icon,
+        .component_select__open_icon_redesign {
+            border-color: $GreyBorder;
+        }
+    }
+
+    .react-select__control--menu-is-open {
+        border: 1px solid $Violet;
+
+        .component_select__open_icon {
+            transform: rotate(180deg) translateY(4px) translateX(-4px);
+        }
+    }
+
+    .react-select__value-container {
+        min-height: 40px;
+        padding: 0 0 2px 16px;
+
+        font-size: 15px;
+    }
+
+    .react-select__single-value {
+        max-width: calc(100% - 12px);
+        margin-left: 0;
+    }
+
+    .react-select__indicators {
+        height: inherit;
+
+        cursor: pointer;
+    }
+
+    .react-select__indicator {
+        height: inherit;
+        padding-right: 16px;
+        padding-bottom: 1px;
+
+        transform: scale(1);
+
+        color: $GreyBorder;
+
+        &:hover {
+            color: $Black;
+        }
+    }
+
+    .react-select__control--menu-is-open {
+        padding-bottom: 1px;
+
+        box-shadow: none;
+
+        .component_select__open_icon {
+            transform: rotate(180deg);
+        }
+    }
+
+    .react-select__indicator-separator {
+        display: none;
+    }
+
+
+    .react-select__menu {
+        z-index: 100;
+        top: calc(100% + 4px);
+        right: 0;
+
+        width: auto;
+        min-width: calc(100% - 9px);
+        max-width: 100%;
+        height: 40px;
+        margin: 0;
+
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .react-select__menu-list {
+        overflow: auto;
+
+        width: auto;
+        padding: 0;
+
+        text-align: left;
+
+        border: 1px solid #ebecee;
+        border-top: none;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 12px 12px -6px rgba(0, 0, 0, 0.16), 0px 0px 1px rgba(0, 0, 0, 0.4);
+    }
+
+    .react-select__option {
+        overflow: hidden;
+
+        min-height: 32px;
+
+        cursor: pointer;
+        white-space: normal;
+        word-break: break-word;
+
+        color: $Black;
+        border-bottom: none;
+        background-color: #ffffff;
+
+        font-size: 15px;
+
+        &:hover {
+            background-color: $Purple03;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+
+    .react-select__option--is-selected {
+        cursor: default;
+
+        font-weight: 500;
+    }
+
+    .react-select__dropdown-indicator {
+        align-items: center;
+
+        padding: 8px 8px 8px 0;
+
+        cursor: pointer;
+    }
+
+    &:focus {
+        .react-select__control {
+            border: 1px solid $Purple;
+        }
+    }
+
+    &:hover {
+        .react-select__control {
+            border: 1px solid $Purple;
+        }
+    }
+}
+
+.component_select__option_disabled {
+    .react-select__option {
+        cursor: default;
+
+        opacity: 0.5;
+    }
+}
+
+.component_select__open_icon {
+    display: flex;
+    align-items: center;
+
+    width: 17px;
+    height: auto;
+
+    transition: all 0.1s;
+    transform: rotate(0deg);
+
+    color: $Purple;
+
+    font-size: 17px;
+}

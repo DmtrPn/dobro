@@ -26,10 +26,22 @@ export interface MovieCreateParams {
     name: string;
     link: string;
     description?: string;
-    rating?: number;
 }
 export interface MovieListResponse {
     readonly movies: MovieViewModel[];
+}
+export interface MovieRatingModel {
+    movieId: string;
+    userId: string;
+    rating: number;
+}
+export interface MovieRatingUpdateForm {
+    movieRating: MovieRatingUpdateParams;
+}
+export interface MovieRatingUpdateParams {
+    movieId: string;
+    userId: string;
+    rating: number;
 }
 export type MovieStatus = "new" | "viewed" | "rejected";
 export interface MovieUpdateForm {
@@ -40,7 +52,6 @@ export interface MovieUpdateParams {
     link?: string;
     description?: string;
     status?: "new" | "viewed" | "rejected";
-    rating?: number;
 }
 export interface MovieViewModel {
     id: string;
@@ -48,8 +59,8 @@ export interface MovieViewModel {
     link: string;
     name: string;
     description?: string;
-    rating?: number;
     authorId: string;
+    ratings?: MovieRatingModel[];
 }
 declare namespace Parameters {
     export type Id = string;
@@ -57,7 +68,7 @@ declare namespace Parameters {
 export interface PathParameters {
     id: Parameters.Id;
 }
-export type RequestBody = AffirmationUpdateForm;
+export type RequestBody = MovieRatingUpdateForm;
 declare namespace Responses {
     export type $200 = UserResponse;
 }

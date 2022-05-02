@@ -19,9 +19,6 @@ export class MovieViewModel {
     @ApiPropertyOptional()
     public description?: string;
 
-    @ApiPropertyOptional()
-    public rating?: number;
-
     @ApiProperty()
     public authorId: string;
 

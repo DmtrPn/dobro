@@ -47,46 +47,46 @@ export function AuthPage({
             </div>
         )
         : (
-        <div className={style.root}>
-            <div className={style.form}>
-                <div className={commonStyle.field}>
-                    <span className={style.message}>Авторизация</span>
-                </div>
-                {!!errorMessage && (
+            <div className={style.root}>
+                <div className={style.form}>
                     <div className={commonStyle.field}>
-                        <span className={style.errorMessage}>{errorMessage}</span>
+                        <span className={style.message}>Авторизация</span>
                     </div>
-                )}
-                <div className={commonStyle.field}>
-                    <Input
-                        name={'email'}
-                        title={'email'}
-                        value={email}
-                        onChange={onInputChange}
-                        onKeyDown={(e) => e.keyCode === 13 ? onLoginClick() : null}
-                    />
-                </div>
-                <div className={commonStyle.field}>
-                    <Input
-                        type={'password'}
-                        name={'password'}
-                        title={'Пароль'}
-                        value={password}
-                        onChange={onInputChange}
-                        onKeyDown={(e) => e.keyCode === 13 ? onLoginClick() : null}
-                    />
-                </div>
-                <div className={classnames([
-                    commonStyle.field,
-                    style.buttons,
-                ])}>
-                    <SaveButton
-                        disabled={!isPasswordValid}
-                        label={'Войти'}
-                        onSaveClick={onLoginClick}
-                    />
+                    {!!errorMessage && (
+                        <div className={commonStyle.field}>
+                            <span className={style.errorMessage}>{errorMessage}</span>
+                        </div>
+                    )}
+                    <div className={commonStyle.field}>
+                        <Input
+                            name={'email'}
+                            title={'email'}
+                            value={email}
+                            onChange={onInputChange}
+                            onKeyDown={(e) => e.keyCode === 13 ? onLoginClick() : null}
+                        />
+                    </div>
+                    <div className={commonStyle.field}>
+                        <Input
+                            type={'password'}
+                            name={'password'}
+                            title={'Пароль'}
+                            value={password}
+                            onChange={onInputChange}
+                            onKeyDown={(e) => e.keyCode === 13 ? onLoginClick() : null}
+                        />
+                    </div>
+                    <div className={classnames([
+                        commonStyle.field,
+                        style.buttons,
+                    ])}>
+                        <SaveButton
+                            disabled={!isPasswordValid}
+                            label={'Войти'}
+                            onSaveClick={onLoginClick}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
 }

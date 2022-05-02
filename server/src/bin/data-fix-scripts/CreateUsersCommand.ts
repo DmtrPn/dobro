@@ -8,7 +8,7 @@ const dima = {
     id: '246d7fba-0de2-4a9f-9c8f-b6e35e0681a1',
     email: 'rpsdpano@gmail.com',
     name: 'Дима',
-    status: UserStatus.Active
+    status: UserStatus.Active,
 };
 
 export class CreateUsersCommand extends DataFixCommand {
@@ -20,7 +20,7 @@ export class CreateUsersCommand extends DataFixCommand {
     }
 
     protected async isAlreadyFixed(): Promise<boolean> {
-        const user = await this.manager.findOneBy(UserModel, { id: dima.id});
+        const user = await this.manager.findOneBy(UserModel, { id: dima.id });
 
         return !isNil(user);
     }

@@ -1,5 +1,6 @@
-import lodash from 'lodash';
+import isNil from 'lodash/isNil';
+import omitBy from 'lodash/omitBy';
 
 export const removeNilKeys = <T = object>(o: object): T => {
-    return lodash(o).omitBy(lodash.isNil).value() as unknown as T;
+    return omitBy(o, isNil) as unknown as T;
 };

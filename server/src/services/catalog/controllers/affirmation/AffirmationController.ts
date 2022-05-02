@@ -2,12 +2,9 @@ import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common'
 import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
 import { Inject } from 'typescript-ioc';
 
-import { AuthUserData } from 'dobro-types/backend';
-
 import { Uuid } from '@common/controllers/validators/Uuid';
 import { Public } from '@components/decorators/Pubic';
 import { IAffirmationCrudService } from '@catalog/domain/affirmation/IAffirmationCrudService';
-import { User } from '@components/decorators';
 
 import { AffirmationListResponse } from './responces/AffirmationListResponse';
 import { AffirmationCreateForm } from './validators/AffirmationCreateForm';
@@ -38,15 +35,13 @@ export class AffirmationController {
     @Post('/')
     public async create(
         @Body() { affirmation }: AffirmationCreateForm,
-        @User() user: AuthUserData,
     ): Promise<void> {
         await this.crudService.create(affirmation);
     }
 
     @Put('/:id')
-    public async update(
-        @Param() { id }: Uuid,
-        @Body() { affirmation }: AffirmationUpdateForm,
+    public async update(@Body() { affirmation }: AffirmationUpdateForm,
+    @Param() { id }: Uuid,
     ): Promise<void> {
         await this.crudService.update(id, affirmation);
     }

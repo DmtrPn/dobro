@@ -28,11 +28,9 @@ export class AuthController {
 
         const { password, ...user } = await this.userCrudService.getByEmail(loginData.email);
 
-        request.login(user, (err, req) => {
-            err
-                ? response.status(401).send('<h1>Login Failure</h1>')
-                : response.status(200).send({ user });
-        });
+        request.login(user, (err, req_) => err
+            ? response.status(401).send('<h1>Login Failure</h1>')
+            : response.status(200).send({ user }));
     }
 
     @Public()
@@ -49,7 +47,7 @@ export class AuthController {
     public async logout(
         @Req() req,
         @Res() res,
-    ) {
+    ): Promise<any> {
         req.session.destroy();
         req.logout();
         res.redirect('/');

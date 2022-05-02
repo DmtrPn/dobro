@@ -13,15 +13,15 @@ export class AffirmationFindCommand extends FindCommand<AffirmationModel, Affirm
 
     protected addFilters(): this {
         return this
-            .filterBy('text', this.text)
-            // .addRandomFilter();
+            .filterBy('text', this.text);
+        // .addRandomFilter();
     }
 
     protected addRandomFilter(): this {
         if (this.random) {
             // const sub = this.qb.subQuery('floor(random() * (SELECT COUNT(*) FROM affirmation))');
             this.qb
-                .offset(`floor(random() * (SELECT COUNT(*) FROM affirmation))` as unknown as number)
+                .offset('floor(random() * (SELECT COUNT(*) FROM affirmation))' as unknown as number)
                 .limit(1);
         }
         return this;
