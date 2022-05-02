@@ -55,11 +55,16 @@ class MovieService {
         }
     }
 
-    public async updateMovieRating(movieRating: Omit<MovieRatingUpdateParams, 'userId'>): Promise<void> {
-        await MovieRatingApi.update({
-            userId: store.appStore.authUserId!,
-            ...movieRating,
-        });
+    public async updateMovieRating(params: Omit<MovieRatingUpdateParams, 'userId'>): Promise<void> {
+        const { appStore: { authUserId }, movieStore: { movieList } } = store;
+        const movieRating = {
+            userId: authUserId!,
+            ...params,
+        };
+        await MovieRatingApi.update(movieRating);
+
+        const movie = movieList.get(movieRating.movieId);
+        movie.updateRating(movieRating);
     }
 }
 

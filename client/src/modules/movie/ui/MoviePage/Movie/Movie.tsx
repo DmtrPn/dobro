@@ -63,13 +63,15 @@ export function Movie({
                     {rating}
                 </span>
             </div>
-            <Select
-                title={'Мой рейтинг'}
-                selectedValue={userRating}
-                options={movieRatingOptions}
-                onChange={onRatingChange}
-            />
-            <TextTruncate text={description} />
+            <span className={style.ratingSelect}>
+                <Select
+                    title={'Мой рейтинг'}
+                    selectedValue={userRating}
+                    options={movieRatingOptions}
+                    onChange={onRatingChange}
+                />
+            </span>
+            <TextTruncate maxLine={2} text={description} />
         </div>
     );
 }

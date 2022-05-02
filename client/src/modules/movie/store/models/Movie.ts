@@ -1,6 +1,7 @@
 import { observable, computed, makeObservable, action } from 'mobx';
 
 import { MovieData, MovieRatingData, MovieUpdateData } from 'dobro-types/frontend';
+import { Optional } from 'dobro-types/common';
 
 import { IEntry } from '@store/models/IEntry';
 import { toArrayFromIterable } from '@utils/toArrayFromIterable';
@@ -31,6 +32,10 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
         return (total / this.ratings.size).toFixed(1);
     }
 
+    public getUserRating(userId: string): Optional<number> {
+        return this.ratings.get(this.makeRatingKey({ userId }))?.rating;
+    }
+
     @action
     public update(params: MovieUpdateData) {
         this.data.update(params);
@@ -50,7 +55,7 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
         };
     }
 
-    private makeRatingKey({ userId }: MovieRatingData): string {
+    private makeRatingKey({ userId }: Pick<MovieRatingData, 'userId'>): string {
         return userId;
     }
 }

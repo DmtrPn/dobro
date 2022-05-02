@@ -12,9 +12,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const getLocalIdent = require('./build-scripts/getLocalIdent');
-const { PUBLIC_PATH } = require('./build-scripts/constants');
+const { PUBLIC_PATH, ROOT_DIR } = require('./build-scripts/constants');
 
-const sprites = fs.readFileSync('./dist/sprite.svg', 'utf8');
+const sprites = fs.readFileSync(path.resolve(ROOT_DIR, './dist/sprite.svg'), 'utf8');
 
 module.exports = {
     entry: './src/app.ts',

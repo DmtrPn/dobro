@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { action, makeObservable, observable } from 'mobx';
 
 import { MovieData } from 'dobro-types/frontend';
+import { Optional } from 'dobro-types/common';
 import { MovieStatus } from 'dobro-types/enums';
 
 import { MovieStore } from '@movie/store/MovieStore';
@@ -11,6 +12,8 @@ import { MovieForm } from '../MovieForm';
 import { Movie, MovieProps } from './Movie';
 import { movieService } from '@movie/services/movieService';
 import { OptionType } from '@components/Select/types';
+import { AppStore } from '@store/App/AppStore';
+import { isDefined } from '@utils/isDefined';
 
 interface Props extends MovieProps {
     id: string;
@@ -18,17 +21,19 @@ interface Props extends MovieProps {
 
 interface StoreProps {
     movieStore: MovieStore;
+    appStore: AppStore;
 }
 
 const injectableStores: (keyof StoreProps)[] = [
     MovieStore.Name,
+    AppStore.Name,
 ];
 
 @observer
 class Container extends React.Component<Props & StoreProps> {
 
     @observable private editMode = false;
-    @observable private userRating?: number;
+    // @observable private userRating?: number;
 
     constructor(props: Props & StoreProps) {
         super(props);
@@ -54,6 +59,17 @@ class Container extends React.Component<Props & StoreProps> {
             });
     }
 
+    private get userRating(): Optional<number> {
+        const { appStore: { authUserId }, id, movieStore: { movieList } } = this.props;
+
+        return isDefined(authUserId) ? movieList.get(id).getUserRating(authUserId) : undefined;
+    }
+
+    private get movie(): MovieData {
+        const { movieStore: { movieList }, id } = this.props;
+        return movieList.get(id).serialize();
+    }
+
     @action.bound
     private onEditClick(): void {
         this.editMode = true;
@@ -71,13 +87,8 @@ class Container extends React.Component<Props & StoreProps> {
     }
 
     @action.bound
-    private onRatingChange(option: OptionType<number>): void {
-        this.userRating = option.value;
-    }
-
-    private get movie(): MovieData {
-        const { movieStore: { movieList }, id } = this.props;
-        return movieList.get(id).serialize();
+    private async onRatingChange({ value: rating }: OptionType<number>): Promise<void> {
+        await movieService.updateMovieRating({ rating, movieId: this.props.id });
     }
 }
 

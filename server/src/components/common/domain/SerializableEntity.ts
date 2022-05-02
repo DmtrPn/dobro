@@ -3,7 +3,7 @@ import { assignParams } from '@utils/assignParams';
 export abstract class SerializableEntity<CP, UP, Dto> {
     public abstract get dto(): Dto;
 
-    protected constructor(params: CP) {
+    constructor(params: CP) {
         this.checkCreateParams(params);
         this.setParams(params);
     }
