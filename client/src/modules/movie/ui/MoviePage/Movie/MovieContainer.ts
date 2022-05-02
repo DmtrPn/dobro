@@ -65,9 +65,13 @@ class Container extends React.Component<Props & StoreProps> {
         return isDefined(authUserId) ? movieList.get(id).getUserRating(authUserId) : undefined;
     }
 
-    private get movie(): MovieData {
+    private get movie(): MovieData & { posterUrl?: string; } {
         const { movieStore: { movieList }, id } = this.props;
-        return movieList.get(id).serialize();
+        const movie = movieList.get(id);
+        return {
+            posterUrl: movie.posterUrl,
+            ...movie.serialize(),
+        };
     }
 
     @action.bound
