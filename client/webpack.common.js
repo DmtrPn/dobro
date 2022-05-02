@@ -88,7 +88,7 @@ module.exports = {
             inject: false,
             templateParameters: {
                 sprites,
-                isProduction: false,
+                isProduction: process.env.NODE_ENV === 'production',
             },
         }),
         new MiniCssExtractPlugin({
