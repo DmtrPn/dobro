@@ -4,6 +4,17 @@ upstream dobro_server {
 }
 
 server {
+    listen       80;
+    listen       443 ssl;
+    server_name  hellomylove.ru www.hellomylove.ru;
+
+    return 301 https://hellomyfriend.ru$request_uri;
+
+    ssl_certificate /etc/letsencrypt/live/hellomylove.ru/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/hellomylove.ru/privkey.pem; # managed by Certbot
+}
+
+server {
     listen 80;
 
     server_name hellomyfriend.ru;
