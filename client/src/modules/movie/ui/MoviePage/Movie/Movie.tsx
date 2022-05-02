@@ -20,7 +20,7 @@ export interface MovieProps {
 }
 
 interface Props extends MovieProps {
-    movie: MovieData;
+    movie: MovieData & { posterUrl?: string; };
     rating: string;
     userRating?: number;
     onEditClick(): void;
@@ -34,6 +34,7 @@ export function Movie({
         link,
         description = '',
         status,
+        posterUrl,
     },
     userRating,
     rating,
@@ -42,38 +43,42 @@ export function Movie({
     toggleStatus,
 }: Props): JSX.Element {
     const isNew = status === MovieStatus.New;
+    console.log('posterUrl', posterUrl);
     return (
         <div className={style.root}>
             <div className={style.editButton}>
                 <EditButton onEditClick={onEditClick} />
             </div>
-            <div className={style.title}>
-                <span className={isNew ? style.statusIcon : style.statusIcon_viewed}>
-                    <IconButton
-                        inheritColor
-                        icon={IconType.CHECK}
-                        onButtonClick={toggleStatus}
+            {posterUrl && <img className={style.poster} src={posterUrl} />}
+            <div className={style.detail}>
+                <div className={style.title}>
+                    <span className={isNew ? style.statusIcon : style.statusIcon_viewed}>
+                        <IconButton
+                            inheritColor
+                            icon={IconType.CHECK}
+                            onButtonClick={toggleStatus}
+                        />
+                    </span>
+                    <TextLink link={link} label={name} />
+                    <span className={classnames([
+                        style.rating,
+                        commonStyle.font_text,
+                    ])}>
+                        {rating}
+                    </span>
+                </div>
+                <div className={style.description}>
+                    <TruncatedText text={description} maxLine={3} />
+                </div>
+                <span className={style.ratingSelect}>
+                    <Select
+                        title={'Мой рейтинг'}
+                        selectedValue={userRating}
+                        options={movieRatingOptions}
+                        onChange={onRatingChange}
                     />
                 </span>
-                <TextLink link={link} label={name} />
-                <span className={classnames([
-                    style.rating,
-                    commonStyle.font_text,
-                ])}>
-                    {rating}
-                </span>
             </div>
-            <div className={style.description}>
-                <TruncatedText text={description} maxLine={3} />
-            </div>
-            <span className={style.ratingSelect}>
-                <Select
-                    title={'Мой рейтинг'}
-                    selectedValue={userRating}
-                    options={movieRatingOptions}
-                    onChange={onRatingChange}
-                />
-            </span>
         </div>
     );
 }

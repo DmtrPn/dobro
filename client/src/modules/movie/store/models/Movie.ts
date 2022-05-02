@@ -7,6 +7,7 @@ import { IEntry } from '@store/models/IEntry';
 import { toArrayFromIterable } from '@utils/toArrayFromIterable';
 
 import { MovieMutableData } from './MovieMuttableData';
+import { removeNotNumbers } from '@utils/removeNotNumbers';
 
 export class Movie implements IEntry<MovieData, MovieUpdateData> {
 
@@ -14,6 +15,7 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
     @observable public readonly authorId: string;
     @observable private readonly ratings: Map<string, MovieRatingData>;
     private data: MovieMutableData;
+    private readonly previewApiUrl = 'https://kinopoiskapiunofficial.tech/images/posters/kp_small/';
 
     constructor({ id, authorId, ratings = [], ...data }: MovieData) {
         makeObservable(this);
@@ -22,6 +24,16 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
         this.authorId = authorId;
         this.ratings = new Map(ratings.map(rating => ([this.makeRatingKey(rating), rating])));
         this.data = new MovieMutableData(data);
+    }
+
+    @computed
+    public get posterUrl(): Optional<string> {
+        const { link } = this.data.serialize();
+        const movieId = removeNotNumbers(link);
+
+        return movieId.length > 0 ? `${this.previewApiUrl}${movieId}.jpg` : undefined;
+
+
     }
 
     @computed

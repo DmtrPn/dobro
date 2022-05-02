@@ -4,7 +4,7 @@
 .root {
     position: relative;
 
-    display: grid;
+    display: flex;
 
     width: 100%;
     padding: 16px;
@@ -13,13 +13,27 @@
     border-radius: 10px;
     background: #ffffff;
 
-    grid-template-columns: 1fr 87px;
-    grid-column-gap: 22px;
-    grid-row-gap: 6px;
-
     @include media-s {
         width: inherit;
     }
+
+    column-gap: 16px;
+}
+
+.poster {
+    position: relative;
+
+    width: 100px;
+}
+
+.detail {
+    display: grid;
+
+    width: 100%;
+
+    grid-template-columns: 1fr 87px;
+    grid-column-gap: 16px;
+    grid-row-gap: 6px;
 }
 
 .rating {
