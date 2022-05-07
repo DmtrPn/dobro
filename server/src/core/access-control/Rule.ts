@@ -8,10 +8,10 @@ import {
 export abstract class Rule {
 
     public static entity: EntityName;
-    protected abstract [ActionType.View]: EntityPermission;
-    protected abstract [ActionType.Create]: EntityPermission;
-    protected abstract [ActionType.Edit]: EntityPermission;
-    protected abstract [ActionType.Remove]: EntityPermission;
+    protected [ActionType.View]: EntityPermission = {};
+    protected [ActionType.Create]: EntityPermission = {};
+    protected [ActionType.Edit]: EntityPermission = {};
+    protected [ActionType.Remove]: EntityPermission = {};
 
     protected adminAccess = true;
     protected moderatorAccess = false;
