@@ -1,7 +1,6 @@
 import { Controller, Put, Body } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-
 import { MovieRatingUpdateCommand } from '@catalog/use-case/movie-rating/MovieRatingUpdateCommand';
 
 import { MovieRatingUpdateForm } from './validators/MovieRatingUpdateForm';

@@ -16,13 +16,13 @@ export class AffirmationCrudService
     protected modelClass = AffirmationModel;
     protected findCommand: Class<FindCommand<AffirmationModel, AffirmationFindOptions>, AffirmationFindOptions> = AffirmationFindCommand;
 
-    protected enrichCreationParams(params: AffirmationCreateData): AffirmationModel {
-        return new AffirmationModel({ ...params });
-    }
-
     public async getRandom(): Promise<AffirmationModel[]> {
         const rows = await this.manager.query('select * from affirmation offset floor(random() * (select count(*) from affirmation))  limit 1;');
         return rows.map(({ affirmation_id, text }) => ({ text, id: affirmation_id }));
+    }
+
+    protected enrichCreationParams(params: AffirmationCreateData): AffirmationModel {
+        return new AffirmationModel({ ...params });
     }
 
 }
