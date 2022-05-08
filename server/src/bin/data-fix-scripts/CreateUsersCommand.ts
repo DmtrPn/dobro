@@ -11,6 +11,7 @@ const dima = {
     name: 'Дима',
     status: UserStatus.Active,
     roles: [RoleName.Admin],
+    entities: [],
 };
 
 export class CreateUsersCommand extends DataFixCommand {

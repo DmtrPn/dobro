@@ -6,6 +6,8 @@ export enum RoleName {
 
 export enum EntityName {
     Movie = 'movie',
+    MovieRating = 'movieRating',
+    Affirmation = 'affirmation',
 }
 
 export enum ActionType {

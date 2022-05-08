@@ -11,6 +11,7 @@ export abstract class EntityAccessControlUseCaseCommand<T extends object> extend
     protected checkRight(userRoles: RoleName[]): void {
         const can = this.accessControl.can({
             userRoles: userRoles,
+            userEntities: [],
             entityName: this.entityName,
             action: this.action,
         });

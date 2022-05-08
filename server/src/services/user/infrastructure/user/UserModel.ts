@@ -4,7 +4,7 @@ import { UserStatus } from '@common/enums';
 
 import { BaseModel } from '@common/infrastructure/BaseModel';
 import { MovieModel } from '@catalog/infrastructure/movie/MovieModel';
-import { RoleName } from '@core/access-control/types';
+import { RoleName, EntityName } from '@core/access-control/types';
 
 @Entity('users')
 export class UserModel extends BaseModel<UserModel> {
@@ -26,6 +26,9 @@ export class UserModel extends BaseModel<UserModel> {
 
     @Column({ type: 'text', array: true })
     public roles: RoleName[];
+
+    @Column({ type: 'text', array: true })
+    public entities: EntityName[];
 
     @OneToMany(() => MovieModel, movie => movie.author)
     public movies?: MovieModel[];

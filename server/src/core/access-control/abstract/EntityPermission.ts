@@ -26,7 +26,7 @@ export abstract class EntityPermission {
 
     public hasAnyPermission(action: ActionType, userRoles: RoleName[]): boolean {
         return this.hasAdminPermission(action, userRoles)
-            || this.hasModeratorPermission(action, userRoles)
+            // || this.hasModeratorPermission(action, userRoles)
             || this.hasAnyAccess(action, userRoles);
     }
 
@@ -36,16 +36,16 @@ export abstract class EntityPermission {
             || this.hasOwnAccess(action, userRoles);
     }
 
+    public hasModeratorPermission(action: ActionType, userRoles: RoleName[]): boolean {
+        const { moderatorAccess = this.moderatorAccess } = this.getPermissions(action);
+
+        return moderatorAccess && this.moderatorAccess && userRoles.includes(RoleName.Moderator);
+    }
+
     protected hasAdminPermission(action: ActionType, userRoles: RoleName[]): boolean {
         const { adminAccess = true } = this.getPermissions(action);
 
         return adminAccess && this.adminAccess && userRoles.includes(RoleName.Admin);
-    }
-
-    protected hasModeratorPermission(action: ActionType, userRoles: RoleName[]): boolean {
-        const { moderatorAccess = this.moderatorAccess } = this.getPermissions(action);
-
-        return moderatorAccess && this.moderatorAccess && userRoles.includes(RoleName.Moderator);
     }
 
     private hasAnyAccess(action: ActionType, userRoles: RoleName[]): boolean {
