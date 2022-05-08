@@ -1,10 +1,10 @@
 import { ApiResponseProperty } from '@nestjs/swagger';
 
-import { UserViewModel } from './view-model';
+import { UserViewModel } from './view-model/UserViewModel';
 
 export class UserResponse {
 
-    @ApiResponseProperty()
+    @ApiResponseProperty({ type: UserViewModel })
     public user: UserViewModel;
 
 }

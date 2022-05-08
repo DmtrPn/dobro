@@ -1,11 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
-
-// import { Public } from '@components/decorators/Pubic';
+import { Inject } from 'typescript-ioc';
 
 import { IUserCrudService } from '@user/domain/user/IUserCrudService';
-import { UserListResponse } from './responces';
-import { Inject } from 'typescript-ioc';
+import { Uuid } from '@common/controllers/validators/Uuid';
+
+import { UserListResponse } from './responces/UserListResponse';
+import { UserResponse } from './responces/UserResponse';
 
 @ApiTags('Пользователя')
 @Controller('user')
@@ -13,11 +14,20 @@ export class UserController {
 
     @Inject private crudService: IUserCrudService;
 
-    @ApiOkResponse({ type: UserListResponse })
     @Get('/')
+    @ApiOkResponse({ type: UserListResponse })
     public async find(): Promise<UserListResponse> {
         const users = await this.crudService.find();
         return { users };
+    }
+
+    @Get('/:id')
+    @ApiOkResponse({ type: UserResponse })
+    public async getUser(
+        @Param() { id }: Uuid,
+    ): Promise<UserResponse> {
+        const user = await this.crudService.getById(id);
+        return { user };
     }
 
 }

@@ -1,5 +1,5 @@
 import { Class } from 'dobro-types/common';
-import { AuthUserData } from 'dobro-types/backend';
+import { AuthUserViewModel } from 'dobro-types/backend';
 
 import { InternalServerError } from '@core/http-error';
 
@@ -20,7 +20,7 @@ export interface CanData {
 }
 
 export interface CanOwnData extends Omit<CanData, 'userEntities'> {
-    user: AuthUserData;
+    user: AuthUserViewModel;
     entity: object;
 }
 

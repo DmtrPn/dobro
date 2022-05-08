@@ -7,6 +7,7 @@ import dtsgenerator, { DefaultTypeNameConvertor, SchemaId } from 'dtsgenerator';
 
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { NestFactory } from '@nestjs/core';
+
 import { AppModule } from '../AppModule';
 
 const rootDir = path.resolve(__dirname, '../');

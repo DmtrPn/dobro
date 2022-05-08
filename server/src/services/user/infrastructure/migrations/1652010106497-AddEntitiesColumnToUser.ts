@@ -10,7 +10,7 @@ export class AddEntitiesColumnToUser1652010106497 implements MigrationInterface 
 
     public async down(queryRunner: QueryRunner) {
         await queryRunner.query(`
-            ALTER TABLE movie DROP COLUMN entities;
+            ALTER TABLE users DROP COLUMN entities;
         `);
     }
 

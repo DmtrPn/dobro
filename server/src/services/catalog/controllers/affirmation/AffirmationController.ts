@@ -44,8 +44,9 @@ export class AffirmationController {
 
     @Action(EntityName.Affirmation, ActionType.Edit)
     @Put('/:id')
-    public async update(@Body() { affirmation }: AffirmationUpdateForm,
-    @Param() { id }: Uuid,
+    public async update(
+        @Body() { affirmation }: AffirmationUpdateForm,
+        @Param() { id }: Uuid,
     ): Promise<void> {
         await this.crudService.update(id, affirmation);
     }
