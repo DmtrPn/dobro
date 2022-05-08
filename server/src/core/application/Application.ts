@@ -18,6 +18,7 @@ import { Launcher, ClusterLauncher } from './launcher';
 import { AppModule } from '../../AppModule';
 import { DbConnector } from '@core/db-connector';
 import { DefaultValidationPipe } from '@components/pipes/DefaultValidationPipe';
+import { AccessControlGuard } from '@core/access-control/AccessControlGuard';
 
 const PUBLIC_PATH = path.join(__dirname, '../../../../public');
 const INDEX_HTML_PATH = path.join(PUBLIC_PATH, 'index.html');
@@ -57,6 +58,8 @@ class Application {
         }));
 
         this.app.useGlobalGuards(new LocalAuthGuard());
+        this.app.useGlobalGuards(new AccessControlGuard());
+
         this.app.useGlobalFilters(new DefaultFilter({ logger: LoggerFactory.getLogger() }));
 
         this.app.use(hemlet());

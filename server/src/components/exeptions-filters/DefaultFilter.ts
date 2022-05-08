@@ -68,6 +68,7 @@ Method: ${error.config.method}
 Url: ${error.config.url}
 code: ${error.code}`);
         } else {
+            console.error(error);
             this.logger.error(`Error: ${error}`);
         }
 

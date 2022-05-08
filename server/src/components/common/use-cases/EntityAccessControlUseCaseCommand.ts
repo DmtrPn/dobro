@@ -9,7 +9,11 @@ export abstract class EntityAccessControlUseCaseCommand<T extends object> extend
     protected abstract action: ActionType;
 
     protected checkRight(userRoles: RoleName[]): void {
-        const can = this.accessControl.can(userRoles, this.entityName, this.action);
+        const can = this.accessControl.can({
+            userRoles: userRoles,
+            entityName: this.entityName,
+            action: this.action,
+        });
 
         if (!can) {
             throw new ForbiddenError();
