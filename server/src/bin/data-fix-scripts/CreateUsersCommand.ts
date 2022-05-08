@@ -2,13 +2,15 @@ import { isNil } from 'lodash';
 
 import { DataFixCommand } from './DataFixCommand';
 import { UserModel } from '@user/infrastructure/user/UserModel';
-import { UserStatus } from 'dobro-types/enums';
+import { UserStatus } from '@common/enums';
+import { RoleName } from '@core/access-control/types';
 
 const dima = {
     id: '246d7fba-0de2-4a9f-9c8f-b6e35e0681a1',
     email: 'rpsdpano@gmail.com',
     name: 'Дима',
     status: UserStatus.Active,
+    roles: [RoleName.Admin],
 };
 
 export class CreateUsersCommand extends DataFixCommand {

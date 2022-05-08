@@ -3,19 +3,20 @@ import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
 
 // import { Public } from '@components/decorators/Pubic';
 
-// import { MovieCrudService } from '@catalog/infrastructure/movie/MovieCrudService';
+import { IUserCrudService } from '@user/domain/user/IUserCrudService';
 import { UserListResponse } from './responces';
+import { Inject } from 'typescript-ioc';
 
 @ApiTags('Пользователя')
 @Controller('user')
 export class UserController {
 
-    // private movieCrudService = new MovieCrudService();
+    @Inject private crudService: IUserCrudService;
 
     @ApiOkResponse({ type: UserListResponse })
     @Get('/')
     public async find(): Promise<UserListResponse> {
-        const users = [];
+        const users = await this.crudService.find();
         return { users };
     }
 

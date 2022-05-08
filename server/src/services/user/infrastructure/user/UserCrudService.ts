@@ -15,7 +15,10 @@ export class UserCrudService extends TransactionManager implements IUserCrudServ
     }
 
     public async getByEmail(email: string): Promise<Optional<UserModel>> {
-        return this.manager.findOneBy<UserModel>(UserModel, { email });
+        return this.manager.getRepository(UserModel).findOne({
+            where: { email },
+            select: ['id', 'name', 'email', 'status', 'password', 'roles'],
+        });
     }
 
     public async create(params: Attributes<UserModel>): Promise<void> {

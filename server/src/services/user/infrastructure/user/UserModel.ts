@@ -1,9 +1,10 @@
 import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
 
-import { UserStatus } from 'dobro-types/enums';
+import { UserStatus } from '@common/enums';
 
 import { BaseModel } from '@common/infrastructure/BaseModel';
 import { MovieModel } from '@catalog/infrastructure/movie/MovieModel';
+import { RoleName } from '@core/access-control/types';
 
 @Entity('users')
 export class UserModel extends BaseModel<UserModel> {
@@ -20,8 +21,11 @@ export class UserModel extends BaseModel<UserModel> {
     @Column()
     public status: UserStatus;
 
-    @Column()
+    @Column({ select: false })
     public password?: string;
+
+    @Column({ type: 'text', array: true })
+    public roles: RoleName[];
 
     @OneToMany(() => MovieModel, movie => movie.author)
     public movies?: MovieModel[];
