@@ -57,6 +57,6 @@ server {
     location / {
         add_header              Cache-Control no-store;
         root                    /opt/dobro/public;
-        try_files               /index.html =404;
+        try_files               $uri /index.html =404;
     }
 }
