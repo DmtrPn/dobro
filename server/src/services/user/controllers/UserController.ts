@@ -7,6 +7,8 @@ import { Uuid } from '@common/controllers/validators/Uuid';
 
 import { UserListResponse } from './responces/UserListResponse';
 import { UserResponse } from './responces/UserResponse';
+import { Action } from '@components/decorators/Action';
+import { ActionType, EntityName } from '@core/access-control/types';
 
 @ApiTags('Пользователя')
 @Controller('user')
@@ -21,6 +23,7 @@ export class UserController {
         return { users };
     }
 
+    @Action(EntityName.User, ActionType.View)
     @Get('/:id')
     @ApiOkResponse({ type: UserResponse })
     public async getUser(

@@ -8,6 +8,7 @@ export enum EntityName {
     Movie = 'movie',
     MovieRating = 'movieRating',
     Affirmation = 'affirmation',
+    User = 'user',
 }
 
 export enum ActionType {

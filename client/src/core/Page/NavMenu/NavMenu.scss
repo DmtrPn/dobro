@@ -1,5 +1,29 @@
+@import '../../../components/mixins/media';
+
 .root {
+    position: fixed;
+    z-index: 1;
+}
+
+.openButton {
     position: relative;
 
-    width: inherit;
+    transition: 0.5s;
+
+    opacity: 0;
+
+    @include media-m {
+        opacity: 1;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+
+    row-gap: 8px;
 }

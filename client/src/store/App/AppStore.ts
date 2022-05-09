@@ -10,7 +10,7 @@ import { AuthUser } from './model/AuthUser';
 export class AppStore {
     public static Name = 'appStore' as const;
 
-    @observable private authUser?: AuthUser;
+    @observable public authUser?: AuthUser;
 
     constructor() {
         makeObservable(this);

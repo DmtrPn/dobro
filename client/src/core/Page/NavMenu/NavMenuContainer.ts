@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { observable, action, makeObservable } from 'mobx';
-import { State } from 'react-burger-menu';
 
 import { NavMenu, NavMenuProps, NavItemData } from './NavMenu';
 import { AppStore } from '@store/App/AppStore';
@@ -32,14 +31,14 @@ class Component extends React.Component<Props & StoreProps> {
         return React.createElement(NavMenu, {
             menuOpen: this.menuOpen,
             items: this.makeNavItems(),
-            onMenuStateChange: this.onMenuStateChange,
+            onOpenMenuClick: this.onOpenMenuClick,
             closeMenu: this.closeMenu,
         });
     }
 
     @action.bound
-    private onMenuStateChange(state: State): void {
-        this.menuOpen = state.isOpen;
+    private onOpenMenuClick(): void {
+        this.menuOpen = !this.menuOpen;
     }
 
     @action.bound
@@ -50,7 +49,7 @@ class Component extends React.Component<Props & StoreProps> {
     private makeNavItems(): NavItemData[] {
         return [
             ...this.getCommonNavItems(),
-            ...(this.props.appStore.isAuthorized ? this.getAuthUserNavItems() : []),
+            ...(this.props.appStore.authUser?.isAdmin ? this.getAdminUserNavItems() : []),
         ];
     }
 
@@ -60,15 +59,15 @@ class Component extends React.Component<Props & StoreProps> {
                 to: '/',
                 title: 'Желания',
             },
-        ];
-    }
-
-    private getAuthUserNavItems(): NavItemData[] {
-        return [
             {
                 to: '/movie',
                 title: 'Фильмы',
             },
+        ];
+    }
+
+    private getAdminUserNavItems(): NavItemData[] {
+        return [
             // {
             //     to: '/affirmation',
             //     title: 'Аффирмации',
