@@ -38,18 +38,20 @@ export function NavMenu({
 }: Props): JSX.Element {
     return (
         <div className={style.root}>
-            <div className={style.openButton}>
-                <Button
-                    basic
-                    icon
-                    circular
-                    onClick={onOpenMenuClick}
-                >
-                    <SemanticIcon
-                        name={'bars'}
-                    />
-                </Button>
-            </div>
+            {!menuOpen && (
+                <div className={style.openButton}>
+                    <Button
+                        basic
+                        icon
+                        circular
+                        onClick={onOpenMenuClick}
+                    >
+                        <SemanticIcon
+                            name={'bars'}
+                        />
+                    </Button>
+                </div>
+            )}
             <Sidebar
                 as={Menu}
                 animation='overlay'
