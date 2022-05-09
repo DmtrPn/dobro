@@ -2,7 +2,7 @@
 
 .root {
     position: fixed;
-    z-index: 1;
+    z-index: 2;
 }
 
 .openButton {
@@ -25,5 +25,11 @@
     display: flex;
     flex-direction: column;
 
+    height: 100%;
     row-gap: 8px;
+}
+
+.login {
+    position: absolute;
+    bottom: 20px;
 }

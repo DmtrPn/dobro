@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Button, ButtonProps, ButtonTheme } from '@components/Button';
+import { Button, ButtonProps } from '@components/Button';
 
-interface CancelButtonProps extends Omit<ButtonProps, 'onClick' | 'theme'> {
+interface CancelButtonProps extends Omit<ButtonProps, 'onClick'> {
     onCancelClick(): void;
 }
 
@@ -13,8 +13,9 @@ export function CancelButton({
 }: CancelButtonProps): JSX.Element {
     return (
         <Button
+            basic
+            color='purple'
             onClick={onCancelClick}
-            theme={ButtonTheme.Light}
             {...props}
         >
             {label}

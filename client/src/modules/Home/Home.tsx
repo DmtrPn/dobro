@@ -8,7 +8,7 @@ import commonStyles from '@components/mixins/commonStyles.scss';
 import { StarBackground } from '@components/StarBackground';
 // import { Clock } from '@components/Clock';
 import { Textarea } from '@components/Textarea';
-import { Button } from '@components/Button';
+import { SaveButton } from '@components/ActionButtons/SaveButton';
 
 import { HappyHour } from './HappyHour';
 
@@ -53,10 +53,10 @@ export function HomePage({
                             Твое желание отправлено в космос!
                             Ожидай в радости и в лучшее время оно сбудется
                         </div>)
-                        : <Button
+                        : <SaveButton
                             disabled={wish.length < 3}
                             label={'Отправить желание в космос'}
-                            onClick={onSendClick}
+                            onSaveClick={onSendClick}
                         />}
                 </div>
                 <div className={commonStyles.field}>

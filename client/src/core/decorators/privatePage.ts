@@ -22,7 +22,12 @@ export function privatePage<Props>(
     class PrivatePage extends React.Component<Props & StoreProps> {
 
         public async componentDidMount(): Promise<void> {
+            this.props.appStore.previousPageUrl = window.location.pathname;
             await authService.loadAuthorizedUser();
+        }
+
+        public componentWillUnmount() {
+            this.props.appStore.previousPageUrl = '/';
         }
 
         public render() {

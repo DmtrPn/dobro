@@ -10,6 +10,7 @@ import { AuthUser } from './model/AuthUser';
 export class AppStore {
     public static Name = 'appStore' as const;
 
+    @observable public previousPageUrl: string = '/';
     @observable public authUser?: AuthUser;
 
     constructor() {

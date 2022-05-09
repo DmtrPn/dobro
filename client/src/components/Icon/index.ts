@@ -1,7 +1,3 @@
-import { Icon } from './Icon';
-import { IconType } from './IconType';
-
-export {
-    Icon,
-    IconType,
-};
+export { Icon } from './Icon';
+export { IconType } from './IconType';
+export { SemanticIcon } from './SemanticIcon';

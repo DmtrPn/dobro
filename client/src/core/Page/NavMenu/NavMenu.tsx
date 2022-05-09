@@ -1,10 +1,13 @@
 import React from 'react';
-import { Button, Icon,  Sidebar, Menu } from 'semantic-ui-react';
+import { Button, Sidebar, Menu } from 'semantic-ui-react';
 
 import style from './NavMenu.scss';
 import './Menu_.scss';
 
 import { Link } from '@components/Link';
+import { SemanticIcon } from '@components/Icon';
+import { SaveButton } from '@components/ActionButtons/SaveButton';
+import { CancelButton } from '@components/ActionButtons/CancelButton';
 
 export interface NavMenuProps {
 }
@@ -16,16 +19,22 @@ export interface NavItemData {
 
 interface Props extends NavMenuProps {
     menuOpen: boolean;
+    isAuthorized: boolean;
     items: NavItemData[];
     onOpenMenuClick(): void;
     closeMenu(): void;
+    onLoginClick(): void;
+    onLogoutClick(): void;
 }
 
 export function NavMenu({
     menuOpen,
+    isAuthorized,
     items,
     onOpenMenuClick,
     closeMenu,
+    onLoginClick,
+    onLogoutClick,
 }: Props): JSX.Element {
     return (
         <div className={style.root}>
@@ -33,9 +42,10 @@ export function NavMenu({
                 <Button
                     basic
                     icon
+                    circular
                     onClick={onOpenMenuClick}
                 >
-                    <Icon
+                    <SemanticIcon
                         name={'bars'}
                     />
                 </Button>
@@ -45,7 +55,7 @@ export function NavMenu({
                 animation='overlay'
                 icon='labeled'
                 inverted
-                onHide={onOpenMenuClick}
+                onHide={closeMenu}
                 vertical
                 visible={menuOpen}
                 width='thin'
@@ -59,6 +69,12 @@ export function NavMenu({
                         >
                             {title}
                         </Link>)}
+
+                    <div className={style.login}>
+                        {isAuthorized
+                            ? <CancelButton onCancelClick={onLogoutClick} label={'Выйти'} />
+                            : <SaveButton onSaveClick={onLoginClick} label={'Войти'} />}
+                    </div>
                 </div>
             </Sidebar>
         </div>
