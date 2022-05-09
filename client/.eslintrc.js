@@ -12,7 +12,7 @@ module.exports = {
         'eslint-config-airbnb-typescript',
     ],
     rules: {
-        '@typescript-eslint/indent': ['error', 4],
+        '@typescript-eslint/indent': ['error', 4, { SwitchCase: 1, }],
         'react/jsx-filename-extension': 0,
         'import/extensions': 0,
         'no-multiple-empty-lines': [

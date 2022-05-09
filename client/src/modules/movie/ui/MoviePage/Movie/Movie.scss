@@ -24,6 +24,7 @@
     position: relative;
 
     width: 100px;
+    height: 150px;
 }
 
 .detail {
@@ -51,6 +52,10 @@
 
 .description {
     color: $GreyText;
+
+    @include media-s {
+        grid-column: 1/3;
+    }
 }
 
 .editButton {

@@ -16,6 +16,7 @@ module.exports = {
             'error',
             4,
             {
+                SwitchCase: 1,
                 FunctionExpression: {
                     parameters: 0,
                 },

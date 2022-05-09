@@ -1,4 +1,5 @@
 @import '../../components/mixins/mixin';
+@import '../../components/mixins/media';
 
 .root {
     position: relative;
@@ -29,6 +30,10 @@
     max-width: 350px;
     height: 100%;
     margin: 0 auto;
+
+    @include media-s {
+        padding: 0 4px;
+    }
 }
 
 .textarea {
