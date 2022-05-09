@@ -41,7 +41,7 @@ export class AccessControlGuard implements CanActivate {
 
         return !!user && this.accessControl.can({
             userRoles: user.roles,
-            userEntities: [],
+            userEntities: user.entities,
             ...action,
         });
     }
