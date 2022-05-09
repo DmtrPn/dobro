@@ -3,7 +3,6 @@ import { first } from 'lodash';
 import { ICommand } from '@common/domain';
 import { TransactionManager } from '@common/infrastructure/TransactionManager';
 
-
 interface ColumnExistenceCheckingParams {
     tableName: string;
     columnName: string;

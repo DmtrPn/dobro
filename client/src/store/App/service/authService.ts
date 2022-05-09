@@ -1,6 +1,7 @@
 import { LoginParams } from 'dobro-types/frontend';
 
 import { AuthApi } from '@api/AuthApi';
+import { UserApi } from '@api/UserApi';
 import { isDefined } from '@utils/isDefined';
 
 import { store } from '@store';
@@ -11,18 +12,21 @@ class AuthService {
         const { appStore } = store;
 
         if (!appStore.isAuthorized) {
-            const user = await AuthApi.getAuthorizedUser();
+            const authUser = await AuthApi.getAuthorizedUser();
 
-            if (isDefined(user)) {
+            if (isDefined(authUser)) {
+                const user = await UserApi.getById(authUser.id);
+
                 store.appStore.login(user);
             }
         }
     }
 
     public async login(loginUser: LoginParams): Promise<void> {
-        const user = await AuthApi.login(loginUser);
+        const authUser = await AuthApi.login(loginUser);
 
-        if (isDefined(user)) {
+        if (isDefined(authUser)) {
+            const user = await UserApi.getById(authUser.id);
             store.appStore.login(user);
         }
     }

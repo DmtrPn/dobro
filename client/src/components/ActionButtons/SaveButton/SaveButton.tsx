@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Button, ButtonProps, ButtonTheme } from '@components/Button';
+import { Button, ButtonProps } from '@components/Button';
 
-interface SaveButtonProps extends Omit<ButtonProps, 'onClick' | 'theme'> {
+interface SaveButtonProps extends Omit<ButtonProps, 'onClick'> {
     onSaveClick(): void;
 }
 
@@ -13,7 +13,7 @@ export function SaveButton({
 }: SaveButtonProps): JSX.Element {
     return (
         <Button
-            theme={ButtonTheme.Primary}
+            color='violet'
             onClick={onSaveClick}
             {...props}
         >

@@ -8,14 +8,6 @@ import { LoggerFactory } from '@components/logging';
 export class DbConnector {
 
     private static instance: DbConnector;
-    private dataSource: DataSource;
-    private logger = LoggerFactory.getLogger();
-    private dbConfig: PostgresConnectionOptions = <DbConfig>Config.getConfig(ConfigName.Db);
-
-    private constructor() {
-        this.dataSource = new DataSource(this.dbConfig as PostgresConnectionOptions);
-        this.dataSource.namingStrategy = new SnakeNamingStrategy();
-    }
 
     public static getInstance(): DbConnector {
         if (!this.instance) {
@@ -23,6 +15,16 @@ export class DbConnector {
         }
 
         return this.instance;
+    }
+
+    private dataSource: DataSource;
+    private logger = LoggerFactory.getLogger();
+
+    private dbConfig: PostgresConnectionOptions = <DbConfig>Config.getConfig(ConfigName.Db);
+
+    private constructor() {
+        this.dataSource = new DataSource(this.dbConfig as PostgresConnectionOptions);
+        this.dataSource.namingStrategy = new SnakeNamingStrategy();
     }
 
     public get manager(): EntityManager {

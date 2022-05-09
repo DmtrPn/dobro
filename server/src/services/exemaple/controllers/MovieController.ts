@@ -2,7 +2,7 @@ import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common'
 import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
 import { Inject } from 'typescript-ioc';
 
-import { AuthUserData } from 'dobro-types/backend';
+import { AuthUserViewModel } from 'dobro-types/backend';
 
 import { Public } from '@components/decorators/Pubic';
 import { IMovieCrudService } from '@catalog/domain/movie/IMovieCrudService';
@@ -29,7 +29,7 @@ export class MovieController {
     @Post('/')
     public async create(
         @Body() { movie }: MovieCreateForm,
-        @User() user: AuthUserData,
+        @User() user: AuthUserViewModel,
     ): Promise<void> {
         await this.movieCrudService.create({ ...movie, authorId: user.id });
     }

@@ -8,7 +8,7 @@ import { Public } from '@components/decorators';
 import { LoginUserCommand } from '@user/use-cases/auth';
 import { IUserCrudService } from '@user/domain/user/IUserCrudService';
 
-import { UserResponse } from './responces';
+import { AuthUserResponse } from './responces/AuthUserResponse';
 
 @ApiTags('Авторизация')
 @Controller('auth')
@@ -17,16 +17,16 @@ export class AuthController {
     @Inject private userCrudService: IUserCrudService;
 
     @Public()
-    @ApiOkResponse({ type: UserResponse })
+    @ApiOkResponse({ type: AuthUserResponse })
     @Post('/login')
-    public async find(
+    public async login(
         @Req() request,
         @Res() response,
         @Body() { user: loginData }: LoginForm,
-    ): Promise<any | UserResponse> {
+    ): Promise<AuthUserResponse | any> {
         await new LoginUserCommand(loginData).execute();
 
-        const { password, ...user } = await this.userCrudService.getByEmail(loginData.email);
+        const { password, roles, entities, ...user } = await this.userCrudService.getByEmail(loginData.email);
 
         request.login(user, (err, req_) => err
             ? response.status(401).send('<h1>Login Failure</h1>')
@@ -34,11 +34,11 @@ export class AuthController {
     }
 
     @Public()
-    @ApiOkResponse({ type: UserResponse })
+    @ApiOkResponse({ type: AuthUserResponse })
     @Get('/user')
     public async getAuthorizedUser(
         @Req() req,
-    ): Promise<UserResponse> {
+    ): Promise<AuthUserResponse> {
         return { user: req.user };
     }
 

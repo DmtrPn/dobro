@@ -30,6 +30,11 @@ class Container extends React.Component<Props> {
         });
     }
 
+    private get affirmation(): AffirmationData {
+        const { affirmationStore: { affirmationList }, id } = this.props;
+        return affirmationList.get(id);
+    }
+
     @autobind
     private async onTextChange({ target: { value, name } }: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>): Promise<void> {
         const { id } = this.props;
@@ -37,11 +42,6 @@ class Container extends React.Component<Props> {
         if (this.affirmation[name] !== value && value.length > 3) {
             await affirmationService.update(id, { [name]: value });
         }
-    }
-
-    private get affirmation(): AffirmationData {
-        const { affirmationStore: { affirmationList }, id } = this.props;
-        return affirmationList.get(id);
     }
 }
 

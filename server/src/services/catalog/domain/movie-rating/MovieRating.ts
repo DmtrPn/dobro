@@ -8,13 +8,13 @@ import { SerializableEntity } from '@common/domain/SerializableEntity';
 
 export class MovieRating extends SerializableEntity<MovieRatingCreateData, MovieRatingUpdateData, MovieRatingDTO> {
 
-    private readonly movieId!: string;
-    private readonly userId!: string;
-    private rating!: number;
-
     public static newInstance(params: MovieRatingCreateData): MovieRating {
         return new MovieRating(params);
     }
+
+    private readonly movieId!: string;
+    private readonly userId!: string;
+    private rating!: number;
 
     public get dto(): MovieRatingDTO {
         return {

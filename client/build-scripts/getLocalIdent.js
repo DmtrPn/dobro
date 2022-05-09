@@ -12,7 +12,7 @@ module.exports = function getLocalIdent(context, localIdentName, localName, opti
 
     let className = '';
 
-    if (/_.scss$/i.test(pathParts[lastIndex])) {
+    if (/_.scss$/i.test(pathParts[lastIndex]) || /min.css$/i.test(pathParts[lastIndex])) {
         className = localName;
     } else {
         const local = pathParts[lastIndex - LOCAL_SUBTRAHEND];

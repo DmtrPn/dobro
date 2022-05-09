@@ -1,42 +1,11 @@
 import React from 'react';
-import classnames from 'classnames';
+import { Button as SemanticButton, ButtonProps as SemanticButtonProps } from 'semantic-ui-react';
 
-import style from './Button.scss';
+import './UiButton_.scss';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    theme?: ButtonTheme;
-    modifiers?: ButtonModifiers[];
-    label?: string;
-    children?: React.ReactChild;
+export interface ButtonProps extends SemanticButtonProps {
 }
 
-export enum ButtonTheme {
-    // @ts-ignore
-    Primary = style.primary,
-    // @ts-ignore
-    Light = style.light,
-}
-
-export enum ButtonModifiers {
-}
-
-interface Props extends ButtonProps {
-}
-
-export function Button({
-    theme = ButtonTheme.Primary,
-    modifiers = [],
-    children,
-    label,
-    ...props
-}: Props): JSX.Element {
-    return (
-        // @ts-ignore
-        <button
-            className={classnames([style.root, theme, ...modifiers])}
-            {...props}
-        >
-            {children || label}
-        </button>
-    );
+export function Button(props: ButtonProps): JSX.Element {
+    return (<SemanticButton {...props} />);
 }

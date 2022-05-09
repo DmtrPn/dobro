@@ -1,6 +1,6 @@
 import { observable, computed, action, makeObservable } from 'mobx';
 
-import { AuthUserData } from 'dobro-types/frontend';
+import { UserData } from 'dobro-types/frontend';
 import { Optional } from 'dobro-types/common';
 
 import { isDefined } from '@utils/isDefined';
@@ -10,7 +10,8 @@ import { AuthUser } from './model/AuthUser';
 export class AppStore {
     public static Name = 'appStore' as const;
 
-    @observable private authUser?: AuthUser;
+    @observable public previousPageUrl: string = '/';
+    @observable public authUser?: AuthUser;
 
     constructor() {
         makeObservable(this);
@@ -32,7 +33,7 @@ export class AppStore {
     }
 
     @action
-    public login(authUser: AuthUserData): void {
+    public login(authUser: UserData): void {
         this.authUser = new AuthUser(authUser);
     }
 

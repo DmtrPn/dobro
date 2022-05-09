@@ -43,7 +43,7 @@ export function Movie({
     toggleStatus,
 }: Props): JSX.Element {
     const isNew = status === MovieStatus.New;
-    console.log('posterUrl', posterUrl);
+
     return (
         <div className={style.root}>
             <div className={style.editButton}>

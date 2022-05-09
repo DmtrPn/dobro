@@ -18,6 +18,19 @@ export interface AffirmationViewModel {
     id: string;
     text: string;
 }
+export interface AuthUserResponse {
+    readonly user: {
+        id: string;
+        name: string;
+        email: string;
+    };
+}
+export interface AuthUserViewModel {
+    id: string;
+    name: string;
+    email: string;
+}
+export type EntityName = "movie" | "movieRating" | "affirmation";
 export interface MovieCreateForm {
     movie: MovieCreateParams;
 }
@@ -70,23 +83,28 @@ export interface PathParameters {
 }
 export type RequestBody = MovieRatingUpdateForm;
 declare namespace Responses {
-    export type $200 = UserResponse;
+    export type $200 = AuthUserResponse;
 }
+export type RoleName = "admin" | "moderator" | "user";
 export interface UserListResponse {
     readonly users: UserViewModel[];
 }
 export interface UserResponse {
     readonly user: {
         id: string;
-        status: UserStatus;
         name: string;
         email: string;
+        status: UserStatus;
+        roles: RoleName[];
+        entities: EntityName[];
     };
 }
 export type UserStatus = "active" | "archive";
 export interface UserViewModel {
     id: string;
-    status: UserStatus;
     name: string;
     email: string;
+    status: UserStatus;
+    roles: RoleName[];
+    entities: EntityName[];
 }

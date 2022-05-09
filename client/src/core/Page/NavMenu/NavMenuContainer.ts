@@ -1,10 +1,10 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { observable, action, makeObservable } from 'mobx';
-import { State } from 'react-burger-menu';
 
 import { NavMenu, NavMenuProps, NavItemData } from './NavMenu';
 import { AppStore } from '@store/App/AppStore';
+import { authService } from '@store/App/service/authService';
 
 interface Props extends NavMenuProps {
 }
@@ -30,16 +30,19 @@ class Component extends React.Component<Props & StoreProps> {
 
     public render() {
         return React.createElement(NavMenu, {
+            isAuthorized: this.props.appStore.isAuthorized,
             menuOpen: this.menuOpen,
             items: this.makeNavItems(),
-            onMenuStateChange: this.onMenuStateChange,
+            onOpenMenuClick: this.onOpenMenuClick,
             closeMenu: this.closeMenu,
+            onLoginClick: this.onLoginClick,
+            onLogoutClick: this.onLogoutClick,
         });
     }
 
     @action.bound
-    private onMenuStateChange(state: State): void {
-        this.menuOpen = state.isOpen;
+    private onOpenMenuClick(): void {
+        this.menuOpen = true;
     }
 
     @action.bound
@@ -47,10 +50,20 @@ class Component extends React.Component<Props & StoreProps> {
         this.menuOpen = false;
     }
 
+    @action.bound
+    private onLoginClick(): void {
+        window.location.pathname = '/login';
+    }
+
+    @action.bound
+    private async onLogoutClick(): Promise<void> {
+        await authService.logout();
+    }
+
     private makeNavItems(): NavItemData[] {
         return [
             ...this.getCommonNavItems(),
-            ...(this.props.appStore.isAuthorized ? this.getAuthUserNavItems() : []),
+            ...(this.props.appStore.authUser?.isAdmin ? this.getAdminUserNavItems() : []),
         ];
     }
 
@@ -60,19 +73,19 @@ class Component extends React.Component<Props & StoreProps> {
                 to: '/',
                 title: 'Желания',
             },
-        ];
-    }
-
-    private getAuthUserNavItems(): NavItemData[] {
-        return [
             {
                 to: '/movie',
                 title: 'Фильмы',
             },
-            // {
-            //     to: '/affirmation',
-            //     title: 'Аффирмации',
-            // },
+        ];
+    }
+
+    private getAdminUserNavItems(): NavItemData[] {
+        return [
+            {
+                to: '/affirmation',
+                title: 'Аффирмации',
+            },
         ];
     }
 }

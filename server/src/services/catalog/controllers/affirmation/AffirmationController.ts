@@ -9,6 +9,8 @@ import { IAffirmationCrudService } from '@catalog/domain/affirmation/IAffirmatio
 import { AffirmationListResponse } from './responces/AffirmationListResponse';
 import { AffirmationCreateForm } from './validators/AffirmationCreateForm';
 import { AffirmationUpdateForm } from './validators/AffirmationUpdateForm';
+import { Action } from '@components/decorators/Action';
+import { ActionType, EntityName } from '@core/access-control/types';
 
 @ApiTags('Affirmations')
 @Controller('affirmation')
@@ -32,6 +34,7 @@ export class AffirmationController {
         return { affirmations };
     }
 
+    @Action(EntityName.Affirmation, ActionType.Create)
     @Post('/')
     public async create(
         @Body() { affirmation }: AffirmationCreateForm,
@@ -39,13 +42,16 @@ export class AffirmationController {
         await this.crudService.create(affirmation);
     }
 
+    @Action(EntityName.Affirmation, ActionType.Edit)
     @Put('/:id')
-    public async update(@Body() { affirmation }: AffirmationUpdateForm,
-    @Param() { id }: Uuid,
+    public async update(
+        @Body() { affirmation }: AffirmationUpdateForm,
+        @Param() { id }: Uuid,
     ): Promise<void> {
         await this.crudService.update(id, affirmation);
     }
 
+    @Action(EntityName.Affirmation, ActionType.Remove)
     @Delete('/:id')
     public async remove(
         @Param() { id }: Uuid,

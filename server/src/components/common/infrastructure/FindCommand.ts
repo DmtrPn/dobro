@@ -78,6 +78,10 @@ export abstract class FindCommand<M, FO> extends TransactionManager {
         return this;
     }
 
+    private get tableName(): string {
+        return this.getTableName(this.modelClass);
+    }
+
     private checkListOnSetAndEmpty(list: any) {
         if (isEmpty(list)) {
             this.isReturnEmpty = true;
@@ -86,10 +90,6 @@ export abstract class FindCommand<M, FO> extends TransactionManager {
 
     private createBuilder(modelClass: Class<M>, alias: string): SelectQueryBuilder<M> {
         return this.manager.createQueryBuilder(modelClass, alias);
-    }
-
-    private get tableName(): string {
-        return this.getTableName(this.modelClass);
     }
 
     private getTableName(modelClass: Function): string {

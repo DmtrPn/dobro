@@ -32,8 +32,6 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
         const movieId = removeNotNumbers(link);
 
         return movieId.length > 0 ? `${this.previewApiUrl}${movieId}.jpg` : undefined;
-
-
     }
 
     @computed

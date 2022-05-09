@@ -1,19 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 import { UserStatus } from '@common/enums';
+import { RoleName, EntityName } from '@core/access-control/types';
 
-export class UserViewModel {
+import { AuthUserViewModel } from './AuthUserViewModel';
 
-    @ApiProperty()
-    public id: string;
+export class UserViewModel extends AuthUserViewModel {
 
     @ApiProperty({ enum: UserStatus, enumName: 'UserStatus' })
     public status: UserStatus;
 
-    @ApiProperty()
-    public name: string;
+    @ApiProperty({ enum: RoleName, enumName: 'RoleName', isArray: true })
+    public roles: RoleName[];
 
-    @ApiProperty()
-    public email: string;
+    @ApiProperty({ enum: EntityName, enumName: 'EntityName', isArray: true })
+    public entities: EntityName[];
 
 }

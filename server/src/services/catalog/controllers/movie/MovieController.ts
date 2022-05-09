@@ -1,17 +1,19 @@
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
-import { ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Inject } from 'typescript-ioc';
 
-import { AuthUserData } from 'dobro-types/backend';
+import { AuthUserViewModel } from 'dobro-types/backend';
 
 import { Uuid } from '@common/controllers/validators/Uuid';
 import { Public } from '@components/decorators/Pubic';
 import { IMovieCrudService } from '@catalog/domain/movie/IMovieCrudService';
 import { User } from '@components/decorators';
+import { Action } from '@components/decorators/Action';
 
 import { MovieListResponse } from './responces/MovieListResponse';
 import { MovieCreateForm } from './validators/MovieCreateForm';
 import { MovieUpdateForm } from './validators/MovieUpdateForm';
+import { ActionType, EntityName } from '@core/access-control/types';
 
 @ApiTags('Фильмы')
 @Controller('movie')
@@ -27,14 +29,16 @@ export class MovieController {
         return { movies };
     }
 
+    @Action(EntityName.Movie, ActionType.Create)
     @Post('/')
     public async create(
         @Body() { movie }: MovieCreateForm,
-        @User() user: AuthUserData,
+        @User() user: AuthUserViewModel,
     ): Promise<void> {
         await this.movieCrudService.create({ ...movie, authorId: user.id });
     }
 
+    @Action(EntityName.Movie, ActionType.Edit)
     @Put('/:id')
     public async update(
         @Param() { id }: Uuid,
@@ -43,6 +47,7 @@ export class MovieController {
         await this.movieCrudService.update(id, movie);
     }
 
+    @Action(EntityName.Movie, ActionType.Remove)
     @Delete('/:id')
     public async remove(
         @Param() { id }: Uuid,

@@ -1,10 +1,13 @@
 import React from 'react';
-import { stack as Menu, State } from 'react-burger-menu';
+import { Button, Sidebar, Menu } from 'semantic-ui-react';
 
 import style from './NavMenu.scss';
 import './Menu_.scss';
 
 import { Link } from '@components/Link';
+import { SemanticIcon } from '@components/Icon';
+import { SaveButton } from '@components/ActionButtons/SaveButton';
+import { CancelButton } from '@components/ActionButtons/CancelButton';
 
 export interface NavMenuProps {
 }
@@ -16,32 +19,66 @@ export interface NavItemData {
 
 interface Props extends NavMenuProps {
     menuOpen: boolean;
+    isAuthorized: boolean;
     items: NavItemData[];
-    onMenuStateChange(state: State): void;
+    onOpenMenuClick(): void;
     closeMenu(): void;
+    onLoginClick(): void;
+    onLogoutClick(): void;
 }
 
 export function NavMenu({
     menuOpen,
+    isAuthorized,
     items,
-    onMenuStateChange,
+    onOpenMenuClick,
     closeMenu,
+    onLoginClick,
+    onLogoutClick,
 }: Props): JSX.Element {
     return (
         <div className={style.root}>
-            <Menu
-                isOpen={menuOpen}
-                onStateChange={onMenuStateChange}
-            >
-                {items.map(({ title, to }) =>
-                    <Link
-                        key={`${to}_${title}`}
-                        to={to}
-                        onClick={closeMenu}
+            {!menuOpen && (
+                <div className={style.openButton}>
+                    <Button
+                        basic
+                        icon
+                        circular
+                        onClick={onOpenMenuClick}
                     >
-                        {title}
-                    </Link>)}
-            </Menu>
+                        <SemanticIcon
+                            name={'bars'}
+                        />
+                    </Button>
+                </div>
+            )}
+            <Sidebar
+                as={Menu}
+                animation='overlay'
+                icon='labeled'
+                inverted
+                onHide={closeMenu}
+                vertical
+                visible={menuOpen}
+                width='thin'
+            >
+                <div className={style.menu}>
+                    {items.map(({ title, to }) =>
+                        <Link
+                            key={`${to}_${title}`}
+                            to={to}
+                            onClick={closeMenu}
+                        >
+                            {title}
+                        </Link>)}
+
+                    <div className={style.login}>
+                        {isAuthorized
+                            ? <CancelButton onCancelClick={onLogoutClick} label={'Выйти'} />
+                            : <SaveButton onSaveClick={onLoginClick} label={'Войти'} />}
+                    </div>
+                </div>
+            </Sidebar>
         </div>
     );
 }

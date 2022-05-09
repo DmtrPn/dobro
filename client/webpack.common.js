@@ -45,6 +45,18 @@ module.exports = {
                             },
                             sourceMap: true,
                             importLoaders: 2,
+                            url: {
+                                filter: (url) => {
+                                    // Semantic-UI-CSS has an extra semi colon in one of the URL due to which CSS loader along
+                                    // with webpack 5 fails to generate a build.
+                                    // Below if condition is a hack. After Semantic-UI-CSS fixes this, one can replace use clause with just
+                                    // use: ['style-loader', 'css-loader']
+                                    if (url.includes('charset=utf-8;;')) {
+                                        return false;
+                                    }
+                                    return true;
+                                },
+                            },
                         },
                     },
                     {

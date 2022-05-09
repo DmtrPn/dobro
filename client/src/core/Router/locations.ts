@@ -2,6 +2,7 @@ import React from 'react';
 
 import { HomePage } from '@modules/Home';
 import { WishPage } from '@modules/Wish';
+import { AuthPage } from '@modules/auth';
 // import { DreamPage } from '@modules/dream/ui/DreamPage';
 
 export interface PageLocation {
@@ -20,5 +21,10 @@ export const locations: PageLocation[] = [
         url: '/wish',
         path: '/wish',
         Component: WishPage,
+    },
+    {
+        url: '/login',
+        path: '/login',
+        Component: AuthPage,
     },
 ];

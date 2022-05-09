@@ -4,7 +4,6 @@ import autobind from 'autobind';
 
 import { AppStore } from '@store/App/AppStore';
 import { authService } from '@store/App/service/authService';
-import { AuthApi } from '@api/AuthApi';
 
 import { AuthPage } from './AuthPage';
 
@@ -35,6 +34,10 @@ export class AuthPageContainer extends React.Component<Props & StoreProps, State
         password: '',
     };
 
+    public async componentDidMount(): Promise<void> {
+        await authService.loadAuthorizedUser();
+    }
+
     public render() {
         const { appStore: { isAuthorized, authUserName } } = this.props;
         const { email, password, errorMessage } = this.state;
@@ -62,16 +65,18 @@ export class AuthPageContainer extends React.Component<Props & StoreProps, State
 
     @autobind
     private async onLogoutClick(): Promise<void> {
-        await AuthApi.logout();
+        await authService.logout();
     }
 
     private async processLogin(): Promise<void> {
+        const {} = this.props;
         const { email, password } = this.state;
         this.setState({ errorMessage: undefined });
 
         if (email.length > 1 && password.length > 3) {
             try {
                 await authService.login({ password: password.trim(), email: email.toLocaleLowerCase().trim() });
+                window.location.href = this.props.appStore.previousPageUrl;
             } catch (e: any) {
                 console.error('e', e);
                 this.setState({ errorMessage: e.message });

@@ -44,7 +44,6 @@ async function buildSvgSprite() {
                 resolve();
             });
 
-
         });
     });
 }
