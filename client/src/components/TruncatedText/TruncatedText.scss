@@ -8,3 +8,14 @@
 .truncated {
     cursor: pointer;
 }
+
+.truncated_text {
+    display: -webkit-box !important;
+    overflow: hidden;
+
+    white-space: normal;
+    text-overflow: ellipsis;
+
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}

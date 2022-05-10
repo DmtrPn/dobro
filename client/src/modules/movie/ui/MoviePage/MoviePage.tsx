@@ -12,6 +12,7 @@ export interface MoviePageProps {
 }
 
 interface Props extends MoviePageProps {
+    canEdit: boolean;
     addMode: boolean;
     ids: string[];
     onAddClick(): void;
@@ -21,6 +22,7 @@ interface Props extends MoviePageProps {
 export function MoviePage({
     ids,
     addMode,
+    canEdit,
     onAddClick,
     onFinishCreate,
 }: Props): JSX.Element {
@@ -38,12 +40,13 @@ export function MoviePage({
                     </div>
                 ))}
             </div>
-            {addMode
-                ? <div className={style.card}>
-                    <MovieForm onFinish={onFinishCreate} />
-                </div>
-                : <SaveButton onSaveClick={onAddClick} label={'Добавить'} />
-            }
+            {canEdit && (
+                addMode
+                    ? <div className={style.card}>
+                        <MovieForm onFinish={onFinishCreate} />
+                    </div>
+                    : <SaveButton onSaveClick={onAddClick} label={'Добавить'} />
+            )}
         </div>
     );
 }

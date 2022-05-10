@@ -10,22 +10,21 @@ import { MovieStatus } from 'dobro-types/enums';
 import { IconButton } from '@components/ActionButtons/IconButton';
 import { EditButton } from '@components/ActionButtons/EditButton';
 import { TruncatedText } from '@components/TruncatedText';
-import { TextLink } from '@components/TextLink';
+import { TextLink, TextLinkTheme } from '@components/TextLink';
 import { IconType } from '@components/Icon';
-import { OptionType } from '@components/Select/types';
-import { Select } from '@components/Select';
-import { movieRatingOptions } from '@movie/store/types';
+import { Rating, RatingEventData } from '@components/Rating';
 
 export interface MovieProps {
 }
 
 interface Props extends MovieProps {
+    canEdit: boolean;
     movie: MovieData & { posterUrl?: string; };
     rating: string;
     userRating?: number;
     onEditClick(): void;
     toggleStatus(): void;
-    onRatingChange(option: OptionType<number>): void;
+    onRatingChange(event: React.MouseEvent<HTMLDivElement>, data: RatingEventData): void;
 }
 
 export function Movie({
@@ -36,6 +35,7 @@ export function Movie({
         status,
         posterUrl,
     },
+    canEdit,
     userRating,
     rating,
     onEditClick,
@@ -46,20 +46,28 @@ export function Movie({
 
     return (
         <div className={style.root}>
-            <div className={style.editButton}>
-                <EditButton onEditClick={onEditClick} />
-            </div>
+            {canEdit && (
+                <div className={style.editButton}>
+                    <EditButton onEditClick={onEditClick} />
+                </div>
+            )}
             {posterUrl && <img className={style.poster} src={posterUrl} />}
             <div className={style.detail}>
                 <div className={style.title}>
-                    <span className={isNew ? style.statusIcon : style.statusIcon_viewed}>
-                        <IconButton
-                            inheritColor
-                            icon={IconType.CHECK}
-                            onButtonClick={toggleStatus}
-                        />
-                    </span>
-                    <TextLink link={link} label={name} />
+                    {canEdit && (
+                        <span className={isNew ? style.statusIcon : style.statusIcon_viewed}>
+                            <IconButton
+                                inheritColor
+                                icon={IconType.CHECK}
+                                onButtonClick={toggleStatus}
+                            />
+                        </span>
+                    )}
+                    <TextLink
+                        link={link}
+                        label={name}
+                        theme={TextLinkTheme.Bold}
+                    />
                     <span className={classnames([
                         style.rating,
                         commonStyle.font_text,
@@ -70,14 +78,16 @@ export function Movie({
                 <div className={style.description}>
                     <TruncatedText text={description} maxLine={3} />
                 </div>
-                <span className={style.ratingSelect}>
-                    <Select
-                        title={'Мой рейтинг'}
-                        selectedValue={userRating}
-                        options={movieRatingOptions}
-                        onChange={onRatingChange}
-                    />
-                </span>
+                {canEdit && (
+                    <span className={style.ratingSelect}>
+                        <Rating
+                            title={'Мой рейтинг'}
+                            rating={userRating}
+                            maxRating={10}
+                            onRate={onRatingChange}
+                        />
+                    </span>
+                )}
             </div>
         </div>
     );

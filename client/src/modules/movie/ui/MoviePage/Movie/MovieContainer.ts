@@ -4,16 +4,16 @@ import { action, makeObservable, observable } from 'mobx';
 
 import { MovieData } from 'dobro-types/frontend';
 import { Optional } from 'dobro-types/common';
-import { MovieStatus } from 'dobro-types/enums';
+import { EntityName, MovieStatus } from 'dobro-types/enums';
 
 import { MovieStore } from '@movie/store/MovieStore';
 
 import { MovieForm } from '../MovieForm';
 import { Movie, MovieProps } from './Movie';
 import { movieService } from '@movie/services/movieService';
-import { OptionType } from '@components/Select/types';
 import { AppStore } from '@store/App/AppStore';
 import { isDefined } from '@utils/isDefined';
+import { RatingEventData } from '@components/Rating';
 
 interface Props extends MovieProps {
     id: string;
@@ -42,7 +42,7 @@ class Container extends React.Component<Props & StoreProps> {
     }
 
     public render() {
-        const { movieStore: { movieList }, id } = this.props;
+        const { movieStore: { movieList }, id, appStore: { authUser } } = this.props;
         return this.editMode
             ? React.createElement(MovieForm, {
                 id: this.props.id,
@@ -50,6 +50,7 @@ class Container extends React.Component<Props & StoreProps> {
                 onFinish: this.onFinish,
             })
             : React.createElement(Movie, {
+                canEdit: authUser?.isEntityModerator(EntityName.Movie) || false,
                 movie: this.movie,
                 userRating: this.userRating,
                 rating: movieList.get(id).rating,
@@ -91,8 +92,8 @@ class Container extends React.Component<Props & StoreProps> {
     }
 
     @action.bound
-    private async onRatingChange({ value: rating }: OptionType<number>): Promise<void> {
-        await movieService.updateMovieRating({ rating, movieId: this.props.id });
+    private async onRatingChange(event: React.MouseEvent<HTMLDivElement>, { rating }: RatingEventData): Promise<void> {
+        await movieService.updateMovieRating({ rating: Number(rating), movieId: this.props.id });
     }
 }
 
