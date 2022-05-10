@@ -1,5 +1,5 @@
 import React from 'react';
-import LinesEllipsis from 'react-lines-ellipsis';
+import Truncate from 'react-truncate';
 
 export interface TextTruncateProps {
     text: string;
@@ -15,20 +15,16 @@ interface Props extends TextTruncateProps {
 export function TextTruncate({
     text,
     maxLine = 3,
-    splitByLetters = false,
     additionalClassName,
     isTruncated,
 }: Props): JSX.Element {
-    const onReflow = ({ clamped }: { clamped: boolean, text: string }) => {
-        isTruncated?.(clamped);
-    };
+
     return (
-        <LinesEllipsis
+        <Truncate
             className={additionalClassName}
-            text={text ? `${text}` : ''}
-            maxLine={maxLine}
-            basedOn={splitByLetters ? 'letters' : 'words'}
-            onReflow={isTruncated ? onReflow : undefined}
+            children={text ? `${text}` : ''}
+            lines={maxLine}
+            onTruncate={isTruncated}
         />
     );
 }
