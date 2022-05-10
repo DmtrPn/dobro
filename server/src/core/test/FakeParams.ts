@@ -22,6 +22,10 @@ export class FakeParams {
         return this.change.sentence();
     }
 
+    public static getEmail(): string {
+        return this.change.email();
+    }
+
     public static getUrl(): string {
         return this.change.url();
     }
