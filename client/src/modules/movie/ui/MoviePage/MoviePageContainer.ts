@@ -2,26 +2,27 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { action, makeObservable, observable } from 'mobx';
 
-import { MovieStatus } from 'dobro-types/enums';
+import { EntityName, MovieStatus } from 'dobro-types/enums';
 
 import { MovieStore } from '@movie/store/MovieStore';
 import { movieService } from '@movie/services/movieService';
-import { privatePage } from '@core/decorators/privatePage';
 
 import { MoviePage, MoviePageProps } from './MoviePage';
+import { AppStore } from '@store/App/AppStore';
 
 interface Props extends MoviePageProps {
 }
 
 interface StoreProps {
     movieStore: MovieStore;
+    appStore: AppStore;
 }
 
 const injectableStores: (keyof StoreProps)[] = [
     MovieStore.Name,
+    AppStore.Name,
 ];
 
-@privatePage
 @inject(...injectableStores)
 @observer
 export class MoviePageContainer extends React.Component<Props & StoreProps> {
@@ -39,13 +40,14 @@ export class MoviePageContainer extends React.Component<Props & StoreProps> {
     }
 
     public render() {
-        const { movieStore: { movieList } } = this.props;
+        const { movieStore: { movieList }, appStore: { authUser } } = this.props;
         return React.createElement(MoviePage, {
             ids: [
                 ...movieList.getFilteredValuesIds({ status: MovieStatus.New }),
                 ...movieList.getFilteredValuesIds({ status: MovieStatus.Viewed }),
                 ...movieList.getFilteredValuesIds({ status: MovieStatus.Rejected }),
             ],
+            canEdit: authUser?.isEntityModerator(EntityName.Movie) || false,
             addMode: this.addMode,
             onAddClick: this.onAddClick,
             onFinishCreate: this.onFinishCreate,

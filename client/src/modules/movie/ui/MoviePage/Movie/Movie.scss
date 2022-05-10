@@ -35,6 +35,8 @@
     grid-template-columns: 1fr;
     grid-column-gap: 16px;
     grid-row-gap: 6px;
+
+    grid-template-rows: auto 1fr;
 }
 
 .rating {
@@ -47,6 +49,7 @@
 }
 
 .title {
+    position: relative;
     //grid-column: 1 / 3;
 }
 
