@@ -11,9 +11,10 @@ import { MovieStore } from '@movie/store/MovieStore';
 import { MovieForm } from '../MovieForm';
 import { Movie, MovieProps } from './Movie';
 import { movieService } from '@movie/services/movieService';
-import { OptionType } from '@components/Select/types';
+// import { OptionType } from '@components/Select/types';
 import { AppStore } from '@store/App/AppStore';
 import { isDefined } from '@utils/isDefined';
+import { RatingEventData } from '@components/Rating';
 
 interface Props extends MovieProps {
     id: string;
@@ -91,8 +92,8 @@ class Container extends React.Component<Props & StoreProps> {
     }
 
     @action.bound
-    private async onRatingChange({ value: rating }: OptionType<number>): Promise<void> {
-        await movieService.updateMovieRating({ rating, movieId: this.props.id });
+    private async onRatingChange(event: React.MouseEvent<HTMLDivElement>, { rating }: RatingEventData): Promise<void> {
+        await movieService.updateMovieRating({ rating: Number(rating), movieId: this.props.id });
     }
 }
 

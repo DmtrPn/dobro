@@ -1,32 +1,26 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 import classnames from 'classnames';
 
 import style from './TruncatedText.scss';
 
-import { TextTruncate } from './TextTruncate';
-
 export interface TruncatedTextProps {
-    additionalClassName?: string;
     text: string;
     maxLine?: number;
-    splitByLetters?: boolean;
 }
 
 interface Props extends TruncatedTextProps {
     isOpen: boolean;
     isTruncated: boolean;
+    truncatedTextRef: RefObject<HTMLDivElement>;
     toggleIsOpen(): void;
-    onTruncate(isTruncated: boolean): void;
 }
 
 export function TruncatedText({
-    additionalClassName,
     isOpen,
     text = '',
     maxLine = 2,
-    splitByLetters,
+    truncatedTextRef,
     isTruncated,
-    onTruncate,
     toggleIsOpen,
 }: Props): JSX.Element {
     return (
@@ -34,19 +28,21 @@ export function TruncatedText({
             className={classnames([
                 style.root,
                 isTruncated && style.truncated,
-                additionalClassName,
             ])}
-            onClick={toggleIsOpen} // isTruncated ? toggleIsOpen : undefined}
+            onClick={toggleIsOpen}
         >
             {isOpen
                 ? text
                 : (
-                    <TextTruncate
-                        text={text}
-                        maxLine={maxLine}
-                        splitByLetters={splitByLetters}
-                        isTruncated={onTruncate}
-                    />
+                    <div
+                        ref={truncatedTextRef}
+                        className={style.truncated_text}
+                        style={{
+                            WebkitLineClamp: maxLine,
+                        }}
+                    >
+                        {text}
+                    </div>
                 )}
         </div>
     );
