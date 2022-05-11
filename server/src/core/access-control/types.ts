@@ -20,7 +20,6 @@ export enum ActionType {
 
 export type Permission = {
     adminAccess?: boolean;
-    moderatorAccess?: boolean;
     any: Set<RoleName>;
     own?: Set<RoleName>;
 };

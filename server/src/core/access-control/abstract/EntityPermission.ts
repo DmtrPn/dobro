@@ -9,15 +9,15 @@ const defaultRemovePermission = {
 };
 
 const defaultViewPermission = {
-    any: new Set<RoleName>([RoleName.User]),
+    any: new Set<RoleName>([RoleName.User, RoleName.Moderator]),
 };
 
 export abstract class EntityPermission {
 
     public static entity: EntityName;
 
-    protected readonly adminAccess = true;
-    protected readonly moderatorAccess = false;
+    protected readonly adminAccess: boolean = true;
+    protected readonly moderatorAccess: boolean = false;
 
     protected readonly [ActionType.View]: Permission = defaultViewPermission;
     protected readonly [ActionType.Create]: Permission = defaultCommandPermission;
@@ -35,9 +35,9 @@ export abstract class EntityPermission {
     }
 
     public hasModeratorPermission(action: ActionType, userRoles: RoleName[]): boolean {
-        const { moderatorAccess = this.moderatorAccess, any } = this.getPermissions(action);
+        const { any } = this.getPermissions(action);
 
-        return (moderatorAccess || this.moderatorAccess || any.has(RoleName.Moderator))
+        return (this.moderatorAccess || any.has(RoleName.Moderator))
             && userRoles.includes(RoleName.Moderator);
     }
 

@@ -1,17 +1,20 @@
 import { AccessControl } from '@core/access-control/AccessControl';
 import { ActionType, EntityName } from '@core/access-control/types';
 import { UserModel } from '@user/infrastructure/user/UserModel';
-import { getAdminUser, getSimpleUser } from '@user/test/unit/userFakeData';
+import { getAdminUser, getEntityModeratorUser, getSimpleUser } from '@user/test/unit/userFakeData';
 
 export abstract class EntityAccessControlTest {
 
     protected abstract entityName: EntityName;
     protected adminUser: UserModel = getAdminUser();
     protected simpleUser: UserModel = getSimpleUser();
+    protected otherEntityModerator: UserModel = getEntityModeratorUser();
+
     private accessControl = AccessControl.getInstance();
 
-    protected abstract get entityModerator(): UserModel;
-    protected abstract get otherEntityModerator(): UserModel;
+    protected get entityModerator(): UserModel {
+        return getEntityModeratorUser(this.entityName);
+    }
 
     public abstract checkSimpleUserCanViewEntity(): void;
     public abstract checkSimpleUserCanCreateEntity(): void;
