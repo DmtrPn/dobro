@@ -1,20 +1,27 @@
-export interface MovieRatingFindOptions {
+export interface UserMovieFindOptions {
     movieId?: string;
     userId?: string;
 }
 
-export interface MovieRatingDTO {
+export interface UserMovieDTO {
     movieId: string;
     userId: string;
-    rating: number;
+    rating?: number;
+    isViewed: boolean;
+    comment?: string;
 }
 
-export interface MovieRatingCreateData {
+export interface UserMovieCreateData {
     movieId: string;
     userId: string;
-    rating: number;
+    rating?: number;
+    isViewed?: boolean;
+    comment?: string;
+
 }
 
-export interface MovieRatingUpdateData {
-    rating: number;
+export interface UserMovieUpdateData {
+    rating?: number;
+    isViewed?: boolean;
+    comment?: string;
 }

@@ -1,16 +1,16 @@
 import { QueryService } from '@common/infrastructure/QueryService';
 
 import { IMovieRatingQueryService } from '@catalog/domain/movie-rating/IMovieRatingQueryService';
-import { MovieRatingFindOptions } from '@catalog/domain/movie-rating/types';
+import { UserMovieFindOptions } from '@catalog/domain/movie-rating/types';
 
-import { MovieRatingModel } from './MovieRatingModel';
+import { UserMovieModel } from './UserMovieModel';
 import { MovieRatingFindCommand } from './MovieRatingFindCommand';
 
 export class MovieRatingQueryService
-    extends QueryService<MovieRatingModel, MovieRatingFindOptions>
+    extends QueryService<UserMovieModel, UserMovieFindOptions>
     implements IMovieRatingQueryService {
 
-    protected modelClass = MovieRatingModel;
+    protected modelClass = UserMovieModel;
     protected findCommand = MovieRatingFindCommand;
 
 }

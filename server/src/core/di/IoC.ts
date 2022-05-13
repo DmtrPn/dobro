@@ -7,9 +7,9 @@ import { IAffirmationCrudService } from '@catalog/domain/affirmation/IAffirmatio
 import { AffirmationCrudService } from '@catalog/infrastructure/affirmation/AffirmationCrudService';
 
 import { IMovieRatingQueryService } from '@catalog/domain/movie-rating/IMovieRatingQueryService';
-import { MovieRatingQueryService } from '@catalog/infrastructure/movie-rating/MovieRatingQueryService';
+import { MovieRatingQueryService } from '@catalog/infrastructure/user-movie/MovieRatingQueryService';
 import { IMovieRatingRepository } from '@catalog/domain/movie-rating/IMovieRatingRepository';
-import { MovieRatingRepository } from '@catalog/infrastructure/movie-rating/MovieRatingRepository';
+import { MovieRatingRepository } from '@catalog/infrastructure/user-movie/MovieRatingRepository';
 
 import { IUserCrudService } from '@user/domain/user/IUserCrudService';
 import { UserCrudService } from '@user/infrastructure/user/UserCrudService';

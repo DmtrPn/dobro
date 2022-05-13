@@ -3,8 +3,8 @@ import { Entity, PrimaryColumn, ManyToOne, Column, JoinColumn } from 'typeorm';
 import { BaseModel } from '@common/infrastructure/BaseModel';
 import { MovieModel } from '@catalog/infrastructure/movie/MovieModel';
 
-@Entity('movie_rating')
-export class MovieRatingModel extends BaseModel<MovieRatingModel> {
+@Entity('user_movie')
+export class UserMovieModel extends BaseModel<UserMovieModel> {
 
     @PrimaryColumn()
     public movieId: string;
@@ -13,7 +13,13 @@ export class MovieRatingModel extends BaseModel<MovieRatingModel> {
     public userId: string;
 
     @Column({ type: 'int' })
-    public rating: number;
+    public rating?: number;
+
+    @Column({ type: 'boolean' })
+    public isViewed: boolean;
+
+    @Column()
+    public comment?: string;
 
     @ManyToOne(() => MovieModel, model => model.ratings)
     @JoinColumn({ name: 'movie_id', referencedColumnName: 'id' })

@@ -1,7 +1,7 @@
 import { EntityPermission } from '@core/access-control/abstract/EntityPermission';
 import { ActionType, EntityName, Permission, RoleName } from '@core/access-control/types';
 
-export class MovieRatingPermission extends EntityPermission {
+export class UserMoviePermission extends EntityPermission {
 
     protected readonly adminAccess = false;
 

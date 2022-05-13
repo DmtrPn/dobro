@@ -3,7 +3,7 @@ import { Entity, Column, OneToMany, PrimaryColumn, ManyToOne, JoinColumn } from 
 import { MovieStatus } from '@components/common/enums';
 import { BaseModel } from '@common/infrastructure/BaseModel';
 import { UserModel } from '@user/infrastructure/user/UserModel';
-import { MovieRatingModel } from '@catalog/infrastructure/movie-rating/MovieRatingModel';
+import { UserMovieModel } from '@catalog/infrastructure/user-movie/UserMovieModel';
 
 @Entity('movie')
 export class MovieModel extends BaseModel<MovieModel> {
@@ -30,7 +30,7 @@ export class MovieModel extends BaseModel<MovieModel> {
     @JoinColumn({ name: 'author_id', referencedColumnName: 'id' })
     public author?: UserModel;
 
-    @OneToMany(() => MovieRatingModel, model => model.movie)
-    public ratings?: MovieRatingModel[];
+    @OneToMany(() => UserMovieModel, model => model.movie)
+    public ratings?: UserMovieModel[];
 
 }

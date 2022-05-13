@@ -2,9 +2,9 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsInt, Min, Max, IsUUID } from 'class-validator';
 import { Transform } from 'class-transformer';
 
-import { MovieRatingCreateData } from '@catalog/domain/movie-rating/types';
+import { UserMovieCreateData } from '@catalog/domain/movie-rating/types';
 
-export class MovieRatingUpdateParams implements MovieRatingCreateData {
+export class MovieRatingUpdateParams implements UserMovieCreateData {
 
     @IsUUID()
     @ApiProperty()

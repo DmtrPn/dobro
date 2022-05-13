@@ -1,22 +1,22 @@
 import {
-    MovieRatingCreateData,
-    MovieRatingUpdateData,
-    MovieRatingDTO,
+    UserMovieCreateData,
+    UserMovieUpdateData,
+    UserMovieDTO,
 } from './types';
 import { InvalidRating } from './errors/InvalidRating';
 import { SerializableEntity } from '@common/domain/SerializableEntity';
 
-export class MovieRating extends SerializableEntity<MovieRatingCreateData, MovieRatingUpdateData, MovieRatingDTO> {
+export class UserMovie extends SerializableEntity<UserMovieCreateData, UserMovieUpdateData, UserMovieDTO> {
 
-    public static newInstance(params: MovieRatingCreateData): MovieRating {
-        return new MovieRating(params);
+    public static newInstance(params: UserMovieCreateData): UserMovie {
+        return new UserMovie(params);
     }
 
     private readonly movieId!: string;
     private readonly userId!: string;
     private rating!: number;
 
-    public get dto(): MovieRatingDTO {
+    public get dto(): UserMovieDTO {
         return {
             movieId: this.movieId,
             userId: this.userId,
@@ -24,13 +24,13 @@ export class MovieRating extends SerializableEntity<MovieRatingCreateData, Movie
         };
     }
 
-    public update({ rating }: MovieRatingUpdateData): void {
+    public update({ rating }: UserMovieUpdateData): void {
         this.checkRating(rating);
         this.rating = rating;
 
     }
 
-    protected checkCreateParams({ rating }: MovieRatingCreateData) {
+    protected checkCreateParams({ rating }: UserMovieCreateData) {
         this.checkRating(rating);
     }
 
