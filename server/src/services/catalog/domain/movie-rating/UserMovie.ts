@@ -21,6 +21,8 @@ export class UserMovie extends SerializableEntity<UserMovieCreateData, UserMovie
             movieId: this.movieId,
             userId: this.userId,
             rating: this.rating,
+            // TODO Сделай нормально!
+            isViewed: true,
         };
     }
 
