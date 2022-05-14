@@ -32,7 +32,6 @@ const injectableStores: (keyof StoreProps)[] = [
 class Container extends React.Component<Props & StoreProps> {
 
     @observable private editMode = false;
-    // @observable private userRating?: number;
 
     constructor(props: Props & StoreProps) {
         super(props);
@@ -42,6 +41,7 @@ class Container extends React.Component<Props & StoreProps> {
 
     public render() {
         const { movieStore: { movieList }, id, appStore: { authUser } } = this.props;
+
         return this.editMode
             ? React.createElement(MovieForm, {
                 id: this.props.id,
@@ -52,7 +52,7 @@ class Container extends React.Component<Props & StoreProps> {
                 canEdit: authUser?.isEntityModerator(EntityName.Movie) || false,
                 movie: this.movie,
                 userRating: this.userRating,
-                rating: movieList.get(id).serialize().rating,
+                rating: movieList.get(id).serialize().rating.toFixed(1),
                 onEditClick: this.onEditClick,
                 toggleStatus: this.toggleStatus,
                 onRatingChange: this.onRatingChange,

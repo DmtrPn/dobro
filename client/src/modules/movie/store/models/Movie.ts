@@ -32,7 +32,7 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
     }
 
     @action
-    public update(params: MovieUpdateData) {
+    public update(params: MovieUpdateData & { rating?: number }) {
         this.data.update(params);
     }
 

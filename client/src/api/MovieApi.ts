@@ -19,7 +19,7 @@ export class MovieApi {
     }
 
     public static async getById(id: string): Promise<MovieData> {
-        const res = await axios.get<MovieResponse>(`MOVIE_URL/${id}`);
+        const res = await axios.get<MovieResponse>(`${MOVIE_URL}/${id}`);
 
         return res.data.movie;
     }

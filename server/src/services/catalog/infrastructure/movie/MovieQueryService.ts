@@ -41,7 +41,7 @@ export class MovieQueryService
 
         const groupedUserMovies = groupBy(userMovies, 'movieId');
 
-        return movies.map(movie => this.create(movie, groupedUserMovies[movie.id]));
+        return movies.map(movie => this.create(movie, groupedUserMovies[movie.id] || []));
     }
 
     protected create(model: MovieModel, userMovies: UserMovieModel[]): MovieData {

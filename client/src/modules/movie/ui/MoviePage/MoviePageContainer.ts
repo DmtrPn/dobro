@@ -9,6 +9,7 @@ import { movieService } from '@movie/services/movieService';
 
 import { MoviePage, MoviePageProps } from './MoviePage';
 import { AppStore } from '@store/App/AppStore';
+import { authService } from '@store/App/service/authService';
 
 interface Props extends MoviePageProps {
 }
@@ -36,7 +37,10 @@ export class MoviePageContainer extends React.Component<Props & StoreProps> {
     }
 
     public async componentDidMount(): Promise<void> {
-        await movieService.load();
+        await Promise.all([
+            movieService.load(),
+            authService.loadAuthorizedUser(),
+        ]);
     }
 
     public render() {
