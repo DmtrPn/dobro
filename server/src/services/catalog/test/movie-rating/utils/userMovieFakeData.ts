@@ -2,7 +2,7 @@ import { Attributes } from 'dobro-types/common';
 
 import { UserMovieModel } from '@catalog/infrastructure/user-movie/UserMovieModel';
 import { FakeParams } from '@core/test/FakeParams';
-import { UserMovieUpdateData } from '@catalog/domain/movie-rating/types';
+import { UserMovieUpdateData } from '@catalog/domain/user-movie/types';
 
 export const getFakeUserMovieCreationParams = (): Attributes<UserMovieModel> => {
     return {

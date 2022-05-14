@@ -4,28 +4,30 @@ import { Inject } from 'typescript-ioc';
 
 import { AuthUserViewModel } from 'dobro-types/backend';
 
+import { ActionType, EntityName } from '@core/access-control/types';
 import { Uuid } from '@common/controllers/validators/Uuid';
 import { Public } from '@components/decorators/Pubic';
 import { IMovieCrudService } from '@catalog/domain/movie/IMovieCrudService';
+import { IMovieQueryService } from '@catalog/domain/movie/IMovieQueryService';
 import { User } from '@components/decorators';
 import { Action } from '@components/decorators/Action';
 
 import { MovieListResponse } from './responces/MovieListResponse';
 import { MovieCreateForm } from './validators/MovieCreateForm';
 import { MovieUpdateForm } from './validators/MovieUpdateForm';
-import { ActionType, EntityName } from '@core/access-control/types';
 
 @ApiTags('Фильмы')
 @Controller('movie')
 export class MovieController {
 
     @Inject private movieCrudService: IMovieCrudService;
+    @Inject private movieQueryService: IMovieQueryService;
 
     @Public()
     @ApiOkResponse({ type: MovieListResponse })
     @Get('/')
     public async find(): Promise<MovieListResponse> {
-        const movies: any = await this.movieCrudService.find({});
+        const movies = await this.movieQueryService.find({});
         return { movies };
     }
 

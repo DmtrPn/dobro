@@ -31,6 +31,6 @@ export class MovieModel extends BaseModel<MovieModel> {
     public author?: UserModel;
 
     @OneToMany(() => UserMovieModel, model => model.movie)
-    public ratings?: UserMovieModel[];
+    public userMovies?: UserMovieModel[];
 
 }

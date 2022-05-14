@@ -1,12 +1,12 @@
 import {
     UserMovieCreateData,
     UserMovieUpdateData,
-    UserMovieDTO,
+    UserMovieDto,
 } from './types';
 import { InvalidRating } from './errors/InvalidRating';
 import { SerializableEntity } from '@common/domain/SerializableEntity';
 
-export class UserMovie extends SerializableEntity<UserMovieCreateData, UserMovieUpdateData, UserMovieDTO> {
+export class UserMovie extends SerializableEntity<UserMovieCreateData, UserMovieUpdateData, UserMovieDto> {
 
     public static newInstance(params: UserMovieCreateData): UserMovie {
         return new UserMovie(params);
@@ -14,11 +14,11 @@ export class UserMovie extends SerializableEntity<UserMovieCreateData, UserMovie
 
     private readonly movieId!: string;
     private readonly userId!: string;
-    private rating!: number;
+    private rating?: number;
     private isViewed!: boolean;
     private comment?: string;
 
-    public get dto(): UserMovieDTO {
+    public get dto(): UserMovieDto {
         return {
             movieId: this.movieId,
             userId: this.userId,

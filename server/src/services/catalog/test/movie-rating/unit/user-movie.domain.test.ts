@@ -1,8 +1,8 @@
 import '@core/test/unitTestRanner';
 import { expectError } from '@core/test/expectError';
 
-import { UserMovie } from '@catalog/domain/movie-rating/UserMovie';
-import { InvalidRating } from '@catalog/domain/movie-rating/errors/InvalidRating';
+import { UserMovie } from '@catalog/domain/user-movie/UserMovie';
+import { InvalidRating } from '@catalog/domain/user-movie/errors/InvalidRating';
 
 import {
     getFakeUserMovieCreationParams,

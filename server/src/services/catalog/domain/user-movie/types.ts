@@ -3,7 +3,7 @@ export interface UserMovieFindOptions {
     userId?: string;
 }
 
-export interface UserMovieDTO {
+export interface UserMovieDto {
     movieId: string;
     userId: string;
     rating?: number;

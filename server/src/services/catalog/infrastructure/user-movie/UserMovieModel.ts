@@ -21,7 +21,7 @@ export class UserMovieModel extends BaseModel<UserMovieModel> {
     @Column()
     public comment?: string;
 
-    @ManyToOne(() => MovieModel, model => model.ratings)
+    @ManyToOne(() => MovieModel, model => model.userMovies)
     @JoinColumn({ name: 'movie_id', referencedColumnName: 'id' })
     public movie?: MovieModel;
 

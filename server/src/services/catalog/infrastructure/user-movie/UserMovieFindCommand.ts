@@ -1,8 +1,8 @@
 import { FindCommand } from '@common/infrastructure/FindCommand';
 import { UserMovieModel } from '@catalog/infrastructure/user-movie/UserMovieModel';
-import { UserMovieFindOptions } from '@catalog/domain/movie-rating/types';
+import { UserMovieFindOptions } from '@catalog/domain/user-movie/types';
 
-export class MovieRatingFindCommand extends FindCommand<UserMovieModel, UserMovieFindOptions> {
+export class UserMovieFindCommand extends FindCommand<UserMovieModel, UserMovieFindOptions> {
 
     private movieId?: UserMovieFindOptions['movieId'];
     private userId?: UserMovieFindOptions['userId'];
