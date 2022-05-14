@@ -1,9 +1,11 @@
-import { makeObservable, observable } from 'mobx';
+import { makeObservable, observable, action } from 'mobx';
 
-import { UserData } from 'dobro-types/frontend';
+import { UserData, UserMovieData } from 'dobro-types/frontend';
 import { EntityName, RoleName, UserStatus } from 'dobro-types/enums';
 
 import { assignParams } from '@utils/assignParams';
+
+import { UserMovieList } from './UserMovieList';
 
 export class AuthUser {
 
@@ -13,6 +15,7 @@ export class AuthUser {
     @observable public status!: UserStatus;
     @observable public roles!: Set<RoleName>;
     @observable public entities!: Set<EntityName>;
+    @observable public readonly movies = new UserMovieList();
 
     constructor({
         roles,
@@ -35,6 +38,30 @@ export class AuthUser {
         return this.isAdmin ||
             (this.entities.has(entityName)
             && this.roles.has(RoleName.Moderator));
+    }
+
+    public getMovieRating(movieId: string): number {
+        return this.movies.get(movieId)?.rating ?? 0;
+    }
+
+    @action
+    public setMovies(userMovies: UserMovieData[]): void {
+        this.movies.set(userMovies);
+    }
+
+    @action
+    public updateMovieRating(movieId: string, rating: number): void {
+        if (this.movies.has(movieId)) {
+            this.movies.update(movieId, { rating });
+        } else {
+            this.movies.add([{
+                rating,
+                movieId,
+                userId: this.id,
+                isViewed: false,
+            }]);
+        }
+
     }
 
 }

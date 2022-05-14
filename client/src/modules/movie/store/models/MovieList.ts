@@ -19,6 +19,6 @@ export class MovieList extends EntityList<Movie, MovieData, MovieUpdateData, Fil
     }
 
     protected getOrderedValues(params: Movie[]): Movie[] {
-        return orderBy(params, movie => Number(movie.rating), 'desc');
+        return orderBy(params, movie => Number(movie.serialize().rating), 'desc');
     }
 }

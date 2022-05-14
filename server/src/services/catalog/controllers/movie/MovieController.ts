@@ -13,6 +13,7 @@ import { User } from '@components/decorators';
 import { Action } from '@components/decorators/Action';
 
 import { MovieListResponse } from './responces/MovieListResponse';
+import { MovieResponse } from './responces/MovieResponse';
 import { MovieCreateForm } from './validators/MovieCreateForm';
 import { MovieUpdateForm } from './validators/MovieUpdateForm';
 
@@ -29,6 +30,16 @@ export class MovieController {
     public async find(): Promise<MovieListResponse> {
         const movies = await this.movieQueryService.find({});
         return { movies };
+    }
+
+    @Public()
+    @ApiOkResponse({ type: MovieResponse })
+    @Get('/:id')
+    public async getMovie(
+        @Param() { id }: Uuid,
+    ): Promise<MovieResponse> {
+        const movie = await this.movieQueryService.getById(id);
+        return { movie };
     }
 
     @Action(EntityName.Movie, ActionType.Create)

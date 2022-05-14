@@ -20,7 +20,7 @@ export interface MovieProps {
 interface Props extends MovieProps {
     canEdit: boolean;
     movie: MovieData & { posterUrl?: string; };
-    rating: string;
+    rating: number;
     userRating?: number;
     onEditClick(): void;
     toggleStatus(): void;

@@ -1,13 +1,15 @@
 import { Controller, Put, Body } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiExtraModels } from '@nestjs/swagger';
 
 import { MovieRatingUpdateCommand } from '@catalog/use-case/movie-rating/MovieRatingUpdateCommand';
-
-import { UserMovieUpdateForm } from './validators/UserMovieUpdateForm';
 import { Action } from '@components/decorators/Action';
 import { ActionType, EntityName } from '@core/access-control/types';
 
+import { UserMovieModel } from './responces/view-model/UserMovieModel';
+import { UserMovieUpdateForm } from './validators/UserMovieUpdateForm';
+
 @ApiTags('Фильмы пользователя')
+@ApiExtraModels(UserMovieModel)
 @Controller('user-movie')
 export class UserMovieController {
 

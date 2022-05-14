@@ -2,7 +2,7 @@ import { Inject } from 'typescript-ioc';
 import groupBy from 'lodash/groupBy';
 import isNil from 'lodash/isNil';
 
-import { QueryService } from '@common/infrastructure/QueryService';
+import { IdentifiableQueryService } from '@common/infrastructure/IdentifiableQueryService';
 
 import { IMovieQueryService } from '@catalog/domain/movie/IMovieQueryService';
 import { MovieData, MovieFindOptions } from '@catalog/domain/movie/types';
@@ -13,13 +13,25 @@ import { MovieFindCommand } from './MovieFindCommand';
 import { UserMovieModel } from '@catalog/infrastructure/user-movie/UserMovieModel';
 
 export class MovieQueryService
-    extends QueryService<MovieModel, MovieFindOptions, MovieData>
+    extends IdentifiableQueryService<MovieModel, MovieFindOptions, MovieData>
     implements IMovieQueryService {
 
     protected modelClass = MovieModel;
     protected findCommand = MovieFindCommand;
 
     @Inject private userMovieQueryService: IUserMovieQueryService;
+
+    public async getById(id: string): Promise<MovieData> {
+        const [
+            model,
+            userMovies,
+        ] = await Promise.all([
+            this.findOneById(id),
+            this.userMovieQueryService.find({ movieId: id }),
+        ]);
+
+        return this.create(model, userMovies);
+    }
 
     public async find(options: MovieFindOptions): Promise<MovieData[]> {
         const [movies, userMovies] = await Promise.all([

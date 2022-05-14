@@ -43,6 +43,17 @@ export interface MovieCreateParams {
 export interface MovieListResponse {
     readonly movies: MovieViewModel[];
 }
+export interface MovieResponse {
+    readonly movie: {
+        id: string;
+        status: MovieStatus;
+        link: string;
+        name: string;
+        description?: string;
+        authorId: string;
+        rating: number;
+    };
+}
 export type MovieStatus = "new" | "viewed" | "rejected";
 export interface MovieUpdateForm {
     movie: MovieUpdateParams;
@@ -75,6 +86,13 @@ declare namespace Responses {
 export type RoleName = "admin" | "moderator" | "user";
 export interface UserListResponse {
     readonly users: UserViewModel[];
+}
+export interface UserMovieModel {
+    movieId: string;
+    userId: string;
+    rating?: number;
+    isViewed: boolean;
+    comment?: string;
 }
 export interface UserMovieUpdateForm {
     userMovie: UserMovieUpdateParams;
