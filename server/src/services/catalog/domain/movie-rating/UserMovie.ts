@@ -15,14 +15,16 @@ export class UserMovie extends SerializableEntity<UserMovieCreateData, UserMovie
     private readonly movieId!: string;
     private readonly userId!: string;
     private rating!: number;
+    private isViewed!: boolean;
+    private comment?: string;
 
     public get dto(): UserMovieDTO {
         return {
             movieId: this.movieId,
             userId: this.userId,
             rating: this.rating,
-            // TODO Сделай нормально!
-            isViewed: true,
+            isViewed: this.isViewed,
+            comment: this.comment,
         };
     }
 
