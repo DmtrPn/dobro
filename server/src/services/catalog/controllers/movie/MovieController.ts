@@ -25,7 +25,7 @@ export class MovieController {
     @ApiOkResponse({ type: MovieListResponse })
     @Get('/')
     public async find(): Promise<MovieListResponse> {
-        const movies = await this.movieCrudService.find({});
+        const movies: any = await this.movieCrudService.find({});
         return { movies };
     }
 
