@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "yarn typedCss && yarn checkTypes && NODE_ENV=production gulp",
+    "build": "yarn typedCss && NODE_ENV=production gulp",
     "build:dev": "yarn csscomb && yarn typedCss && yarn checkTypes && gulp dev",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx ",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx  --fix",

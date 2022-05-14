@@ -7,16 +7,16 @@ import { UserMovieUpdateForm } from './validators/UserMovieUpdateForm';
 import { Action } from '@components/decorators/Action';
 import { ActionType, EntityName } from '@core/access-control/types';
 
-@ApiTags('Рейтинг фильмы')
-@Controller('movie-rating')
+@ApiTags('Фильмы пользователя')
+@Controller('user-movie')
 export class UserMovieController {
 
-    @Action(EntityName.MovieRating, ActionType.Edit)
+    @Action(EntityName.UserMovie, ActionType.Edit)
     @Put('/')
     public async update(
-        @Body() { movieRating }: UserMovieUpdateForm,
+        @Body() { userMovie }: UserMovieUpdateForm,
     ): Promise<void> {
-        const command = new MovieRatingUpdateCommand(movieRating);
+        const command = new MovieRatingUpdateCommand(userMovie);
 
         await command.execute();
     }

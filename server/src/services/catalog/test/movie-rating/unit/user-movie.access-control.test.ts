@@ -6,7 +6,7 @@ import { EntityAccessControlTest } from '@core/access-control/test/utils/EntityA
 @Describe()
 export class UserMovieAccessControlTest extends EntityAccessControlTest {
 
-    protected entityName = EntityName.MovieRating;
+    protected entityName = EntityName.UserMovie;
 
     @Test('Пользователь может создавать свой фильм')
     public checkSimpleUserCanCreateEntity(): void {

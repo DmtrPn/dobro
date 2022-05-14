@@ -22,7 +22,7 @@ export class UserMoviePermission extends EntityPermission {
     };
 
     public static get entity(): EntityName {
-        return EntityName.MovieRating;
+        return EntityName.UserMovie;
     }
 
 }

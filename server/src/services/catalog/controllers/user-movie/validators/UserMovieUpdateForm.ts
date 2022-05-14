@@ -9,6 +9,6 @@ export class UserMovieUpdateForm {
     @ApiProperty()
     @ValidateNested()
     @Type(() => UserMovieUpdateParams)
-    public movieRating!: UserMovieUpdateParams;
+    public userMovie!: UserMovieUpdateParams;
 
 }

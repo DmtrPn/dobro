@@ -31,7 +31,7 @@ build:       # This job runs in the build stage, which runs first.
     - cd client/ && yarn build
     - cd ../server/ && yarn build
 
-unit-test:   # This job runs in the test stage.
+test-unit:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   dependencies:
       - build
@@ -45,14 +45,14 @@ check-types:   # This job also runs in the test stage.
   script:
     - cd client/ && yarn checkTypes
 
-lint:frontend:   # This job also runs in the test stage.
+lint-frontend:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
   dependencies:
         - build
   script:
     - cd client/ && yarn lint
 
-lint:backend:   # This job also runs in the test stage.
+lint-backend:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
   dependencies:
         - build

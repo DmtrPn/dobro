@@ -1,11 +1,11 @@
-import { MovieCreateData, MovieUpdateData, MovieRatingUpdateParams } from 'dobro-types/frontend';
+import { MovieCreateData, MovieUpdateData, UserMovieUpdateParams } from 'dobro-types/frontend';
 import { MovieStatus } from 'dobro-types/enums';
 
 import { MovieApi } from '@api/MovieApi';
 import { store } from '@store';
 import { isDefined } from '@utils/isDefined';
 import { getId } from '@utils/getId';
-import { MovieRatingApi } from '@api/MovieRatingApi';
+import { UserMovieApi } from '@api/UserMovieApi';
 
 class MovieService {
 
@@ -30,6 +30,7 @@ class MovieService {
                 id,
                 authorId: authUserId,
                 status: MovieStatus.New,
+                rating: 0,
                 ...createParams,
             }]);
         }
@@ -55,13 +56,13 @@ class MovieService {
         }
     }
 
-    public async updateMovieRating(params: Omit<MovieRatingUpdateParams, 'userId'>): Promise<void> {
+    public async updateMovieRating(params: Omit<UserMovieUpdateParams, 'userId'>): Promise<void> {
         const { appStore: { authUserId }, movieStore: { movieList } } = store;
         const movieRating = {
             userId: authUserId!,
             ...params,
         };
-        await MovieRatingApi.update(movieRating);
+        await UserMovieApi.update(movieRating);
 
         const movie = movieList.get(movieRating.movieId);
         movie.updateRating(movieRating);

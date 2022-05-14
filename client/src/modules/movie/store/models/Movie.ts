@@ -1,6 +1,6 @@
 import { observable, computed, makeObservable, action } from 'mobx';
 
-import { MovieData, MovieRatingData, MovieUpdateData } from 'dobro-types/frontend';
+import { MovieData, UserMovieData, MovieUpdateData } from 'dobro-types/frontend';
 import { Optional } from 'dobro-types/common';
 
 import { IEntry } from '@store/models/IEntry';
@@ -13,7 +13,7 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
 
     @observable public readonly id: string;
     @observable public readonly authorId: string;
-    @observable private readonly ratings: Map<string, MovieRatingData>;
+    @observable private readonly ratings: Map<string, UserMovieData>;
     private data: MovieMutableData;
     private readonly previewApiUrl = 'https://kinopoiskapiunofficial.tech/images/posters/kp_small/';
 
@@ -36,7 +36,7 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
 
     @computed
     public get rating(): string {
-        const total = toArrayFromIterable<MovieRatingData>(this.ratings)
+        const total = toArrayFromIterable<UserMovieData>(this.ratings)
             .reduce((acc, { rating }) => acc + rating, 0);
 
         return (this.ratings.size > 0 ? (total / this.ratings.size) : 0).toFixed(1);
@@ -52,7 +52,7 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
     }
 
     @action
-    public updateRating(movieRating: MovieRatingData) {
+    public updateRating(movieRating: UserMovieData) {
         this.ratings.set(this.makeRatingKey(movieRating), movieRating);
     }
 
@@ -60,12 +60,12 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
         return {
             id: this.id,
             authorId: this.authorId,
-            ratings: toArrayFromIterable<MovieRatingData>(this.ratings),
+            ratings: toArrayFromIterable<UserMovieData>(this.ratings),
             ...this.data.serialize(),
         };
     }
 
-    private makeRatingKey({ userId }: Pick<MovieRatingData, 'userId'>): string {
+    private makeRatingKey({ userId }: Pick<UserMovieData, 'userId'>): string {
         return userId;
     }
 }

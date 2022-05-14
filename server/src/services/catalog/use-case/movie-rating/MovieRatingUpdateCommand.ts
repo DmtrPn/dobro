@@ -12,9 +12,9 @@ export class MovieRatingUpdateCommand extends UseCaseCommand<Params> {
     @Inject protected repository: IUserMovieRepository;
 
     public async execute(): Promise<void> {
-        const movieRating = UserMovie.newInstance(this.params);
+        const userMovie = UserMovie.newInstance(this.params);
 
-        await this.repository.save(movieRating);
+        await this.repository.save(userMovie);
     }
 
 }

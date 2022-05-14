@@ -30,7 +30,7 @@ export interface AuthUserViewModel {
     name: string;
     email: string;
 }
-export type EntityName = "movie" | "movieRating" | "affirmation" | "user";
+export type EntityName = "movie" | "userMovie" | "affirmation" | "user";
 export interface MovieCreateForm {
     movie: MovieCreateParams;
 }
@@ -77,7 +77,7 @@ export interface UserListResponse {
     readonly users: UserViewModel[];
 }
 export interface UserMovieUpdateForm {
-    movieRating: UserMovieUpdateParams;
+    userMovie: UserMovieUpdateParams;
 }
 export interface UserMovieUpdateParams {
     movieId: string;
