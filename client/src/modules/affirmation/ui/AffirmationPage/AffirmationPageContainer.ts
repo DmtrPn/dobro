@@ -32,6 +32,7 @@ export class AffirmationPageContainer extends React.Component<Props & StoreProps
     }
 
     public async componentDidMount(): Promise<void> {
+        console.log('affirm did moun');
         await affirmationService.load();
     }
 

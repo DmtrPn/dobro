@@ -104,6 +104,9 @@ export interface UserMovieUpdateParams {
     isViewed?: boolean;
     comment?: string;
 }
+export interface UserMoviesResponse {
+    readonly userMovies: UserMovieModel[];
+}
 export interface UserResponse {
     readonly user: {
         id: string;
