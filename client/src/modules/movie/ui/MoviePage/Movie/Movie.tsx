@@ -5,7 +5,6 @@ import style from './Movie.scss';
 import commonStyle from '@components/mixins/commonStyles.scss';
 
 import { MovieData } from 'dobro-types/frontend';
-import { MovieStatus } from 'dobro-types/enums';
 
 import { IconButton } from '@components/ActionButtons/IconButton';
 import { EditButton } from '@components/ActionButtons/EditButton';
@@ -21,6 +20,7 @@ interface Props extends MovieProps {
     canEdit: boolean;
     movie: MovieData & { posterUrl?: string; };
     rating: string;
+    isViewed: boolean;
     userRating?: number;
     onEditClick(): void;
     toggleStatus(): void;
@@ -32,9 +32,9 @@ export function Movie({
         name,
         link,
         description = '',
-        status,
         posterUrl,
     },
+    isViewed,
     canEdit,
     userRating,
     rating,
@@ -42,7 +42,6 @@ export function Movie({
     onRatingChange,
     toggleStatus,
 }: Props): JSX.Element {
-    const isNew = status === MovieStatus.New;
 
     return (
         <div className={style.root}>
@@ -55,7 +54,7 @@ export function Movie({
             <div className={style.detail}>
                 <div className={style.title}>
                     {canEdit && (
-                        <span className={isNew ? style.statusIcon : style.statusIcon_viewed}>
+                        <span className={isViewed ? style.statusIcon_viewed : style.statusIcon}>
                             <IconButton
                                 inheritColor
                                 icon={IconType.CHECK}

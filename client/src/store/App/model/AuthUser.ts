@@ -1,6 +1,6 @@
 import { makeObservable, observable, action } from 'mobx';
 
-import { UserData, UserMovieData } from 'dobro-types/frontend';
+import { UserData, UserMovieData, UserMovieUpdateParams } from 'dobro-types/frontend';
 import { EntityName, RoleName, UserStatus } from 'dobro-types/enums';
 
 import { assignParams } from '@utils/assignParams';
@@ -50,15 +50,15 @@ export class AuthUser {
     }
 
     @action
-    public updateMovieRating(movieId: string, rating: number): void {
+    public updateMovie({ movieId, ...updateParams }: Omit<UserMovieUpdateParams, 'userId'>): void {
         if (this.movies.has(movieId)) {
-            this.movies.update(movieId, { rating });
+            this.movies.update(movieId, updateParams);
         } else {
             this.movies.add([{
-                rating,
                 movieId,
                 userId: this.id,
                 isViewed: false,
+                ...updateParams,
             }]);
         }
 

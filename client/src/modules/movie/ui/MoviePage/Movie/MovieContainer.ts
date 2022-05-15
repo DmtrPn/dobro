@@ -2,7 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { action, makeObservable, observable } from 'mobx';
 
-import { MovieData } from 'dobro-types/frontend';
+import { MovieData, UserMovieData } from 'dobro-types/frontend';
 import { Optional } from 'dobro-types/common';
 import { EntityName, MovieStatus } from 'dobro-types/enums';
 
@@ -13,6 +13,7 @@ import { Movie, MovieProps } from './Movie';
 import { movieService } from '@movie/services/movieService';
 import { AppStore } from '@store/App/AppStore';
 import { RatingEventData } from '@components/Rating';
+import { authUserService } from '@store/App/service/authUserService';
 
 interface Props extends MovieProps {
     id: string;
@@ -51,7 +52,8 @@ class Container extends React.Component<Props & StoreProps> {
             : React.createElement(Movie, {
                 canEdit: authUser?.isEntityModerator(EntityName.Movie) || false,
                 movie: this.movie,
-                userRating: this.userRating,
+                isViewed: this.userMovieData?.isViewed ?? false,
+                userRating: this.userMovieData?.rating ?? 0,
                 rating: movieList.get(id).serialize().rating.toFixed(1),
                 onEditClick: this.onEditClick,
                 toggleStatus: this.toggleStatus,
@@ -59,10 +61,10 @@ class Container extends React.Component<Props & StoreProps> {
             });
     }
 
-    private get userRating(): Optional<number> {
+    private get userMovieData(): Optional<UserMovieData> {
         const { appStore: { isAuthorized, authUser }, id } = this.props;
 
-        return isAuthorized ? authUser!.getMovieRating(id) : undefined;
+        return isAuthorized ? authUser!.movies.get(id) : undefined;
     }
 
     private get movie(): MovieData & { posterUrl?: string; } {
@@ -83,6 +85,10 @@ class Container extends React.Component<Props & StoreProps> {
     private async toggleStatus(): Promise<void> {
         const status = this.movie.status === MovieStatus.New ? MovieStatus.Viewed : MovieStatus.New;
         await movieService.update(this.movie.id, { status });
+        await authUserService.updateMovie({
+            movieId: this.props.id,
+            isViewed: !this.userMovieData?.isViewed,
+        });
     }
 
     @action.bound
@@ -92,7 +98,7 @@ class Container extends React.Component<Props & StoreProps> {
 
     @action.bound
     private async onRatingChange(event: React.MouseEvent<HTMLDivElement>, { rating }: RatingEventData): Promise<void> {
-        await movieService.updateMovieRating({ rating: Number(rating), movieId: this.props.id });
+        await authUserService.updateMovie({ rating: Number(rating), movieId: this.props.id });
     }
 }
 

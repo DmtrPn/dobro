@@ -1,6 +1,9 @@
+import { UserMovieUpdateParams } from 'dobro-types/frontend';
+
 import { UserMovieApi } from '@api/UserMovieApi';
 
 import { store } from '@store';
+import { movieService } from '@movie/services/movieService';
 
 class AuthUserService {
 
@@ -12,6 +15,18 @@ class AuthUserService {
 
             authUser.setMovies(userMovies);
         }
+    }
+
+    public async updateMovie(params: Omit<UserMovieUpdateParams, 'userId'>): Promise<void> {
+        const { appStore: { authUserId, authUser } } = store;
+        const movieRating = {
+            userId: authUserId!,
+            ...params,
+        };
+        await UserMovieApi.update(movieRating);
+        await movieService.reloadMovie(params.movieId);
+
+        authUser!.updateMovie(params);
     }
 
 }
