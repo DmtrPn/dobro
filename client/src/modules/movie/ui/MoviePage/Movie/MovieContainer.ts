@@ -4,13 +4,12 @@ import { action, makeObservable, observable } from 'mobx';
 
 import { MovieData, UserMovieData } from 'dobro-types/frontend';
 import { Optional } from 'dobro-types/common';
-import { EntityName, MovieStatus } from 'dobro-types/enums';
+import { EntityName } from 'dobro-types/enums';
 
 import { MovieStore } from '@movie/store/MovieStore';
 
 import { MovieForm } from '../MovieForm';
 import { Movie, MovieProps } from './Movie';
-import { movieService } from '@movie/services/movieService';
 import { AppStore } from '@store/App/AppStore';
 import { RatingEventData } from '@components/Rating';
 import { authUserService } from '@store/App/service/authUserService';
@@ -83,8 +82,6 @@ class Container extends React.Component<Props & StoreProps> {
 
     @action.bound
     private async toggleStatus(): Promise<void> {
-        const status = this.movie.status === MovieStatus.New ? MovieStatus.Viewed : MovieStatus.New;
-        await movieService.update(this.movie.id, { status });
         await authUserService.updateMovie({
             movieId: this.props.id,
             isViewed: !this.userMovieData?.isViewed,

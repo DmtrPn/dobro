@@ -37,7 +37,6 @@ export class MoviePageContainer extends React.Component<Props & StoreProps> {
     }
 
     public async componentDidMount(): Promise<void> {
-        console.log('did mount moview');
         await Promise.all([
             movieService.load(),
             authUserService.loadUserMovies(),
@@ -46,10 +45,11 @@ export class MoviePageContainer extends React.Component<Props & StoreProps> {
 
     public render() {
         const { movieStore: { movieList }, appStore: { authUser } } = this.props;
+        const viewedIds = authUser?.movies.getFilteredValuesIds({ isViewed: true }) || [];
         return React.createElement(MoviePage, {
             ids: [
-                ...movieList.getFilteredValuesIds({ status: MovieStatus.New }),
-                ...movieList.getFilteredValuesIds({ status: MovieStatus.Viewed }),
+                ...movieList.getFilteredValuesIds({ excludeIds: viewedIds }),
+                ...movieList.getFilteredValuesIds({ ids: viewedIds }),
                 ...movieList.getFilteredValuesIds({ status: MovieStatus.Rejected }),
             ],
             canEdit: authUser?.isEntityModerator(EntityName.Movie) || false,

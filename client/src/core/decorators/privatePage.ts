@@ -22,7 +22,6 @@ export function privatePage<Props>(
     class PrivatePage extends React.Component<Props & StoreProps> {
 
         public async componentDidMount(): Promise<void> {
-            console.log('privat did mount');
             this.props.appStore.previousPageUrl = window.location.pathname;
             await authService.loadAuthorizedUser();
         }

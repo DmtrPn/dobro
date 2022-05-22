@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from 'mobx';
+import { makeObservable, observable, computed, action } from 'mobx';
 
 import { UserData, UserMovieData, UserMovieUpdateParams } from 'dobro-types/frontend';
 import { EntityName, RoleName, UserStatus } from 'dobro-types/enums';
@@ -34,14 +34,18 @@ export class AuthUser {
         return this.roles.has(RoleName.Admin);
     }
 
-    public isEntityModerator(entityName: EntityName): boolean {
-        return this.isAdmin ||
-            (this.entities.has(entityName)
-            && this.roles.has(RoleName.Moderator));
+    @computed
+    public get viewedMoviesIds(): string[] {
+        return this.movies
+            .getFilteredValues({ isViewed: true })
+            .map(({ movieId }) => movieId);
     }
 
-    public getMovieRating(movieId: string): number {
-        return this.movies.get(movieId)?.rating ?? 0;
+    public isEntityModerator(entityName: EntityName): boolean {
+        return this.isAdmin || (
+            this.entities.has(entityName)
+            && this.roles.has(RoleName.Moderator)
+        );
     }
 
     @action
