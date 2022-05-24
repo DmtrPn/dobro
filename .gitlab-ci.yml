@@ -12,34 +12,52 @@
 # Stages run in sequential order, but jobs within stages run in parallel.
 #
 # For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
+image: node:latest
 
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
   - deploy
 
-build-job:       # This job runs in the build stage, which runs first.
+build:       # This job runs in the build stage, which runs first.
   stage: build
-  when: manual
+  artifacts:
+    paths:
+      - client
+      - server
+      - node_modules
   script:
-    - echo "Compiling the code..."
-    - echo "Compile complete."
+    - yarn --pure-lockfile
+    - cd client/ && yarn build
+    - cd ../server/ && yarn build
 
-unit-test-job:   # This job runs in the test stage.
+test-unit:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
-  when: manual
+  dependencies:
+      - build
   script:
-    - echo "Running unit tests... This will take about 60 seconds."
-    - sleep 1
-    - echo "Code coverage is 90%"
+    - cd server/ && yarn test:unit
 
-lint-test-job:   # This job also runs in the test stage.
+check-types:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
-  when: manual
+  dependencies:
+        - build
   script:
-    - echo "Linting code... This will take about 10 seconds."
-    - sleep 1
-    - echo "No lint issues found."
+    - cd client/ && yarn checkTypes
+
+lint-frontend:   # This job also runs in the test stage.
+  stage: test    # It can run at the same time as unit-test-job (in parallel).
+  dependencies:
+        - build
+  script:
+    - cd client/ && yarn lint
+
+lint-backend:   # This job also runs in the test stage.
+  stage: test    # It can run at the same time as unit-test-job (in parallel).
+  dependencies:
+        - build
+  script:
+    - cd server/ && yarn lint
 
 deploy-job:      # This job runs in the deploy stage.
   stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.

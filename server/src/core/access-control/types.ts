@@ -6,7 +6,7 @@ export enum RoleName {
 
 export enum EntityName {
     Movie = 'movie',
-    MovieRating = 'movieRating',
+    UserMovie = 'userMovie',
     Affirmation = 'affirmation',
     User = 'user',
 }
@@ -20,7 +20,6 @@ export enum ActionType {
 
 export type Permission = {
     adminAccess?: boolean;
-    moderatorAccess?: boolean;
     any: Set<RoleName>;
     own?: Set<RoleName>;
 };

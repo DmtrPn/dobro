@@ -1,6 +1,5 @@
 export enum MovieStatus {
     New = 'new',
-    Viewed = 'viewed',
     Rejected = 'rejected',
 }
 

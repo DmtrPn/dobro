@@ -2,8 +2,6 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 import { MovieStatus } from '@common/enums';
 
-import { MovieRatingModel } from './MovieRatingModel';
-
 export class MovieViewModel {
 
     @ApiProperty()
@@ -24,7 +22,7 @@ export class MovieViewModel {
     @ApiProperty()
     public authorId: string;
 
-    @ApiPropertyOptional({ type: [MovieRatingModel] })
-    public ratings?: MovieRatingModel[];
+    @ApiProperty()
+    public rating: number;
 
 }

@@ -1,20 +1,20 @@
 import { Inject } from 'typescript-ioc';
 
 import { UseCaseCommand } from '@common/use-cases/UseCaseCommand';
-import { MovieRatingCreateData } from '@catalog/domain/movie-rating/types';
-import { IMovieRatingRepository } from '@catalog/domain/movie-rating/IMovieRatingRepository';
-import { MovieRating } from '@catalog/domain/movie-rating/MovieRating';
+import { UserMovieCreateData } from '@catalog/domain/user-movie/types';
+import { IUserMovieRepository } from '@catalog/domain/user-movie/IUserMovieRepository';
+import { UserMovie } from '@catalog/domain/user-movie/UserMovie';
 
-interface Params extends MovieRatingCreateData {}
+interface Params extends UserMovieCreateData {}
 
 export class MovieRatingUpdateCommand extends UseCaseCommand<Params> {
 
-    @Inject protected repository: IMovieRatingRepository;
+    @Inject protected repository: IUserMovieRepository;
 
     public async execute(): Promise<void> {
-        const movieRating = MovieRating.newInstance(this.params);
+        const userMovie = UserMovie.newInstance(this.params);
 
-        await this.repository.save(movieRating);
+        await this.repository.save(userMovie);
     }
 
 }

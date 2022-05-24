@@ -3,6 +3,7 @@ import { MovieData, MovieUpdateData } from 'dobro-types/frontend';
 import { MutableData } from '@store/abstract/MutableData';
 
 export interface MovieMutableDataParams extends Pick<MovieData, keyof MovieUpdateData> {
+    rating: number;
 }
 
 export class MovieMutableData extends MutableData<MovieMutableDataParams> {
@@ -13,6 +14,7 @@ export class MovieMutableData extends MutableData<MovieMutableDataParams> {
         'name',
         'description',
         'status',
+        'rating',
 
     ];
 

@@ -30,7 +30,7 @@ export interface AuthUserViewModel {
     name: string;
     email: string;
 }
-export type EntityName = "movie" | "movieRating" | "affirmation";
+export type EntityName = "movie" | "userMovie" | "affirmation" | "user";
 export interface MovieCreateForm {
     movie: MovieCreateParams;
 }
@@ -43,18 +43,16 @@ export interface MovieCreateParams {
 export interface MovieListResponse {
     readonly movies: MovieViewModel[];
 }
-export interface MovieRatingModel {
-    movieId: string;
-    userId: string;
-    rating: number;
-}
-export interface MovieRatingUpdateForm {
-    movieRating: MovieRatingUpdateParams;
-}
-export interface MovieRatingUpdateParams {
-    movieId: string;
-    userId: string;
-    rating: number;
+export interface MovieResponse {
+    readonly movie: {
+        id: string;
+        status: MovieStatus;
+        link: string;
+        name: string;
+        description?: string;
+        authorId: string;
+        rating: number;
+    };
 }
 export type MovieStatus = "new" | "viewed" | "rejected";
 export interface MovieUpdateForm {
@@ -73,7 +71,7 @@ export interface MovieViewModel {
     name: string;
     description?: string;
     authorId: string;
-    ratings?: MovieRatingModel[];
+    rating: number;
 }
 declare namespace Parameters {
     export type Id = string;
@@ -81,13 +79,33 @@ declare namespace Parameters {
 export interface PathParameters {
     id: Parameters.Id;
 }
-export type RequestBody = MovieRatingUpdateForm;
+export type RequestBody = UserMovieUpdateForm;
 declare namespace Responses {
     export type $200 = AuthUserResponse;
 }
 export type RoleName = "admin" | "moderator" | "user";
 export interface UserListResponse {
     readonly users: UserViewModel[];
+}
+export interface UserMovieModel {
+    movieId: string;
+    userId: string;
+    rating?: number;
+    isViewed: boolean;
+    comment?: string;
+}
+export interface UserMovieUpdateForm {
+    userMovie: UserMovieUpdateParams;
+}
+export interface UserMovieUpdateParams {
+    movieId: string;
+    userId: string;
+    rating?: number;
+    isViewed?: boolean;
+    comment?: string;
+}
+export interface UserMoviesResponse {
+    readonly userMovies: UserMovieModel[];
 }
 export interface UserResponse {
     readonly user: {

@@ -1,6 +1,5 @@
 export const enum MovieStatus {
     New = 'new',
-    Viewed = 'viewed',
     Rejected = 'rejected',
 }
 

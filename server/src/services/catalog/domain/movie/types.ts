@@ -12,13 +12,21 @@ export interface MovieCreateData {
     name: string;
     authorId: string;
     description?: string;
-    rating?: number;
 }
 
 export interface MovieUpdateData {
     link?: string;
     name?: string;
     description?: string;
-    rating?: number;
     status?: MovieStatus;
+}
+
+export interface MovieData {
+    id: string;
+    link: string;
+    name: string;
+    authorId: string;
+    description?: string;
+    rating: number;
+    status: MovieStatus;
 }
