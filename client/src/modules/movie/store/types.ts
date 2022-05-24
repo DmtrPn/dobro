@@ -1,4 +1,21 @@
 import { OptionType } from '@components/Select/types';
+import { MenuItemData } from '@components/Menu';
+
+export const enum MovieFilterName {
+    Viewed = 'viewed',
+    New = 'new',
+}
+
+export const filterMenuData: MenuItemData[] = [
+    {
+        name: MovieFilterName.New,
+        content: 'Новые',
+    },
+    {
+        name: MovieFilterName.Viewed,
+        content: 'Просмотренные',
+    },
+];
 
 export const movieRatingOptions: OptionType<number>[] = [
     {

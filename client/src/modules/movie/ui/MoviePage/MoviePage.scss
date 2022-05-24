@@ -11,6 +11,12 @@
     }
 }
 
+.topLine {
+    display: flex;
+
+    column-gap: 16px;
+}
+
 .cards {
     display: flex;
     flex-direction: column;
