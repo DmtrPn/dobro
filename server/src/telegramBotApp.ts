@@ -7,7 +7,15 @@ const dbConnector = DbConnector.getInstance();
 
 const bot = new Telegraf(process.env.TB_TOKEN);
 
-bot.start((ctx) => ctx.reply('Welcome'));
+bot.start((ctx) => {
+    return ctx.reply('Что посмотреть?', Markup
+        .keyboard([
+            ['🎬 Что посмотреть?'],
+        ])
+        // .oneTime()
+        .resize(),
+    );
+});
 
 bot.on('sticker', (ctx) => ctx.reply('👍'));
 

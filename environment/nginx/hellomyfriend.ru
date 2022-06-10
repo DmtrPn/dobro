@@ -2,6 +2,10 @@ upstream dobro_server {
     server                      127.0.0.1:3000;
     keepalive                   16;
 }
+upstream dobro_bot {
+    server                      127.0.0.1:3007;
+    keepalive                   16;
+}
 
 server {
     listen       80;
@@ -46,6 +50,26 @@ server {
         proxy_set_header        X-NginX-Proxy true;
 
         proxy_pass              http://dobro_server;
+        proxy_redirect          off;
+    }
+
+    location /bot/ {
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        Host $http_host;
+        proxy_set_header        X-NginX-Proxy true;
+
+        proxy_pass              http://dobro_bot;
+        proxy_redirect          off;
+    }
+
+    location /telegraf/ {
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        Host $http_host;
+        proxy_set_header        X-NginX-Proxy true;
+
+        proxy_pass              http://dobro_bot;
         proxy_redirect          off;
     }
 
