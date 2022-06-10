@@ -15,10 +15,9 @@ import { UserMovieModel } from '@catalog/infrastructure/user-movie/UserMovieMode
 export class MovieQueryService
     extends IdentifiableQueryService<MovieModel, MovieFindOptions, MovieData>
     implements IMovieQueryService {
-
     protected modelClass = MovieModel;
-    protected findCommand = MovieFindCommand;
 
+    protected findCommand = MovieFindCommand;
     @Inject private userMovieQueryService: IUserMovieQueryService;
 
     public async getById(id: string): Promise<MovieData> {
@@ -31,6 +30,11 @@ export class MovieQueryService
         ]);
 
         return this.create(model, userMovies);
+    }
+
+    public async getRandom(): Promise<MovieData> {
+        const rows = await this.manager.query('select * from movie offset floor(random() * (select count(*) from movie))  limit 1;');
+        return rows[0];
     }
 
     public async find(options: MovieFindOptions): Promise<MovieData[]> {

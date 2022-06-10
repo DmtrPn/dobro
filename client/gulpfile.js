@@ -33,6 +33,6 @@ task('watch', function w() {
 
 task('dev', series(
     'clean',
-    parallel('sprite', 'assets'),
+    parallel('tslint', 'sprite', 'assets'),
     'devBundle',
 ));

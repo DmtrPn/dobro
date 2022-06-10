@@ -6,5 +6,6 @@ import { MovieData } from './types';
 
 export abstract class IMovieQueryService implements IIdentifiableQueryService<MovieModel, MovieFindOptions, MovieData> {
     public abstract find(options: MovieFindOptions): Promise<MovieData[]>;
+    public abstract getRandom(): Promise<MovieData>;
     public abstract getById(id: string): Promise<MovieData>;
 }
