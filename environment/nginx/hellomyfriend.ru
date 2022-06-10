@@ -49,6 +49,7 @@ server {
         proxy_redirect          off;
     }
 
+
     location /static/ {
         add_header              Cache-Control no-cache;
         root                    /opt/dobro/public;
