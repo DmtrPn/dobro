@@ -14,10 +14,8 @@ export abstract class IAuditLogService<ET> {
     public async logEvent(params: EventData<ET>): Promise<void> {
         const client = this.getClient();
 
-        if (process.env.DOBRO_ENV !== 'dev') {
-            client.logEvent(this.formatData(params));
-            client.flush();
-        }
+        client.logEvent(this.formatData(params));
+        client.flush();
     }
 
     private getClient(): Amplitude.NodeClient {
