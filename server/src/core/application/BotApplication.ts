@@ -3,7 +3,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { getBotToken } from 'nestjs-telegraf';
 
 import { BotAppModule } from '../../BotAppModule';
-import { LoggerFactory } from '@components/logging';
+import { LoggerFactory, BotLoggingInterceptor } from '@components/logging';
 import { DbConnector } from '@core/db-connector';
 
 export class BotApplication {
@@ -35,8 +35,8 @@ export class BotApplication {
     }
 
     protected initLogger(): void {
-        // const logger = LoggerFactory.getLogger();
-        //
-        // this.app.useGlobalInterceptors(new LoggingInterceptor(logger));
+        const logger = LoggerFactory.getLogger();
+
+        this.app.useGlobalInterceptors(new BotLoggingInterceptor(logger));
     }
 }

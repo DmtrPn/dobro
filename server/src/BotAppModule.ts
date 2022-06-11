@@ -10,8 +10,8 @@ import { BotModule } from '@bot/BotModule';
             launchOptions: process.env.DOBRO_ENV !== 'dev'
                 ? {
                     webhook: {
-                        domain: `${process.env.TB_WEBHOOK_URL}/${process.env.TB_WEBHOOK_SECRET}`,
-                        port: Number(process.env.TB_WEBHOOK_PORT),
+                        domain: `${process.env.TB_WEBHOOK_URL}`,
+                        hookPath: `/${process.env.TB_WEBHOOK_SECRET}`,
                     },
                 }
                 : undefined,
