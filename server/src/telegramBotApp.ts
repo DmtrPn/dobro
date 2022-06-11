@@ -26,7 +26,7 @@ bot.start((ctx) => {
             firstName: getFirstNameFromCtx(ctx),
         },
     });
-    return ctx.reply('Что посмотреть?', Markup
+    return ctx.reply('Жизнь неожиданна прекрасна', Markup
         .keyboard([
             ['🎬 Что посмотреть?'],
         ])
@@ -80,9 +80,26 @@ ${movie.description}
 ${movie.link}`);
 });
 
-bot.action(/.+/, (ctx) => {
-    ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`);
-    ctx.reply('👍');
+bot.action('getMovie', async (ctx) => {
+    ctx.answerCbQuery('❤');
+    botAuditLogService.logEvent({
+        userId: `${ctx.callbackQuery.from.id}`,
+        eventType: BotAuditEventType.ActionGetMovie,
+        data: {
+            username: ctx.callbackQuery.from.username,
+            firstName: ctx.callbackQuery.from.first_name,
+        },
+    });
+    await dbConnector.initialize();
+    const manager = dbConnector.getDataSource().manager;
+    const rows = await manager.query('select * from movie offset floor(random() * (select count(*) from movie))  limit 1;');
+    const movie = rows[0];
+
+    return ctx.replyWithMarkdown(`*${movie.name}*
+
+${movie.description}
+
+${movie.link}`);
 });
 
 bot.on('text', (ctx) => {
@@ -95,12 +112,10 @@ bot.on('text', (ctx) => {
             firstName: getFirstNameFromCtx(ctx),
         },
     });
-    return ctx.reply('Что посмотреть?', Markup
-        .keyboard([
-            ['🎬 Что посмотреть?'],
-        ])
-        // .oneTime()
-        .resize(),
+    return ctx.reply('Жизнь неожиданна прекрасна',
+        Markup.inlineKeyboard([
+            Markup.button.callback('🎬 Что посмотреть?', 'getMovie'),
+        ]),
     );
     // ctx.message {
     //   message_id: 15,

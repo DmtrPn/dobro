@@ -3,8 +3,9 @@ import { IAuditLogService } from './IAuditLogService';
 export const enum BotAuditEventType {
     Start = 'Start',
     Command = 'Command',
-    Text = 'text',
+    Text = 'Text',
     GetMovie = 'GetMovie',
+    ActionGetMovie = 'ActionGetMovie',
 }
 
 class BotAuditLogService extends IAuditLogService<BotAuditEventType> {
