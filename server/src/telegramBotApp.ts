@@ -25,7 +25,7 @@ bot.command('wmts', async (ctx) => {
     const rows = await manager.query('select * from movie offset floor(random() * (select count(*) from movie))  limit 1;');
     const movie = rows[0];
 
-    ctx.reply(`${movie.name}
+    return ctx.replyWithMarkdown(`*${movie.name}*
 
 ${movie.description}
 
@@ -38,7 +38,7 @@ bot.hears('🎬 Что посмотреть?', async (ctx) => {
     const rows = await manager.query('select * from movie offset floor(random() * (select count(*) from movie))  limit 1;');
     const movie = rows[0];
 
-    ctx.reply(`${movie.name}
+    return ctx.replyWithMarkdown(`*${movie.name}*
 
 ${movie.description}
 
@@ -82,13 +82,17 @@ bot.on('text', (ctx) => {
     //   username: 'dmtr_panov',
     //   type: 'private'
 });
-// bot.launch();
-bot.launch({
-    webhook: {
-        domain: `${process.env.TB_WEBHOOK_URL}/${process.env.TB_WEBHOOK_SECRET}`,
-        port: Number(process.env.TB_WEBHOOK_PORT),
-    },
-});
+
+if (process.env.DOBRO_ENV === 'dev') {
+    bot.launch();
+} else {
+    bot.launch({
+        webhook: {
+            domain: `${ process.env.TB_WEBHOOK_URL }/${ process.env.TB_WEBHOOK_SECRET }`,
+            port: Number(process.env.TB_WEBHOOK_PORT),
+        },
+    });
+}
 
 // Enable graceful stop
 process.once('SIGINT', async () => {
