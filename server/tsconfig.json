@@ -24,10 +24,11 @@
       "@utils/*": ["core/utils/*"],
       "@common/*": ["components/common/*"],
       "@components/*": ["components/*"],
-      "@catalog/*": ["services/catalog/*"],
-      "@dream/*": ["services/dream/*"],
-      "@wish/*": ["services/wish/*"],
-      "@user/*": ["services/user/*"]
+      "@catalog/*": ["modules/catalog/*"],
+      "@dream/*": ["modules/dream/*"],
+      "@wish/*": ["modules/wish/*"],
+      "@user/*": ["modules/user/*"],
+      "@bot/*": ["modules/bot/*"]
     },
     "typeRoots": [
       "../node_modules/@types",

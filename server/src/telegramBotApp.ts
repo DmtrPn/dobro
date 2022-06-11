@@ -147,7 +147,7 @@ if (process.env.DOBRO_ENV === 'dev') {
 } else {
     bot.launch({
         webhook: {
-            domain: `${ process.env.TB_WEBHOOK_URL }/${ process.env.TB_WEBHOOK_SECRET }`,
+            domain: `${process.env.TB_WEBHOOK_URL}/${process.env.TB_WEBHOOK_SECRET}`,
             port: Number(process.env.TB_WEBHOOK_PORT),
         },
     });
