@@ -24,6 +24,7 @@
     "generate:types": "node ./dist/bin/generate-api-types.js"
   },
   "dependencies": {
+    "@amplitude/node": "1.10.0",
     "@nestjs/common": "8.4.1",
     "@nestjs/core": "8.4.1",
     "@nestjs/passport": "8.2.1",

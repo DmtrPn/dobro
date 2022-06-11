@@ -1,13 +1,31 @@
-import { Telegraf, Markup } from 'telegraf';
+import { Telegraf, Markup, Context } from 'telegraf';
 
 import './bootstrap';
 import { DbConnector } from '@core/db-connector';
+
+import { botAuditLogService, BotAuditEventType } from '@components/auditLog/BotAuditLogService';
 
 const dbConnector = DbConnector.getInstance();
 
 const bot = new Telegraf(process.env.TB_TOKEN);
 
+function getUsernameFromCtx(ctx: Context): string {
+    return ctx.message.from?.username || '';
+}
+
+function getFirstNameFromCtx(ctx: Context): string {
+    return ctx.message.from?.first_name || '';
+}
+
 bot.start((ctx) => {
+    botAuditLogService.logEvent({
+        userId: `${ctx.message.from.id}`,
+        eventType: BotAuditEventType.Start,
+        data: {
+            username: getUsernameFromCtx(ctx),
+            firstName: getFirstNameFromCtx(ctx),
+        },
+    });
     return ctx.reply('Что посмотреть?', Markup
         .keyboard([
             ['🎬 Что посмотреть?'],
@@ -20,6 +38,15 @@ bot.start((ctx) => {
 bot.on('sticker', (ctx) => ctx.reply('👍'));
 
 bot.command('wmts', async (ctx) => {
+    botAuditLogService.logEvent({
+        userId: `${ctx.message.from.id}`,
+        eventType: BotAuditEventType.Command,
+        data: {
+            command: 'wmts',
+            username: getUsernameFromCtx(ctx),
+            firstName: getFirstNameFromCtx(ctx),
+        },
+    });
     await dbConnector.initialize();
     const manager = dbConnector.getDataSource().manager;
     const rows = await manager.query('select * from movie offset floor(random() * (select count(*) from movie))  limit 1;');
@@ -33,6 +60,14 @@ ${movie.link}`);
 });
 
 bot.hears('🎬 Что посмотреть?', async (ctx) => {
+    botAuditLogService.logEvent({
+        userId: `${ctx.message.from.id}`,
+        eventType: BotAuditEventType.GetMovie,
+        data: {
+            username: getUsernameFromCtx(ctx),
+            firstName: getFirstNameFromCtx(ctx),
+        },
+    });
     await dbConnector.initialize();
     const manager = dbConnector.getDataSource().manager;
     const rows = await manager.query('select * from movie offset floor(random() * (select count(*) from movie))  limit 1;');
@@ -51,6 +86,15 @@ bot.action(/.+/, (ctx) => {
 });
 
 bot.on('text', (ctx) => {
+    botAuditLogService.logEvent({
+        userId: `${ctx.message.from.id}`,
+        eventType: BotAuditEventType.Text,
+        data: {
+            text: ctx.message.text,
+            username: getUsernameFromCtx(ctx),
+            firstName: getFirstNameFromCtx(ctx),
+        },
+    });
     return ctx.reply('Что посмотреть?', Markup
         .keyboard([
             ['🎬 Что посмотреть?'],
