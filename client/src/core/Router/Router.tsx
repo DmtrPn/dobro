@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Navigate, Route } from 'react-router';
 
 import { locations } from './locations';
 import { NotFound } from '@modules/notFound';
@@ -17,6 +17,10 @@ export function Router(): JSX.Element {
                     element={React.createElement(location.Component)}
                 />,
             )}
+            <Route
+                path="/"
+                element={<Navigate to="/movie" replace />}
+            />
             {DreamRouter()}
             {MovieRouter()}
             {AffirmationRouter()}

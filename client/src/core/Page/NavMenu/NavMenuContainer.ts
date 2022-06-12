@@ -70,7 +70,7 @@ class Component extends React.Component<Props & StoreProps> {
     private getCommonNavItems(): NavItemData [] {
         return [
             {
-                to: '/',
+                to: '/wish',
                 title: 'Желания',
             },
             {

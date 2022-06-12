@@ -1,23 +1,58 @@
-import { Telegraf, Markup } from 'telegraf';
+import { Telegraf, Markup, Context } from 'telegraf';
 
 import './bootstrap';
 import { DbConnector } from '@core/db-connector';
+
+import { botAuditLogService, BotAuditEventType } from '@components/auditLog/BotAuditLogService';
 
 const dbConnector = DbConnector.getInstance();
 
 const bot = new Telegraf(process.env.TB_TOKEN);
 
-bot.start((ctx) => ctx.reply('Welcome'));
+function getUsernameFromCtx(ctx: Context): string {
+    return ctx.message.from?.username || '';
+}
+
+function getFirstNameFromCtx(ctx: Context): string {
+    return ctx.message.from?.first_name || '';
+}
+
+bot.start((ctx) => {
+    botAuditLogService.logEvent({
+        userId: `${ctx.message.from.id}`,
+        eventType: BotAuditEventType.Start,
+        data: {
+            username: getUsernameFromCtx(ctx),
+            firstName: getFirstNameFromCtx(ctx),
+        },
+    });
+    return ctx.reply('Жизнь неожиданна прекрасна', Markup
+        .keyboard([
+            ['🎬 Что посмотреть?'],
+        ])
+        // .oneTime()
+        .resize(),
+    );
+});
 
 bot.on('sticker', (ctx) => ctx.reply('👍'));
 
 bot.command('wmts', async (ctx) => {
+    botAuditLogService.logEvent({
+        userId: `${ctx.message.from.id}`,
+        eventType: BotAuditEventType.Command,
+        data: {
+            command: 'wmts',
+            username: getUsernameFromCtx(ctx),
+            firstName: getFirstNameFromCtx(ctx),
+        },
+    });
     await dbConnector.initialize();
     const manager = dbConnector.getDataSource().manager;
     const rows = await manager.query('select * from movie offset floor(random() * (select count(*) from movie))  limit 1;');
     const movie = rows[0];
 
-    ctx.reply(`${movie.name}
+    return ctx.replyWithMarkdown(`*${movie.name}*
 
 ${movie.description}
 
@@ -25,30 +60,62 @@ ${movie.link}`);
 });
 
 bot.hears('🎬 Что посмотреть?', async (ctx) => {
+    botAuditLogService.logEvent({
+        userId: `${ctx.message.from.id}`,
+        eventType: BotAuditEventType.GetMovie,
+        data: {
+            username: getUsernameFromCtx(ctx),
+            firstName: getFirstNameFromCtx(ctx),
+        },
+    });
     await dbConnector.initialize();
     const manager = dbConnector.getDataSource().manager;
     const rows = await manager.query('select * from movie offset floor(random() * (select count(*) from movie))  limit 1;');
     const movie = rows[0];
 
-    ctx.reply(`${movie.name}
+    return ctx.replyWithMarkdown(`*${movie.name}*
 
 ${movie.description}
 
 ${movie.link}`);
 });
 
-bot.action(/.+/, (ctx) => {
-    ctx.answerCbQuery(`Oh, ${ctx.match[0]}! Great choice`);
-    ctx.reply('👍');
+bot.action('getMovie', async (ctx) => {
+    ctx.answerCbQuery('❤');
+    botAuditLogService.logEvent({
+        userId: `${ctx.callbackQuery.from.id}`,
+        eventType: BotAuditEventType.ActionGetMovie,
+        data: {
+            username: ctx.callbackQuery.from.username,
+            firstName: ctx.callbackQuery.from.first_name,
+        },
+    });
+    await dbConnector.initialize();
+    const manager = dbConnector.getDataSource().manager;
+    const rows = await manager.query('select * from movie offset floor(random() * (select count(*) from movie))  limit 1;');
+    const movie = rows[0];
+
+    return ctx.replyWithMarkdown(`*${movie.name}*
+
+${movie.description}
+
+${movie.link}`);
 });
 
 bot.on('text', (ctx) => {
-    return ctx.reply('Что посмотреть?', Markup
-        .keyboard([
-            ['🎬 Что посмотреть?'],
-        ])
-        // .oneTime()
-        .resize(),
+    botAuditLogService.logEvent({
+        userId: `${ctx.message.from.id}`,
+        eventType: BotAuditEventType.Text,
+        data: {
+            text: ctx.message.text,
+            username: getUsernameFromCtx(ctx),
+            firstName: getFirstNameFromCtx(ctx),
+        },
+    });
+    return ctx.reply('Жизнь неожиданна прекрасна',
+        Markup.inlineKeyboard([
+            Markup.button.callback('🎬 Что посмотреть?', 'getMovie'),
+        ]),
     );
     // ctx.message {
     //   message_id: 15,
@@ -74,13 +141,17 @@ bot.on('text', (ctx) => {
     //   username: 'dmtr_panov',
     //   type: 'private'
 });
-// bot.launch();
-bot.launch({
-    webhook: {
-        domain: `${process.env.TB_WEBHOOK_URL}/${process.env.TB_WEBHOOK_SECRET}`,
-        port: Number(process.env.TB_WEBHOOK_PORT),
-    },
-});
+
+if (process.env.DOBRO_ENV === 'dev') {
+    bot.launch();
+} else {
+    bot.launch({
+        webhook: {
+            domain: `${process.env.TB_WEBHOOK_URL}/${process.env.TB_WEBHOOK_SECRET}`,
+            port: Number(process.env.TB_WEBHOOK_PORT),
+        },
+    });
+}
 
 // Enable graceful stop
 process.once('SIGINT', async () => {
