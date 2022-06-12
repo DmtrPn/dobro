@@ -1,16 +1,7 @@
 import { Context, Markup } from 'telegraf';
-import {
-    Update,
-    Ctx,
-    Start,
-    Help,
-    On,
-    Command,
-    Hears,
-    Action,
-} from 'nestjs-telegraf';
+import { Action, Command, Ctx, Hears, Help, On, Start, Update, } from 'nestjs-telegraf';
 // import { TelegrafContext } from './common/interfaces/telegraf-context.interface.ts';
-import { botAuditLogService, BotAuditEventType } from '@components/auditLog/BotAuditLogService';
+import { BotAuditEventType, botAuditLogService } from '@components/auditLog/BotAuditLogService';
 import { Inject } from 'typescript-ioc';
 import { IMovieQueryService } from '@catalog/domain/movie/IMovieQueryService';
 
@@ -21,14 +12,8 @@ export class MovieUpdate {
 
     @Start()
     public async start(@Ctx() ctx: Context) {
-        botAuditLogService.logEvent({
-            userId: `${ctx.message.from.id}`,
-            eventType: BotAuditEventType.Start,
-            data: {
-                username: this.getUsernameFromCtx(ctx),
-                firstName: this.getFirstNameFromCtx(ctx),
-            },
-        });
+        this.logEvent(ctx, BotAuditEventType.Start);
+
         return ctx.reply('Жизнь неожиданна прекрасна', Markup
             .keyboard([['🎬 Что посмотреть?']])
             .resize(),
@@ -45,15 +30,7 @@ export class MovieUpdate {
 
     @Command('wmts')
     public async getMovieCCommand(@Ctx() ctx: Context) {
-        botAuditLogService.logEvent({
-            userId: `${ctx.message.from.id}`,
-            eventType: BotAuditEventType.Command,
-            data: {
-                command: 'wmts',
-                username: this.getUsernameFromCtx(ctx),
-                firstName: this.getFirstNameFromCtx(ctx),
-            },
-        });
+        this.logEvent(ctx, BotAuditEventType.Command, { command: 'wmts' });
 
         await this.getRandomMovieResponse(ctx);
     }
@@ -65,14 +42,7 @@ export class MovieUpdate {
 
     @Hears('🎬 Что посмотреть?')
     public async hears(@Ctx() ctx: Context) {
-        botAuditLogService.logEvent({
-            userId: `${ctx.message.from.id}`,
-            eventType: BotAuditEventType.GetMovie,
-            data: {
-                username: this.getUsernameFromCtx(ctx),
-                firstName: this.getFirstNameFromCtx(ctx),
-            },
-        });
+        this.logEvent(ctx, BotAuditEventType.GetMovie);
 
         return this.getRandomMovieResponse(ctx);
     }
@@ -80,29 +50,15 @@ export class MovieUpdate {
     @Action('getMovie')
     public async getMovieAction(@Ctx() ctx: Context) {
         ctx.answerCbQuery('❤');
-        botAuditLogService.logEvent({
-            userId: `${ctx.callbackQuery.from.id}`,
-            eventType: BotAuditEventType.ActionGetMovie,
-            data: {
-                username: ctx.callbackQuery.from.username,
-                firstName: ctx.callbackQuery.from.first_name,
-            },
-        });
+        this.logEvent(ctx, BotAuditEventType.ActionGetMovie);
 
         return this.getRandomMovieResponse(ctx);
     }
 
     @On('text')
     public async onText(@Ctx() ctx: Context) {
-        botAuditLogService.logEvent({
-            userId: `${ctx.message.from.id}`,
-            eventType: BotAuditEventType.Text,
-            data: {
-                text: (ctx.message as any).text,
-                username: this.getUsernameFromCtx(ctx),
-                firstName: this.getFirstNameFromCtx(ctx),
-            },
-        });
+        this.logEvent(ctx, BotAuditEventType.Text, { text: (ctx.message as any).text });
+
         await ctx.reply('Жизнь неожиданна прекрасна',
             Markup.inlineKeyboard([
                 Markup.button.callback('🎬 Что посмотреть?', 'getMovie'),
@@ -120,11 +76,17 @@ ${movie.description}
 ${movie.link}`);
     }
 
-    private getUsernameFromCtx(ctx: Context): string {
-        return ctx.message.from?.username || '';
-    }
+    private logEvent(ctx: Context, eventType: BotAuditEventType, data: object = {}): void {
+        const from = ctx.message?.from ?? ctx.callbackQuery?.from;
 
-    private getFirstNameFromCtx(ctx: Context): string {
-        return ctx.message.from?.first_name || '';
+        botAuditLogService.logEvent({
+            eventType,
+            userId: `${from.id}`,
+            data: {
+                ...data,
+                username: from.username,
+                firstName: from.first_name,
+            },
+        });
     }
 }
