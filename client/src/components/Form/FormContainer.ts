@@ -2,11 +2,11 @@ import React from 'react';
 import autobind from 'autobind';
 import { observer } from 'mobx-react';
 import { observable, makeObservable } from 'mobx';
+import { removeUndefinedKeys } from 'good-lib/utils';
 
 import { Class } from 'dobro-types/common';
 
 import { MutableData } from '@store/abstract/MutableData';
-import { removeUndefinedKeys } from '@utils/removeUndefinedKeys';
 
 import { Form, FormProps, FiledParams } from './Form';
 

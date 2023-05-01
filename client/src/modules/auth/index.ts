@@ -1,1 +1,1 @@
-export { AuthPageContainer as AuthPage } from './AuthPageContainer';
+export { AuthPage } from './AuthPage';

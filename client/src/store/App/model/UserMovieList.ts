@@ -1,7 +1,8 @@
+import { isDefined } from 'good-lib/utils';
+
 import { UserMovieData } from 'dobro-types/frontend';
 
 import { SimpleList } from '@store/models/SimpleList';
-import { isDefined } from '@utils/isDefined';
 
 interface FilterParams {
     isViewed?: boolean;

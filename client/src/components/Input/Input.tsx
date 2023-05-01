@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+// import { Input as UIInput, InputProps as UIInputProps } from 'semantic-ui-react';
 
 import style from './Input.scss';
 

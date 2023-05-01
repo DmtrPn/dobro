@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { action, makeObservable, observable } from 'mobx';
+import { toArrayFromIterable } from 'good-lib/utils';
 
 import { EntityName } from 'dobro-types/enums';
 
@@ -10,7 +11,6 @@ import { movieService } from '@movie/services/movieService';
 import { AppStore } from '@store/App/AppStore';
 import { authUserService } from '@store/App/service/authUserService';
 import { MenuEventData } from '@components/Menu';
-import { toArrayFromIterable } from '@utils/toArrayFromIterable';
 
 import { MoviePage, MoviePageProps } from './MoviePage';
 

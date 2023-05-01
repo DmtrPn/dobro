@@ -1,11 +1,15 @@
 import React from 'react';
+import classnames from 'classnames';
+import { observer } from 'mobx-react-lite';
 
 import style from './AuthPage.scss';
-import commonStyle from '@components/mixins/commonStyles.scss';
 
+import commonStyle from '@components/mixins/commonStyles.scss';
 import { Input } from '@components/Input';
 import { SaveButton } from '@components/ActionButtons/SaveButton';
-import classnames from 'classnames';
+import { useAuthUser } from '@store/App/hooks/useAuthUser';
+
+import { useAuth } from './hooks/useAuth';
 
 export interface AuthPageProps {}
 
@@ -19,16 +23,10 @@ interface Props extends AuthPageProps {
     onInputChange(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-export function AuthPage({
-    errorMessage,
-    email,
-    password,
-    fullName,
-    onLoginClick,
-    onLogoutClick,
-    onInputChange,
-}: Props): JSX.Element {
-    const isPasswordValid = password.length > 5;
+export const AuthPage = observer(({}: Props): JSX.Element => {
+    const { email, errorMessage, password, isPasswordValid, onInputChange, onLoginClick, onLogoutClick } = useAuth();
+    const { fullName } = useAuthUser();
+
     return !!fullName ? (
         <div className={style.root}>
             <div className={style.form}>
@@ -77,4 +75,4 @@ export function AuthPage({
             </div>
         </div>
     );
-}
+});

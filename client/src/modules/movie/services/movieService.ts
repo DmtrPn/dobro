@@ -1,10 +1,10 @@
+import { isDefined, getId } from 'good-lib/utils';
+
 import { MovieCreateData, MovieUpdateData } from 'dobro-types/frontend';
 import { MovieStatus } from 'dobro-types/enums';
 
 import { MovieApi } from '@api/MovieApi';
 import { store } from '@store';
-import { isDefined } from '@utils/isDefined';
-import { getId } from '@utils/getId';
 
 class MovieService {
     public async load(): Promise<void> {

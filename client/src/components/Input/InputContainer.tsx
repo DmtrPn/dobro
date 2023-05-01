@@ -11,6 +11,7 @@ export interface Props extends InputProps {
     autoFocus?: boolean;
 }
 
+// @ts-ignore
 interface WithHOCProps extends Props, WithCheckOnFocusProps {}
 
 interface State {

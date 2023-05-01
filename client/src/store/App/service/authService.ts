@@ -1,8 +1,9 @@
+import { isDefined } from 'good-lib/utils';
+
 import { LoginParams } from 'dobro-types/frontend';
 
 import { AuthApi } from '@api/AuthApi';
 import { UserApi } from '@api/UserApi';
-import { isDefined } from '@utils/isDefined';
 
 import { store } from '@store';
 

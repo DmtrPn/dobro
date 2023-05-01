@@ -1,13 +1,15 @@
 import React from 'react';
-import TextareaAutosize from 'react-textarea-autosize';
+import TextareaAutosize, { TextareaAutosizeProps } from 'react-textarea-autosize';
 import classnames from 'classnames';
 
 import style from './Textarea.scss';
+
 import { FieldTitle } from '@components/FieldTitle';
+import { useCheckOnFocus } from '../hooks/useCheckOnFocus';
 
 export const TextareaModifiers = {};
 
-export interface TextareaProps extends React.HTMLProps<HTMLTextAreaElement> {
+export interface TextareaProps extends TextareaAutosizeProps {
     title?: string;
     value?: string;
     rows?: number;
@@ -19,24 +21,21 @@ export interface TextareaProps extends React.HTMLProps<HTMLTextAreaElement> {
     onChange?(event: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
 
-interface Props extends TextareaProps {
-    isActive: boolean;
-}
+interface Props extends TextareaProps {}
 
-// tslint:disable-next-line:cyclomatic-complexity
 export function Textarea({
     title,
     minRows,
     placeholder,
     ref,
     modifiers = [],
-    isActive,
     disabled,
     textareaRef,
     ...props
 }: Props): JSX.Element {
+    const { isOnFocus, ...focusHandlers } = useCheckOnFocus(props);
     return (
-        <div className={classnames([style.root, isActive && style.active, disabled && style.disabled, ...modifiers])}>
+        <div className={classnames([style.root, isOnFocus && style.active, disabled && style.disabled, ...modifiers])}>
             {title && <FieldTitle title={title} />}
             <TextareaAutosize
                 className={style.textarea}
@@ -45,6 +44,7 @@ export function Textarea({
                 disabled={disabled}
                 ref={textareaRef}
                 {...(props as any)}
+                {...focusHandlers}
             />
         </div>
     );

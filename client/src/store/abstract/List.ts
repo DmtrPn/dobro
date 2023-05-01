@@ -184,6 +184,7 @@ export abstract class List<ListParams, CreateParams, UpdateParams = CreateParams
     }
 
     protected getId(value: ListParams | CreateParams): I {
+        // @ts-ignore
         return value[this.identifiableFieldName];
     }
 

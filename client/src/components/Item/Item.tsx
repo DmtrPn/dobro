@@ -5,10 +5,10 @@ import style from './Item.scss';
 
 export interface ItemProps {
     imgSrc?: string;
-    header: React.ReactChild;
-    meta?: React.ReactChild;
-    description: React.ReactChild;
-    extra?: React.ReactChild;
+    header: React.ReactNode;
+    meta?: React.ReactNode;
+    description: React.ReactNode;
+    extra?: React.ReactNode;
 }
 
 export function Item({ imgSrc, header, meta, description, extra }: ItemProps): JSX.Element {

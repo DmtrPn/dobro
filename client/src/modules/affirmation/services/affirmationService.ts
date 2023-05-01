@@ -1,9 +1,9 @@
+import { isDefined, getId } from 'good-lib/utils';
+
 import { AffirmationData, AffirmationCreateData, AffirmationUpdateData } from 'dobro-types/frontend';
 
 import { AffirmationApi } from '@api/AffirmationsApi';
 import { store } from '@store';
-import { isDefined } from '@utils/isDefined';
-import { getId } from '@utils/getId';
 
 class AffirmationService {
     public async load(): Promise<void> {

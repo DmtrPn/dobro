@@ -11,7 +11,7 @@ export enum TextLinkTheme {
 export interface TextLinkProps {
     link: string;
     theme?: TextLinkTheme;
-    label: React.ReactChild;
+    label: React.ReactNode;
     isHighlighted?: boolean;
 }
 
