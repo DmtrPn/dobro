@@ -9,4 +9,23 @@ const instance = axios.create({
     baseURL: BASE_URL,
 });
 
+instance.defaults.headers = {
+    // @ts-ignore
+    'Cache-Control': 'cache, no-store, must-revalidate',
+    Pragma: 'no-cache',
+    Expires: '0',
+};
+
+instance.interceptors.response.use(
+    response => response,
+    error => {
+        let errorData = error.response?.data ?? error.data ?? error;
+        errorData = errorData.data?.code ? errorData.data : errorData;
+
+        const result = new Error(errorData.message);
+        result.name = errorData.code ? errorData.code : error.name;
+        return Promise.reject(result);
+    },
+);
+
 export { instance, AxiosResponse };

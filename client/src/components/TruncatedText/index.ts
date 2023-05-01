@@ -1,1 +1,1 @@
-export { TruncatedTextContainer as TruncatedText } from './TruncatedTextContainer';
+export { TruncatedText } from './TruncatedText';

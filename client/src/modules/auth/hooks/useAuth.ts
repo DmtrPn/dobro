@@ -37,12 +37,12 @@ export function useAuth(): UseAuthData {
         const { email, password } = loginData;
         setErrorMassage(undefined);
 
-        if (email.length > 1 && password.length > 3) {
+        if (email.length > 1 && password.length > 5) {
             try {
                 await authService.login({ password: password.trim(), email: email.toLocaleLowerCase().trim() });
                 window.location.href = previousPageUrl;
             } catch (e: any) {
-                console.error('e', e);
+                console.error('Error:', e);
                 setErrorMassage(() => e.message);
             }
         }

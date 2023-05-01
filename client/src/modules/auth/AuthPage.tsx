@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { observer } from 'mobx-react-lite';
 
 import style from './AuthPage.scss';
 
@@ -22,7 +23,7 @@ interface Props extends AuthPageProps {
     onInputChange(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-export function AuthPage({}: Props): JSX.Element {
+export const AuthPage = observer(({}: Props): JSX.Element => {
     const { email, errorMessage, password, isPasswordValid, onInputChange, onLoginClick, onLogoutClick } = useAuth();
     const { fullName } = useAuthUser();
 
@@ -74,4 +75,4 @@ export function AuthPage({}: Props): JSX.Element {
             </div>
         </div>
     );
-}
+});
