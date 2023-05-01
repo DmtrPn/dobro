@@ -1,4 +1,5 @@
 import { observable, computed, makeObservable, action } from 'mobx';
+import { removeNotNumbers } from 'good-lib/utils';
 
 import { MovieData, MovieUpdateData } from 'dobro-types/frontend';
 import { Optional } from 'dobro-types/common';
@@ -6,7 +7,6 @@ import { Optional } from 'dobro-types/common';
 import { IEntry } from '@store/models/IEntry';
 
 import { MovieMutableData } from './MovieMuttableData';
-import { removeNotNumbers } from '@utils/removeNotNumbers';
 
 export class Movie implements IEntry<MovieData, MovieUpdateData> {
     @observable public readonly id: string;

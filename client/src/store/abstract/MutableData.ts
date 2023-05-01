@@ -1,9 +1,7 @@
 import pick from 'lodash/pick';
 import mapValues from 'lodash/mapValues';
 import { action, makeObservable, observable } from 'mobx';
-
-import { assignParams } from '@utils/assignParams';
-import { updateAttributes } from '@utils/updateAttributes';
+import { assignParams, updateAttributes } from 'good-lib/utils';
 
 export abstract class MutableData<D extends object> {
     protected numbersFields = new Set<string>();

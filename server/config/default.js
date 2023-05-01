@@ -21,7 +21,7 @@ module.exports = {
     server: {
         env: 'dev',
         host: FRONT_SERVER_HOST || '0.0.0.0',
-        port: Number(FRONT_SERVER_PORT || 3000),
+        port: Number(FRONT_SERVER_PORT || 4000),
         cookieSecret: 'cookieSecret'
     },
     services: {

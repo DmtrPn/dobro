@@ -1,9 +1,8 @@
 import { makeObservable, observable, computed, action } from 'mobx';
+import { assignParams } from 'good-lib/utils';
 
 import { UserData, UserMovieData, UserMovieUpdateParams } from 'dobro-types/frontend';
 import { EntityName, RoleName, UserStatus } from 'dobro-types/enums';
-
-import { assignParams } from '@utils/assignParams';
 
 import { UserMovieList } from './UserMovieList';
 

@@ -7,7 +7,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     theme?: ButtonTheme;
     modifiers?: ButtonModifiers[];
     label?: string;
-    children?: React.ReactChild;
+    children?: React.ReactNode;
 }
 
 export enum ButtonTheme {

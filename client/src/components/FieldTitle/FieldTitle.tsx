@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react';
+import React, { ReactNode } from 'react';
 import classnames from 'classnames';
 import isNull from 'lodash/isNull';
 
@@ -7,7 +7,7 @@ import style from './FieldTitle.scss';
 import { Nullable } from 'dobro-types/common';
 
 export interface FieldTitleParams {
-    title: ReactChild;
+    title: ReactNode;
     isValid?: Nullable<boolean>;
     theme?: FieldTitleTheme;
     modificators?: FieldTitleModificator[];

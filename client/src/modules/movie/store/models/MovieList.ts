@@ -1,10 +1,10 @@
 import orderBy from 'lodash/orderBy';
+import { isDefined } from 'good-lib/utils';
 
 import { MovieData, MovieUpdateData } from 'dobro-types/frontend';
 import { MovieStatus } from 'dobro-types/enums';
 
 import { EntityList } from '@store/models/EntityList';
-import { isDefined } from '@utils/isDefined';
 
 import { Movie } from './Movie';
 

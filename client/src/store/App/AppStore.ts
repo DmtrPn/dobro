@@ -1,9 +1,8 @@
 import { observable, computed, action, makeObservable } from 'mobx';
+import { isDefined } from 'good-lib/utils';
 
 import { UserData } from 'dobro-types/frontend';
 import { Optional } from 'dobro-types/common';
-
-import { isDefined } from '@utils/isDefined';
 
 import { AuthUser } from './model/AuthUser';
 
