@@ -11,3 +11,5 @@ export class UserApi {
         return res.data.user;
     }
 }
+
+export const USER_API_BASE_URL = BASE_URL;

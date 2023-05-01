@@ -22,7 +22,7 @@ module.exports = {
         '^@store/(.*)': '<rootDir>/store/$1',
         '^@store': '<rootDir>/store/index.ts',
         '^@api/(.*)': '<rootDir>/api/$1',
-        '^@hoc/(.*)': '<rootDir>/hoc/$1',
+        '^@hoc/(.*)': '<rootDir>/HOC/$1',
         '^@modules/(.*)': '<rootDir>/modules/$1',
         '^@movie/(.*)': '<rootDir>/modules/movie/$1',
         '^@dream/(.*)': '<rootDir>/modules/dream/$1',

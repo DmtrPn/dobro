@@ -9,8 +9,8 @@ const instance = axios.create({
     baseURL: BASE_URL,
 });
 
+// @ts-ignore
 instance.defaults.headers = {
-    // @ts-ignore
     'Cache-Control': 'cache, no-store, must-revalidate',
     Pragma: 'no-cache',
     Expires: '0',

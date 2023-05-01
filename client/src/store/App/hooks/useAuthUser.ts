@@ -12,9 +12,11 @@ export function useAuthUser(): UseAuthUserData {
     const { appStore } = useStore([AppStore.Name]);
 
     useEffect(() => {
-        if (!appStore.isAuthorized) {
-            authService.loadAuthorizedUser();
-        }
+        (async () => {
+            if (!appStore.isAuthorized) {
+                await authService.loadAuthorizedUser();
+            }
+        })();
     }, []);
 
     return {

@@ -4,7 +4,7 @@ import isNil from 'lodash/isNil';
 
 import { Nullable } from 'dobro-types/common';
 
-import { checkOnFocusHOC, WithCheckOnFocusProps } from '@hoc/checkOnFocusHOC';
+import { checkOnFocusHOC, WithCheckOnFocusProps } from '../../HOC/checkOnFocusHOC';
 import { Input, InputProps } from './Input';
 
 export interface Props extends InputProps {

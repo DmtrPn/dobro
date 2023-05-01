@@ -7,7 +7,7 @@ import { Nullable } from 'dobro-types/common';
 
 import { Select, SelectProps } from './Select';
 import { OptionType } from './types';
-import { checkOnFocusHOC, WithCheckOnFocusProps } from '@hoc/checkOnFocusHOC';
+import { checkOnFocusHOC, WithCheckOnFocusProps } from '../../HOC/checkOnFocusHOC';
 
 export interface SelectContainerProps extends SelectProps {
     selectedValue?: Nullable<string | number>;

@@ -38,7 +38,7 @@
       "@api": ["api/"],
       "@api/*": ["api/*"],
       "@components/*": ["components/*"],
-      "@hoc/*": ["components/HOC/*"],
+      "@hoc/*": ["HOC/*"],
       "@common/*": ["modules/common/*"],
       "@modules/*": ["modules/*"],
       "@movie/*": ["modules/movie/*"],
