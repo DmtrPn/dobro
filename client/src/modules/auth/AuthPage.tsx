@@ -61,6 +61,7 @@ export function AuthPage({
                         <Input
                             name={'email'}
                             title={'email'}
+                            type={'email'}
                             value={email}
                             onChange={onInputChange}
                             onKeyDown={(e) => e.keyCode === 13 ? onLoginClick() : null}
