@@ -42,6 +42,7 @@ class Container extends React.Component<Props> {
     }: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>): Promise<void> {
         const { id } = this.props;
 
+        // @ts-ignore
         if (this.affirmation[name] !== value && value.length > 3) {
             await affirmationService.update(id, { [name]: value });
         }

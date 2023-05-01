@@ -20,6 +20,7 @@ export abstract class MutableData<D extends object> {
     }
 
     public getValue(name: string): any {
+        // @ts-ignore
         return this[name];
     }
 

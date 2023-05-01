@@ -8,13 +8,19 @@ module.exports = {
         tsconfigRootDir: __dirname,
         project: './tsconfig.json',
     },
-    extends: [
-        'eslint-config-airbnb-typescript',
-        'prettier',
-    ],
+    extends: ['eslint-config-airbnb-typescript', 'prettier'],
     rules: {
-        // 'indent': 'off',
-        // '@typescript-eslint/indent': ['error', 4, { SwitchCase: 1, }],
+        indent: 'off',
+        // '@typescript-eslint/indent': [
+        //     'error',
+        //     4,
+        //     {
+        //         SwitchCase: 1,
+        //         FunctionExpression: {
+        //             parameters: 0,
+        //         },
+        //     }
+        // ],
         'react/jsx-filename-extension': 0,
         'import/extensions': 0,
         'import/no-extraneous-dependencies': 0,
@@ -24,7 +30,7 @@ module.exports = {
                 max: 1,
                 maxBOF: 0,
                 maxEOF: 0,
-            }
+            },
         ],
         'lines-between-class-members': 'off',
         '@typescript-eslint/lines-between-class-members': [
@@ -41,7 +47,8 @@ module.exports = {
                 ignoreRestSiblings: true,
                 argsIgnorePattern: '_',
                 varsIgnorePattern: 'observable|computed|action|Test',
-            }],
+            },
+        ],
         '@typescript-eslint/member-ordering': [
             'error',
             {
@@ -66,9 +73,9 @@ module.exports = {
                     'protected-instance-method',
                     'private-set',
                     'private-get',
-                    'private-instance-method'
+                    'private-instance-method',
                 ],
             },
         ],
-    }
-}
+    },
+};
