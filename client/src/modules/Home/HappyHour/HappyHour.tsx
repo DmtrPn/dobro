@@ -2,15 +2,12 @@ import React from 'react';
 
 import style from './HappyHour.scss';
 
+import { useHappyTime } from './hooks/useHappyTime';
+
 export interface HappyHourProps {}
 
-interface Props extends HappyHourProps {
-    hours: string;
-    minutes: string;
-    seconds: string;
-}
-
-export function HappyHour({ hours, minutes, seconds }: Props): JSX.Element {
+export function HappyHour({}: HappyHourProps): JSX.Element {
+    const { hours, minutes, seconds } = useHappyTime();
     return (
         <div className={style.root}>
             <ul className={style.happyClock}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import { Helmet } from 'react-helmet';
 
@@ -6,21 +6,20 @@ import style from './Home.scss';
 import commonStyles from '@components/mixins/commonStyles.scss';
 
 import { StarBackground } from '@components/StarBackground';
-// import { Clock } from '@components/Clock';
 import { Textarea } from '@components/Textarea';
 import { SaveButton } from '@components/ActionButtons/SaveButton';
 
 import { HappyHour } from './HappyHour';
+import { useRandomAffirmation } from '@affirmation/hooks/useRandomAffirmation';
+import { useTextareaValue } from '@components/Textarea/hooks/useTextareaValue';
 
-interface Props {
-    isSent: boolean;
-    wish: string;
-    affirmation: string;
-    onSendClick(): void;
-    onWishChange(event: React.ChangeEvent<HTMLTextAreaElement>): void;
-}
+interface Props {}
 
-export function HomePage({ isSent, wish, affirmation, onSendClick, onWishChange }: Props): JSX.Element {
+export function HomePage({}: Props): JSX.Element {
+    const { affirmation } = useRandomAffirmation();
+    const [isSent, setIsSent] = useState<boolean>(false);
+    const { value: wish, onChange: onWishChange } = useTextareaValue();
+
     return (
         <div className={style.root}>
             <Helmet>
@@ -47,7 +46,7 @@ export function HomePage({ isSent, wish, affirmation, onSendClick, onWishChange 
                         <SaveButton
                             disabled={wish.length < 3}
                             label={'Отправить желание в космос'}
-                            onSaveClick={onSendClick}
+                            onSaveClick={() => setIsSent(true)}
                         />
                     )}
                 </div>

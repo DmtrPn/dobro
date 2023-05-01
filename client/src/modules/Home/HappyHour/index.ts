@@ -1,1 +1,1 @@
-export { HappyHourContainer as HappyHour } from './HappyHourContainer';
+export { HappyHour } from './HappyHour';
