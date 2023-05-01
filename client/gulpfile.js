@@ -21,6 +21,7 @@ task('default', series(
     parallel('tslint', 'sprite', 'assets'),
     'bundle',
 ));
+task('devBundle', buildDevBundle);
 
 task('watch', function w() {
     watch([
