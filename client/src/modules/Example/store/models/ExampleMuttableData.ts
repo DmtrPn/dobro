@@ -3,14 +3,11 @@ import { ExampleData, ExampleUpdateData } from 'dobro-types/frontend';
 
 import { MutableData } from '@store/abstract/MutableData';
 
-export interface ExampleMutableDataParams extends Pick<ExampleData, keyof ExampleUpdateData> {
-}
+export interface ExampleMutableDataParams extends Pick<ExampleData, keyof ExampleUpdateData> {}
 
 export class ExampleMutableDataParams extends MutableData<ExampleMutableDataParams> {
-
     protected numbersFields = new Set(['rating']);
-    protected mutableKeys: (keyof ExampleMutableDataParams)[] = [
-    ];
+    protected mutableKeys: (keyof ExampleMutableDataParams)[] = [];
 
     constructor(data: ExampleMutableDataParams) {
         super();
@@ -22,5 +19,4 @@ export class ExampleMutableDataParams extends MutableData<ExampleMutableDataPara
 
         return !!serialized;
     }
-
 }

@@ -8,8 +8,7 @@ import { SaveButton } from '@components/ActionButtons/SaveButton';
 import { AffirmationForm } from './AffirmationForm';
 import { Affirmation } from './Affirmation';
 
-export interface AffirmationPageProps {
-}
+export interface AffirmationPageProps {}
 
 interface Props extends AffirmationPageProps {
     addMode: boolean;
@@ -18,32 +17,23 @@ interface Props extends AffirmationPageProps {
     onFinishCreate(): void;
 }
 
-export function AffirmationPage({
-    ids,
-    addMode,
-    onAddClick,
-    onFinishCreate,
-}: Props): JSX.Element {
+export function AffirmationPage({ ids, addMode, onAddClick, onFinishCreate }: Props): JSX.Element {
     return (
         <div className={style.root}>
             <div className={style.cards}>
                 {ids.map(id => (
-                    <div
-                        key={id}
-                        className={classnames([
-                            style.card,
-                        ])}
-                    >
+                    <div key={id} className={classnames([style.card])}>
                         <Affirmation id={id} />
                     </div>
                 ))}
             </div>
-            {addMode
-                ? <div className={style.card}>
+            {addMode ? (
+                <div className={style.card}>
                     <AffirmationForm onFinish={onFinishCreate} />
                 </div>
-                : <SaveButton onSaveClick={onAddClick} label={'Добавить'} />
-            }
+            ) : (
+                <SaveButton onSaveClick={onAddClick} label={'Добавить'} />
+            )}
         </div>
     );
 }

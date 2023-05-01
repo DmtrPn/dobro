@@ -15,8 +15,7 @@ export interface DoubleIconButtonsProps {
     onRightClick?(): void;
 }
 
-interface Props extends DoubleIconButtonsProps {
-}
+interface Props extends DoubleIconButtonsProps {}
 
 export function DoubleIconButtons({
     leftIcon,
@@ -27,21 +26,11 @@ export function DoubleIconButtons({
     onRightClick,
 }: Props): JSX.Element {
     return (
-        <div className={classnames([
-            style.root,
-        ])}>
-            <IconButton
-                icon={leftIcon}
-                isDisable={disableLeft}
-                onButtonClick={onLeftClick}
-            />
-            {onRightClick && rightIcon &&
-                <IconButton
-                    icon={rightIcon}
-                    isDisable={disableRight}
-                    onButtonClick={onRightClick}
-                />
-            }
+        <div className={classnames([style.root])}>
+            <IconButton icon={leftIcon} isDisable={disableLeft} onButtonClick={onLeftClick} />
+            {onRightClick && rightIcon && (
+                <IconButton icon={rightIcon} isDisable={disableRight} onButtonClick={onRightClick} />
+            )}
         </div>
     );
 }

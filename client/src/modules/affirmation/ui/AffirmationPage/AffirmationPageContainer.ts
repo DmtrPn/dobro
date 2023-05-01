@@ -7,22 +7,18 @@ import { AffirmationStore } from '@affirmation/store/AffirmationStore';
 import { affirmationService } from '@affirmation/services/affirmationService';
 import { privatePage } from '@core/decorators/privatePage';
 
-interface Props extends AffirmationPageProps {
-}
+interface Props extends AffirmationPageProps {}
 
 interface StoreProps {
     affirmationStore: AffirmationStore;
 }
 
-const injectableStores: (keyof StoreProps)[] = [
-    AffirmationStore.Name,
-];
+const injectableStores: (keyof StoreProps)[] = [AffirmationStore.Name];
 
 @privatePage
 @inject(...injectableStores)
 @observer
 export class AffirmationPageContainer extends React.Component<Props & StoreProps> {
-
     @observable private addMode = false;
 
     constructor(props: Props & StoreProps) {
@@ -37,7 +33,9 @@ export class AffirmationPageContainer extends React.Component<Props & StoreProps
     }
 
     public render() {
-        const { affirmationStore: { affirmationList } } = this.props;
+        const {
+            affirmationStore: { affirmationList },
+        } = this.props;
         return React.createElement(AffirmationPage, {
             ids: affirmationList.ids,
             addMode: this.addMode,
@@ -55,5 +53,4 @@ export class AffirmationPageContainer extends React.Component<Props & StoreProps
     private onFinishCreate(): void {
         this.addMode = false;
     }
-
 }

@@ -6,7 +6,6 @@ import { isDefined } from '@utils/isDefined';
 import { getId } from '@utils/getId';
 
 class AffirmationService {
-
     public async load(): Promise<void> {
         const { affirmationStore } = store;
 
@@ -22,21 +21,29 @@ class AffirmationService {
     }
 
     public async create(createParams: Omit<AffirmationCreateData, 'id'>): Promise<void> {
-        const { affirmationStore: { affirmationList }, appStore: { authUserId } } = store;
+        const {
+            affirmationStore: { affirmationList },
+            appStore: { authUserId },
+        } = store;
 
         if (isDefined(authUserId)) {
             const id = getId();
             await AffirmationApi.create({ id, ...createParams });
 
-            affirmationList.add([{
-                id,
-                ...createParams,
-            }]);
+            affirmationList.add([
+                {
+                    id,
+                    ...createParams,
+                },
+            ]);
         }
     }
 
     public async update(id: string, updateParams: AffirmationUpdateData): Promise<void> {
-        const { affirmationStore: { affirmationList }, appStore: { authUserId } } = store;
+        const {
+            affirmationStore: { affirmationList },
+            appStore: { authUserId },
+        } = store;
 
         if (isDefined(authUserId)) {
             await AffirmationApi.update(id, updateParams);
@@ -46,7 +53,10 @@ class AffirmationService {
     }
 
     public async remove(id: string): Promise<void> {
-        const { affirmationStore: { affirmationList }, appStore: { authUserId } } = store;
+        const {
+            affirmationStore: { affirmationList },
+            appStore: { authUserId },
+        } = store;
 
         if (isDefined(authUserId)) {
             await AffirmationApi.remove(id);

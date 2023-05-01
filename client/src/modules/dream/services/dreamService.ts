@@ -2,7 +2,6 @@ import { DreamApi } from '@api/DreamApi';
 import { store } from '@store';
 
 class DreamService {
-
     public async load(): Promise<void> {
         const dreams = await DreamApi.getDreamList();
 

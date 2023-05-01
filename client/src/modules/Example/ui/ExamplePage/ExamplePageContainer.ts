@@ -4,8 +4,7 @@ import React from 'react';
 
 import { ExamplePage, ExamplePageProps } from './ExamplePage';
 
-interface Props extends ExamplePageProps {
-}
+interface Props extends ExamplePageProps {}
 
 // interface StoreProps {
 // }
@@ -15,7 +14,6 @@ interface Props extends ExamplePageProps {
 
 // @observer
 export class ExamplePageContainer extends React.Component<Props> {
-
     public render() {
         return React.createElement(ExamplePage, {
             ...this.props,

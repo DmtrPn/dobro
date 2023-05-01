@@ -7,8 +7,7 @@ import { HomePage } from './Home';
 import { affirmationFacade } from '@affirmation/services/affirmationFacade';
 import { authService } from '@store/App/service/authService';
 
-interface Props {
-}
+interface Props {}
 
 // interface StoreProps {
 // }
@@ -18,7 +17,6 @@ interface Props {
 
 @observer
 export class HomeContainer extends React.Component<Props> {
-
     @observable private isSent = false;
     @observable private wish = '';
     @observable private affirmation = 'Живи';
@@ -30,10 +28,7 @@ export class HomeContainer extends React.Component<Props> {
     }
 
     public async componentDidMount(): Promise<void> {
-        const [affirmations] = await Promise.all([
-            affirmationFacade.getRandom(),
-            authService.loadAuthorizedUser(),
-        ]);
+        const [affirmations] = await Promise.all([affirmationFacade.getRandom(), authService.loadAuthorizedUser()]);
         this.affirmation = affirmations[0]?.text ?? this.affirmation;
     }
 

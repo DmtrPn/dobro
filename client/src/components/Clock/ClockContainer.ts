@@ -3,11 +3,9 @@ import autobind from 'autobind';
 
 import { Clock, ClockProps } from './Clock';
 
-interface Props extends ClockProps {
-}
+interface Props extends ClockProps {}
 
 export class ClockContainer extends React.Component<Props> {
-
     private hourRef: RefObject<HTMLDivElement> = React.createRef();
     private minuteRef: RefObject<HTMLDivElement> = React.createRef();
     private secondRef: RefObject<HTMLDivElement> = React.createRef();
@@ -59,7 +57,7 @@ export class ClockContainer extends React.Component<Props> {
         const mm = day.getMinutes() * deg;
         const ss = day.getSeconds() * deg;
 
-        this.hourRef.current!.style.transform = `rotateZ(${hh + (mm / 12)}deg)`;
+        this.hourRef.current!.style.transform = `rotateZ(${hh + mm / 12}deg)`;
         this.minuteRef.current!.style.transform = `rotateZ(${mm}deg)`;
         this.secondRef.current!.style.transform = `rotateZ(${ss}deg)`;
     }

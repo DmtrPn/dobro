@@ -9,8 +9,7 @@ import { SemanticIcon } from '@components/Icon';
 import { SaveButton } from '@components/ActionButtons/SaveButton';
 import { CancelButton } from '@components/ActionButtons/CancelButton';
 
-export interface NavMenuProps {
-}
+export interface NavMenuProps {}
 
 export interface NavItemData {
     to: string;
@@ -40,42 +39,34 @@ export function NavMenu({
         <div className={style.root}>
             {!menuOpen && (
                 <div className={style.openButton}>
-                    <Button
-                        basic
-                        icon
-                        circular
-                        onClick={onOpenMenuClick}
-                    >
-                        <SemanticIcon
-                            name={'bars'}
-                        />
+                    <Button basic icon circular onClick={onOpenMenuClick}>
+                        <SemanticIcon name={'bars'} />
                     </Button>
                 </div>
             )}
             <Sidebar
                 as={Menu}
-                animation='overlay'
-                icon='labeled'
+                animation="overlay"
+                icon="labeled"
                 inverted
                 onHide={closeMenu}
                 vertical
                 visible={menuOpen}
-                width='thin'
+                width="thin"
             >
                 <div className={style.menu}>
-                    {items.map(({ title, to }) =>
-                        <Link
-                            key={`${to}_${title}`}
-                            to={to}
-                            onClick={closeMenu}
-                        >
+                    {items.map(({ title, to }) => (
+                        <Link key={`${to}_${title}`} to={to} onClick={closeMenu}>
                             {title}
-                        </Link>)}
+                        </Link>
+                    ))}
 
                     <div className={style.login}>
-                        {isAuthorized
-                            ? <CancelButton onCancelClick={onLogoutClick} label={'Выйти'} />
-                            : <SaveButton onSaveClick={onLoginClick} label={'Войти'} />}
+                        {isAuthorized ? (
+                            <CancelButton onCancelClick={onLogoutClick} label={'Выйти'} />
+                        ) : (
+                            <SaveButton onSaveClick={onLoginClick} label={'Войти'} />
+                        )}
                     </div>
                 </div>
             </Sidebar>

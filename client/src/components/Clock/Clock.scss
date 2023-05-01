@@ -19,10 +19,8 @@
     border-radius: 50%;
     background: url(http://hellomyfriend.ru/static/images/clock.png);
     background-size: cover;
-    box-shadow: 0 -15px 15px rgba(255,255,255,0.05),
-    inset 0 -15px 15px rgba(255,255,255,0.05),
-    0 15px 15px rgba(0,0,0,0.3),
-    inset 0 15px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05), inset 0 -15px 15px rgba(255, 255, 255, 0.05),
+        0 15px 15px rgba(0, 0, 0, 0.3), inset 0 15px 15px rgba(0, 0, 0, 0.3);
 }
 
 .sun {
@@ -75,19 +73,24 @@
 .clock .sec {
     position: absolute;
 }
-.clock .hour, .hr {
+.clock .hour,
+.hr {
     width: 160px;
     height: 160px;
 }
-.clock .min, .mn {
+.clock .min,
+.mn {
     width: 210px;
     height: 210px;
 }
-.clock .sec, .sc {
+.clock .sec,
+.sc {
     width: 230px;
     height: 230px;
 }
-.hr, .mn, .sc {
+.hr,
+.mn,
+.sc {
     /*align-items: center;*/
     position: absolute;
 

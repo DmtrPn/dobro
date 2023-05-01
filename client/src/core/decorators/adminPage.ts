@@ -10,18 +10,12 @@ export interface StoreProps {
     appStore: AppStore;
 }
 
-const injectableStores: (keyof StoreProps)[] = [
-    AppStore.Name,
-];
+const injectableStores: (keyof StoreProps)[] = [AppStore.Name];
 
-export function adminPage<Props>(
-    WrappedComponent: any,
-): void {
-
+export function adminPage<Props>(WrappedComponent: any): void {
     @inject(...injectableStores)
     @observer
     class PrivatePage extends React.Component<Props & StoreProps> {
-
         public async componentDidMount(): Promise<void> {
             this.props.appStore.previousPageUrl = window.location.pathname;
             await authService.loadAuthorizedUser();
@@ -32,17 +26,19 @@ export function adminPage<Props>(
         }
 
         public render() {
-            const { appStore: { authUser, isAuthorized }, ...props } = this.props;
+            const {
+                appStore: { authUser, isAuthorized },
+                ...props
+            } = this.props;
             return isAuthorized
                 ? authUser!.isAdmin
                     ? React.createElement(WrappedComponent, {
-                        ...props,
-                    })
+                          ...props,
+                      })
                     : React.createElement(NotFound)
                 : React.createElement(AuthPage);
         }
     }
 
     return PrivatePage as any as void;
-
 }

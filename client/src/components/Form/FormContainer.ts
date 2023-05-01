@@ -22,7 +22,6 @@ interface Props extends FormProps {
 
 @observer
 export class FormContainer extends React.Component<Props> {
-
     @observable private mutableData!: MutableData<any>;
 
     constructor(props: Props) {
@@ -49,7 +48,9 @@ export class FormContainer extends React.Component<Props> {
     }
 
     @autobind
-    private async onTextChange({ target: { value, name } }: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>): Promise<void> {
+    private async onTextChange({
+        target: { value, name },
+    }: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>): Promise<void> {
         this.mutableData.update({ [name]: value });
     }
 

@@ -18,6 +18,7 @@
     "rootDir": "./",
     "sourceMap": true,
     "suppressImplicitAnyIndexErrors": true,
+    "ignoreDeprecations": "5.0",
     "esModuleInterop": true,
     "useDefineForClassFields": true,
     "skipDefaultLibCheck": true,

@@ -7,16 +7,13 @@ import { authService } from '@store/App/service/authService';
 
 import { AuthPage } from './AuthPage';
 
-interface Props {
-}
+interface Props {}
 
 interface StoreProps {
     appStore: AppStore;
 }
 
-const injectableStores: (keyof StoreProps)[] = [
-    AppStore.Name,
-];
+const injectableStores: (keyof StoreProps)[] = [AppStore.Name];
 
 interface State {
     token?: string;
@@ -28,7 +25,6 @@ interface State {
 @inject(...injectableStores)
 @observer
 export class AuthPageContainer extends React.Component<Props & StoreProps, State> {
-
     public state: State = {
         email: '',
         password: '',
@@ -39,7 +35,9 @@ export class AuthPageContainer extends React.Component<Props & StoreProps, State
     }
 
     public render() {
-        const { appStore: { isAuthorized, authUserName } } = this.props;
+        const {
+            appStore: { isAuthorized, authUserName },
+        } = this.props;
         const { email, password, errorMessage } = this.state;
 
         return React.createElement(AuthPage, {
@@ -83,5 +81,4 @@ export class AuthPageContainer extends React.Component<Props & StoreProps, State
             }
         }
     }
-
 }

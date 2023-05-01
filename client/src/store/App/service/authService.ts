@@ -7,7 +7,6 @@ import { isDefined } from '@utils/isDefined';
 import { store } from '@store';
 
 class AuthService {
-
     public async loadAuthorizedUser(): Promise<void> {
         const { appStore } = store;
 

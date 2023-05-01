@@ -10,7 +10,6 @@ import { axios } from '../lib/axios';
 const AFFIRMATION_URL = '/api/affirmation';
 
 export class AffirmationApi {
-
     public static async getList(): Promise<AffirmationData[]> {
         const res = await axios.get<AffirmationListResponse>(AFFIRMATION_URL);
 
@@ -34,5 +33,4 @@ export class AffirmationApi {
     public static async remove(id: string): Promise<void> {
         await axios.delete(`${AFFIRMATION_URL}/${id}`);
     }
-
 }

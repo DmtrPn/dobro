@@ -6,12 +6,10 @@ interface Props {
     rootRef: RefObject<HTMLDivElement>;
 }
 
-export function StarBackground({
-    rootRef,
-}: Props): JSX.Element {
+export function StarBackground({ rootRef }: Props): JSX.Element {
     return (
         <div className={style.root}>
-            <div  ref={rootRef} className={style.stars} />
+            <div ref={rootRef} className={style.stars} />
         </div>
     );
 }

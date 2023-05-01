@@ -10,51 +10,33 @@ import { checkOnFocusHOC, WithCheckOnFocusProps } from '@hoc/checkOnFocusHOC';
 
 import { Textarea, TextareaProps } from './Textarea';
 
-interface Props extends TextareaProps {
-}
+interface Props extends TextareaProps {}
 
 interface WithHOCProps extends Props, WithCheckOnFocusProps {}
 
 @observer
 class TextareaContainer extends React.Component<WithHOCProps> {
-
     @observable private currentValue: Nullable<string> = null;
 
     constructor(props: WithHOCProps) {
         super(props);
 
         makeObservable(this);
-
     }
 
     public render(): JSX.Element {
-        const {
-            value = '',
-            onChange,
-            onFocus,
-            isOnFocus,
-            onBlur,
-            handleBlur,
-            handleFocus,
-            ...props
-        } = this.props;
+        const { value = '', onChange, onFocus, isOnFocus, onBlur, handleBlur, handleFocus, ...props } = this.props;
 
-        const textareaValue = isNil(this.currentValue)
-            ? isNil(value)
-                ? ''
-                : value
-            : this.currentValue;
+        const textareaValue = isNil(this.currentValue) ? (isNil(value) ? '' : value) : this.currentValue;
 
-        return (
-            React.createElement(Textarea, {
-                ...props,
-                isActive: isOnFocus,
-                value: textareaValue,
-                onChange: this.handleChange,
-                onFocus: this.handleFocus,
-                onBlur: this.handleBlur,
-            })
-        );
+        return React.createElement(Textarea, {
+            ...props,
+            isActive: isOnFocus,
+            value: textareaValue,
+            onChange: this.handleChange,
+            onFocus: this.handleFocus,
+            onBlur: this.handleBlur,
+        });
     }
 
     @action.bound

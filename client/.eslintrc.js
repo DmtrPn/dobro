@@ -10,11 +10,14 @@ module.exports = {
     },
     extends: [
         'eslint-config-airbnb-typescript',
+        'prettier',
     ],
     rules: {
-        '@typescript-eslint/indent': ['error', 4, { SwitchCase: 1, }],
+        // 'indent': 'off',
+        // '@typescript-eslint/indent': ['error', 4, { SwitchCase: 1, }],
         'react/jsx-filename-extension': 0,
         'import/extensions': 0,
+        'import/no-extraneous-dependencies': 0,
         'no-multiple-empty-lines': [
             'error',
             {
@@ -23,17 +26,21 @@ module.exports = {
                 maxEOF: 0,
             }
         ],
-        'import/no-extraneous-dependencies': 0,
+        'lines-between-class-members': 'off',
         '@typescript-eslint/lines-between-class-members': [
-            "error",
-            "always",
-            { "exceptAfterSingleLine": true }
+            'error',
+            'always',
+            {
+                exceptAfterSingleLine: true,
+                // exceptAfterOverload: true
+            },
         ],
         '@typescript-eslint/no-unused-vars': [
             'error',
             {
                 ignoreRestSiblings: true,
                 argsIgnorePattern: '_',
+                varsIgnorePattern: 'observable|computed|action|Test',
             }],
         '@typescript-eslint/member-ordering': [
             'error',

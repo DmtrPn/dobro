@@ -13,29 +13,13 @@ interface Props extends InputProps {
     isActive: boolean;
 }
 
-export const InputModifier = {
-};
+export const InputModifier = {};
 
-export function Input({
-    modifiers = [],
-    type = 'text',
-    title,
-    isActive,
-    ...props
-}: Props): JSX.Element {
+export function Input({ modifiers = [], type = 'text', title, isActive, ...props }: Props): JSX.Element {
     return (
-        <div className={classnames([
-            style.root,
-            isActive && style.active,
-        ])}>
+        <div className={classnames([style.root, isActive && style.active])}>
             {title && <FieldTitle title={title} />}
-            <input
-                {...props}
-                className={classnames([
-                    style.input,
-                    ...modifiers,
-                ])}
-                type={type}
-            />
-        </div>);
+            <input {...props} className={classnames([style.input, ...modifiers])} type={type} />
+        </div>
+    );
 }

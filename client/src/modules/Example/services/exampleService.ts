@@ -1,5 +1,4 @@
 class ExampleService {
-
     public async load(): Promise<void> {
         console.log('load');
     }

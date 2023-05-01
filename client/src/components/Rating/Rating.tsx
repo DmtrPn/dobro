@@ -9,28 +9,14 @@ export interface RatingEventData extends StrictRatingProps {}
 
 export interface RatingProps extends StrictRatingProps {
     title?: string;
-    onRate?(event: React.MouseEvent<HTMLDivElement>, data: RatingEventData): void
+    onRate?(event: React.MouseEvent<HTMLDivElement>, data: RatingEventData): void;
 }
 
-export function Rating({
-    icon = 'star',
-    maxRating = 5,
-    title,
-    ...props
-}: RatingProps): JSX.Element {
+export function Rating({ icon = 'star', maxRating = 5, title, ...props }: RatingProps): JSX.Element {
     return (
         <div className={style.root}>
-            {title && (
-                <FieldTitle
-                    theme={FieldTitleTheme.Bold}
-                    title={title}
-                />
-            )}
-            <SemanticRating
-                icon={icon}
-                maxRating={maxRating}
-                {...props}
-            />
+            {title && <FieldTitle theme={FieldTitleTheme.Bold} title={title} />}
+            <SemanticRating icon={icon} maxRating={maxRating} {...props} />
         </div>
     );
 }

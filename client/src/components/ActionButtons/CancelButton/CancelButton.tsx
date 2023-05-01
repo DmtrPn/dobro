@@ -6,18 +6,9 @@ interface CancelButtonProps extends Omit<ButtonProps, 'onClick'> {
     onCancelClick(): void;
 }
 
-export function CancelButton({
-    label = 'Отменить',
-    onCancelClick,
-    ...props
-}: CancelButtonProps): JSX.Element {
+export function CancelButton({ label = 'Отменить', onCancelClick, ...props }: CancelButtonProps): JSX.Element {
     return (
-        <Button
-            basic
-            color='purple'
-            onClick={onCancelClick}
-            {...props}
-        >
+        <Button basic color="purple" onClick={onCancelClick} {...props}>
             {label}
         </Button>
     );

@@ -16,7 +16,6 @@ interface FilterParams {
 }
 
 export class MovieList extends EntityList<Movie, MovieData, MovieUpdateData, FilterParams> {
-
     protected entityClass = Movie;
 
     protected filterValue(value: Movie, { status, ids, excludeIds, name }: FilterParams): boolean {
@@ -24,10 +23,12 @@ export class MovieList extends EntityList<Movie, MovieData, MovieUpdateData, Fil
         const idsSet = isDefined(ids) ? new Set(ids) : undefined;
         const excludeIdsSet = isDefined(excludeIds) ? new Set(excludeIds) : undefined;
 
-        return (!!status ? data.status === status : true)
-            && (!!idsSet ? idsSet.has(data.id) : true)
-            && (!!excludeIdsSet ? !excludeIdsSet.has(data.id) : true)
-            && (!!name && name.length > 0 ? data.name.toLowerCase().includes(name.toLowerCase()) : true);
+        return (
+            (!!status ? data.status === status : true) &&
+            (!!idsSet ? idsSet.has(data.id) : true) &&
+            (!!excludeIdsSet ? !excludeIdsSet.has(data.id) : true) &&
+            (!!name && name.length > 0 ? data.name.toLowerCase().includes(name.toLowerCase()) : true)
+        );
     }
 
     protected getOrderedValues(params: Movie[]): Movie[] {

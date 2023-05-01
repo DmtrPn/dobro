@@ -18,19 +18,10 @@ export interface MenuProps {
     onMenuItemClick(event: React.MouseEvent<HTMLAnchorElement>, data: MenuEventData): void;
 }
 
-export function Menu({
-    items,
-    selectedNames,
-    onMenuItemClick,
-}: MenuProps): JSX.Element {
+export function Menu({ items, selectedNames, onMenuItemClick }: MenuProps): JSX.Element {
     const selected = new Set(selectedNames);
     return (
-        <UiMenu
-            secondary
-            stackable
-            color={'purple'}
-            className={style.root}
-        >
+        <UiMenu secondary stackable color={'purple'} className={style.root}>
             {items.map(data => (
                 <UiMenu.Item
                     {...data}

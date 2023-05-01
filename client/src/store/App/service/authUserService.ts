@@ -6,9 +6,10 @@ import { store } from '@store';
 import { movieService } from '@movie/services/movieService';
 
 class AuthUserService {
-
     public async loadUserMovies(): Promise<void> {
-        const { appStore: { isAuthorized, authUser } } = store;
+        const {
+            appStore: { isAuthorized, authUser },
+        } = store;
 
         if (isAuthorized && authUser?.movies.getSize() === 0) {
             const userMovies = await UserMovieApi.getUserMovies(authUser!.id);
@@ -18,7 +19,9 @@ class AuthUserService {
     }
 
     public async updateMovie(params: Omit<UserMovieUpdateParams, 'userId'>): Promise<void> {
-        const { appStore: { authUserId, authUser } } = store;
+        const {
+            appStore: { authUserId, authUser },
+        } = store;
         const movieRating = {
             userId: authUserId!,
             ...params,
@@ -28,7 +31,6 @@ class AuthUserService {
 
         authUser!.updateMovie(params);
     }
-
 }
 
 export const authUserService = new AuthUserService();

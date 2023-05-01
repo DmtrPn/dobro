@@ -14,7 +14,6 @@ interface Props {
 }
 
 export class AffirmationFormContainer extends React.Component<Props> {
-
     public render() {
         return React.createElement(Form, {
             mutableData: AffirmationMutableDataParams,

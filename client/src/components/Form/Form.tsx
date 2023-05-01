@@ -7,8 +7,7 @@ import { Textarea } from '@components/Textarea';
 import { SaveButton } from '@components/ActionButtons/SaveButton';
 import { CancelButton } from '@components/ActionButtons/CancelButton';
 
-export interface FormProps {
-}
+export interface FormProps {}
 /* eslint-disable @typescript-eslint/no-shadow */
 export const enum FieldType {
     Input = 'input',
@@ -37,28 +36,22 @@ interface Props extends FormProps {
     onCancelClick(): void;
 }
 
-export function Form({
-    fields,
-    onTextChange,
-    onSaveClick,
-    onCancelClick,
-}: Props): JSX.Element {
+export function Form({ fields, onTextChange, onSaveClick, onCancelClick }: Props): JSX.Element {
     return (
         <div className={style.root}>
-            {fields.map(field => (
+            {fields.map(field =>
                 React.createElement(FIELD_COMPONENTS[field.type], {
                     key: field.name,
                     title: field.title,
                     name: field.name,
                     value: field.value,
                     onBlur: onTextChange,
-                })
-            ))}
+                }),
+            )}
             <div className={style.buttons}>
-                <SaveButton onSaveClick={onSaveClick}/>
-                <CancelButton onCancelClick={onCancelClick}/>
+                <SaveButton onSaveClick={onSaveClick} />
+                <CancelButton onCancelClick={onCancelClick} />
             </div>
-
         </div>
     );
 }

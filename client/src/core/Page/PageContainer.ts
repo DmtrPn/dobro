@@ -6,8 +6,7 @@ import { observer } from 'mobx-react';
 import { Page } from './Page';
 import { authService } from '@store/App/service/authService';
 
-interface Props {
-}
+interface Props {}
 
 // interface StoreProps {
 // }
@@ -17,7 +16,6 @@ interface Props {
 
 @observer
 export class PageContainer extends React.Component<Props> {
-
     @observable isAuthUserLoaded = false;
 
     public async componentDidMount(): Promise<void> {
@@ -29,8 +27,8 @@ export class PageContainer extends React.Component<Props> {
     public render() {
         return this.isAuthUserLoaded
             ? React.createElement(Page, {
-                ...this.props,
-            })
+                  ...this.props,
+              })
             : null;
     }
 }

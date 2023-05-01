@@ -4,12 +4,10 @@ import { observer } from 'mobx-react';
 
 import { TruncatedText, TruncatedTextProps } from './TruncatedText';
 
-interface Props extends TruncatedTextProps {
-}
+interface Props extends TruncatedTextProps {}
 
 @observer
 export class TruncatedTextContainer extends React.Component<Props> {
-
     @observable private isTruncated: boolean = false;
     @observable private isOpen: boolean = false;
     @observable private truncatedTextRef: RefObject<HTMLDivElement> = React.createRef();

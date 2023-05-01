@@ -1,12 +1,22 @@
 // @ts-ignore
-import { ExmapleData, ExmapleListResponse, ExmapleResponse, ExmapleCreateData, ExmapleUpdateData } from 'dobro-types/frontend';
+import {
+    // @ts-ignore
+    ExmapleData,
+    // @ts-ignore
+    ExmapleListResponse,
+    // @ts-ignore
+    ExmapleResponse,
+    // @ts-ignore
+    ExmapleCreateData,
+    // @ts-ignore
+    ExmapleUpdateData,
+} from 'dobro-types/frontend';
 
 import { axios } from '../lib/axios';
 
 const EXAMPLE_URL = '/api/example';
 
 export class ExampleApi {
-
     public static async getList(): Promise<ExmapleData[]> {
         const res = await axios.get<ExmapleListResponse>(EXAMPLE_URL);
 
@@ -30,5 +40,4 @@ export class ExampleApi {
     public static async remove(id: string): Promise<void> {
         await axios.delete(`${EXAMPLE_URL}/${id}`);
     }
-
 }

@@ -18,7 +18,6 @@ export interface SelectContainerProps extends SelectProps {
 interface WithFixedProps extends SelectContainerProps, WithCheckOnFocusProps {}
 
 class SelectContainer extends React.Component<WithFixedProps> {
-
     public render() {
         const {
             selectedValue,
@@ -66,7 +65,6 @@ class SelectContainer extends React.Component<WithFixedProps> {
 
         return find(options, option => option.value === selectedValue) ?? null!;
     }
-
 }
 
 export const WithCheckOnFocusSelectContainer = checkOnFocusHOC<SelectContainerProps>(SelectContainer);

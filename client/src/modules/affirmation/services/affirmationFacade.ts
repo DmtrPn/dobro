@@ -3,7 +3,6 @@ import { AffirmationData } from 'dobro-types/frontend';
 import { affirmationService } from './affirmationService';
 
 class AffirmationFacade {
-
     public async load(): Promise<void> {
         await affirmationService.load();
     }

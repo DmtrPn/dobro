@@ -15,13 +15,11 @@ interface StoreProps {
     affirmationStore: AffirmationStore;
 }
 
-const injectableStores: (keyof StoreProps)[] = [
-    AffirmationStore.Name,
-];
+const injectableStores: (keyof StoreProps)[] = [AffirmationStore.Name];
 
 @observer
 class Container extends React.Component<Props> {
-    readonly declare props: Props & StoreProps;
+    declare readonly props: Props & StoreProps;
 
     public render() {
         return React.createElement(Affirmation, {
@@ -31,12 +29,17 @@ class Container extends React.Component<Props> {
     }
 
     private get affirmation(): AffirmationData {
-        const { affirmationStore: { affirmationList }, id } = this.props;
+        const {
+            affirmationStore: { affirmationList },
+            id,
+        } = this.props;
         return affirmationList.get(id);
     }
 
     @autobind
-    private async onTextChange({ target: { value, name } }: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>): Promise<void> {
+    private async onTextChange({
+        target: { value, name },
+    }: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>): Promise<void> {
         const { id } = this.props;
 
         if (this.affirmation[name] !== value && value.length > 3) {

@@ -4,12 +4,10 @@ import { observer } from 'mobx-react';
 
 import { HappyHour, HappyHourProps } from './HappyHour';
 
-interface Props extends HappyHourProps {
-}
+interface Props extends HappyHourProps {}
 
 @observer
 export class HappyHourContainer extends React.Component<Props> {
-
     @observable private hours = '00';
     @observable private minutes = '00';
     @observable private seconds = '00';
@@ -47,7 +45,7 @@ export class HappyHourContainer extends React.Component<Props> {
         const minutes = new Date().getMinutes();
         const hours = new Date().getHours();
         let time = hours;
-        if (minutes === hours && seconds < hours || minutes < hours) {
+        if ((minutes === hours && seconds < hours) || minutes < hours) {
             time = hours > 0 ? hours - 1 : 23;
         }
 
@@ -55,5 +53,4 @@ export class HappyHourContainer extends React.Component<Props> {
         this.minutes = (hours < 10 ? '0' : '') + time;
         this.seconds = (hours < 10 ? '0' : '') + time;
     }
-
 }

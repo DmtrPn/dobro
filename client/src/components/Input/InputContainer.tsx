@@ -18,7 +18,6 @@ interface State {
 }
 
 class InputContainer extends React.PureComponent<WithHOCProps, State> {
-
     public state: State = {
         currentValue: null,
     };
@@ -32,24 +31,11 @@ class InputContainer extends React.PureComponent<WithHOCProps, State> {
     }
 
     public render() {
-        const {
-            value,
-            onChange,
-            onBlur,
-            isOnFocus,
-            onFocus,
-            handleFocus,
-            handleBlur,
-            autoComplete,
-            ...props
-        } = this.props;
+        const { value, onChange, onBlur, isOnFocus, onFocus, handleFocus, handleBlur, autoComplete, ...props } =
+            this.props;
         const { currentValue } = this.state;
 
-        const inputValue = isNil(currentValue)
-            ? isNil(value)
-                ? ''
-                : value
-            : currentValue;
+        const inputValue = isNil(currentValue) ? (isNil(value) ? '' : value) : currentValue;
 
         return React.createElement(Input, {
             ...props,

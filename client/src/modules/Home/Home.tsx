@@ -20,13 +20,7 @@ interface Props {
     onWishChange(event: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
 
-export function HomePage({
-    isSent,
-    wish,
-    affirmation,
-    onSendClick,
-    onWishChange,
-}: Props): JSX.Element {
+export function HomePage({ isSent, wish, affirmation, onSendClick, onWishChange }: Props): JSX.Element {
     return (
         <div className={style.root}>
             <Helmet>
@@ -36,10 +30,7 @@ export function HomePage({
                 <div className={commonStyles.field}>
                     <HappyHour />
                 </div>
-                <div className={classnames([
-                    commonStyles.field,
-                    style.textarea,
-                ])}>
+                <div className={classnames([commonStyles.field, style.textarea])}>
                     <Textarea
                         disabled={isSent}
                         placeholder={'Напиши свое желание'}
@@ -48,21 +39,20 @@ export function HomePage({
                     />
                 </div>
                 <div className={commonStyles.field}>
-                    {isSent
-                        ? (<div className={style.sent}>
-                            Твое желание отправлено в космос!
-                            Ожидай в радости и в лучшее время оно сбудется
-                        </div>)
-                        : <SaveButton
+                    {isSent ? (
+                        <div className={style.sent}>
+                            Твое желание отправлено в космос! Ожидай в радости и в лучшее время оно сбудется
+                        </div>
+                    ) : (
+                        <SaveButton
                             disabled={wish.length < 3}
                             label={'Отправить желание в космос'}
                             onSaveClick={onSendClick}
-                        />}
+                        />
+                    )}
                 </div>
                 <div className={commonStyles.field}>
-                    <div className={style.affirmation}>
-                        {affirmation}
-                    </div>
+                    <div className={style.affirmation}>{affirmation}</div>
                 </div>
             </div>
             <StarBackground />

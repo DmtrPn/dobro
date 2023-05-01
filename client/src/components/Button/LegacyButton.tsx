@@ -17,11 +17,9 @@ export enum ButtonTheme {
     Light = style.light,
 }
 
-export enum ButtonModifiers {
-}
+export enum ButtonModifiers {}
 
-interface Props extends ButtonProps {
-}
+interface Props extends ButtonProps {}
 
 export function LegacyButton({
     theme = ButtonTheme.Primary,
@@ -32,10 +30,7 @@ export function LegacyButton({
 }: Props): JSX.Element {
     return (
         // @ts-ignore
-        <button
-            className={classnames([style.root, theme, ...modifiers])}
-            {...props}
-        >
+        <button className={classnames([style.root, theme, ...modifiers])} {...props}>
             {children || label}
         </button>
     );

@@ -6,7 +6,7 @@ import style from './FieldTitle.scss';
 
 import { Nullable } from 'dobro-types/common';
 
-export interface FieldTitleParams  {
+export interface FieldTitleParams {
     title: ReactChild;
     isValid?: Nullable<boolean>;
     theme?: FieldTitleTheme;
@@ -32,8 +32,7 @@ export enum FieldTitleModificator {
     InheritColor = style.inheritColor,
 }
 
-interface Props extends FieldTitleParams {
-}
+interface Props extends FieldTitleParams {}
 
 export function FieldTitle({
     title,
@@ -45,14 +44,16 @@ export function FieldTitle({
     onClick,
 }: Props): JSX.Element {
     return (
-        <div className={classnames([
-            style.root,
-            theme,
-            disabled && style.disabled,
-            !isNull(isValid) && (isValid ? style.valid : style.notValid),
-            !!onClick && clickableTitle && style.clickable,
-            ...modificators,
-        ])}>
+        <div
+            className={classnames([
+                style.root,
+                theme,
+                disabled && style.disabled,
+                !isNull(isValid) && (isValid ? style.valid : style.notValid),
+                !!onClick && clickableTitle && style.clickable,
+                ...modificators,
+            ])}
+        >
             {title}
         </div>
     );

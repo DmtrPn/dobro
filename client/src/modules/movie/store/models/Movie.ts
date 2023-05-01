@@ -9,7 +9,6 @@ import { MovieMutableData } from './MovieMuttableData';
 import { removeNotNumbers } from '@utils/removeNotNumbers';
 
 export class Movie implements IEntry<MovieData, MovieUpdateData> {
-
     @observable public readonly id: string;
     @observable public readonly authorId: string;
     private data: MovieMutableData;
@@ -43,5 +42,4 @@ export class Movie implements IEntry<MovieData, MovieUpdateData> {
             ...this.data.serialize(),
         };
     }
-
 }

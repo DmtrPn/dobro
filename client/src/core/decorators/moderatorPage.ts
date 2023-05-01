@@ -12,19 +12,12 @@ export interface StoreProps {
     appStore: AppStore;
 }
 
-const injectableStores: (keyof StoreProps)[] = [
-    AppStore.Name,
-];
+const injectableStores: (keyof StoreProps)[] = [AppStore.Name];
 
-export function moderatorPage<Props>(
-    WrappedComponent: any,
-    entityName: EntityName,
-): void {
-
+export function moderatorPage<Props>(WrappedComponent: any, entityName: EntityName): void {
     @inject(...injectableStores)
     @observer
     class PrivatePage extends React.Component<Props & StoreProps> {
-
         public async componentDidMount(): Promise<void> {
             this.props.appStore.previousPageUrl = window.location.pathname;
             await authService.loadAuthorizedUser();
@@ -35,17 +28,19 @@ export function moderatorPage<Props>(
         }
 
         public render() {
-            const { appStore: { isAuthorized, authUser }, ...props } = this.props;
+            const {
+                appStore: { isAuthorized, authUser },
+                ...props
+            } = this.props;
             return isAuthorized
                 ? authUser!.isEntityModerator(entityName)
                     ? React.createElement(WrappedComponent, {
-                        ...props,
-                    })
+                          ...props,
+                      })
                     : React.createElement(NotFound)
                 : React.createElement(AuthPage);
         }
     }
 
     return PrivatePage as any as void;
-
 }

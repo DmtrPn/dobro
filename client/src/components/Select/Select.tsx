@@ -46,19 +46,14 @@ export const DropdownIndicator = (props: any) => {
 
 export const Option = (props: any) => {
     return (
-        <div className={classnames([
-            props.data.isDisabled && style.component_select__option_disabled,
-        ])}>
+        <div className={classnames([props.data.isDisabled && style.component_select__option_disabled])}>
             <components.Option {...props} />
         </div>
     );
 };
 
 export function noOptionsMessage({ inputValue }: { inputValue: string }): string {
-    return inputValue === ''
-        ? 'Введите значение'
-        : 'Ничего не найдено';
-
+    return inputValue === '' ? 'Введите значение' : 'Ничего не найдено';
 }
 
 export function Select({
@@ -76,22 +71,11 @@ export function Select({
     onBlur,
     onChange,
 }: Props): JSX.Element {
-
     const handleChange = (selectedItem: any) => onChange(selectedItem, name);
 
     return (
-        <div
-            className={classnames([
-                style.component_select__root,
-                commonStyle.font_text,
-            ])}
-        >
-            {title && (
-                <FieldTitle
-                    modificators={[FieldTitleModificator.WithPadding]}
-                    title={title}
-                />
-            )}
+        <div className={classnames([style.component_select__root, commonStyle.font_text])}>
+            {title && <FieldTitle modificators={[FieldTitleModificator.WithPadding]} title={title} />}
             <ReactSelect
                 menuIsOpen={menuIsOpen}
                 placeholder={placeholder}

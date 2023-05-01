@@ -7,5 +7,6 @@ export function NotFound() {
         <div className={style.root}>
             <span className={style.code}>404</span>
             <span className={style.message}>Not found</span>
-        </div>);
+        </div>
+    );
 }

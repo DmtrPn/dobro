@@ -8,18 +8,8 @@ export interface IconButtonProps {
     onEditClick(): void;
 }
 
-interface Props extends IconButtonProps {
-}
+interface Props extends IconButtonProps {}
 
-export function EditButton({
-    isDisable,
-    onEditClick,
-}: Props): JSX.Element {
-    return (
-        <IconButton
-            icon={IconType.PEN}
-            isDisable={isDisable}
-            onButtonClick={onEditClick}
-        />
-    );
+export function EditButton({ isDisable, onEditClick }: Props): JSX.Element {
+    return <IconButton icon={IconType.PEN} isDisable={isDisable} onButtonClick={onEditClick} />;
 }

@@ -3,9 +3,8 @@ import { Button as SemanticButton, ButtonProps as SemanticButtonProps } from 'se
 
 import './UiButton_.scss';
 
-export interface ButtonProps extends SemanticButtonProps {
-}
+export interface ButtonProps extends SemanticButtonProps {}
 
 export function Button(props: ButtonProps): JSX.Element {
-    return (<SemanticButton {...props} />);
+    return <SemanticButton {...props} />;
 }

@@ -10,5 +10,4 @@ export class MovieStore {
     constructor() {
         makeObservable(this);
     }
-
 }

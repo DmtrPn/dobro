@@ -7,16 +7,8 @@ export interface MovieMutableDataParams extends Pick<MovieData, keyof MovieUpdat
 }
 
 export class MovieMutableData extends MutableData<MovieMutableDataParams> {
-
     protected numbersFields = new Set(['rating']);
-    protected mutableKeys: (keyof MovieMutableDataParams)[] = [
-        'link',
-        'name',
-        'description',
-        'status',
-        'rating',
-
-    ];
+    protected mutableKeys: (keyof MovieMutableDataParams)[] = ['link', 'name', 'description', 'status', 'rating'];
 
     constructor(data: MovieMutableDataParams) {
         super();
@@ -26,8 +18,6 @@ export class MovieMutableData extends MutableData<MovieMutableDataParams> {
     public get isValid(): boolean {
         const { name, link } = this.serialize();
 
-        return name.length > 0
-            && link.length > 0;
+        return name.length > 0 && link.length > 0;
     }
-
 }

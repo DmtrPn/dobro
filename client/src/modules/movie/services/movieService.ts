@@ -7,7 +7,6 @@ import { isDefined } from '@utils/isDefined';
 import { getId } from '@utils/getId';
 
 class MovieService {
-
     public async load(): Promise<void> {
         const { movieStore } = store;
 
@@ -19,24 +18,32 @@ class MovieService {
     }
 
     public async create(createParams: Omit<MovieCreateData, 'id'>): Promise<void> {
-        const { movieStore: { movieList }, appStore: { authUserId } } = store;
+        const {
+            movieStore: { movieList },
+            appStore: { authUserId },
+        } = store;
 
         if (isDefined(authUserId)) {
             const id = getId();
             await MovieApi.create({ id, ...createParams });
 
-            movieList.add([{
-                id,
-                authorId: authUserId,
-                status: MovieStatus.New,
-                rating: 0,
-                ...createParams,
-            }]);
+            movieList.add([
+                {
+                    id,
+                    authorId: authUserId,
+                    status: MovieStatus.New,
+                    rating: 0,
+                    ...createParams,
+                },
+            ]);
         }
     }
 
     public async update(id: string, updateParams: MovieUpdateData): Promise<void> {
-        const { movieStore: { movieList }, appStore: { authUserId } } = store;
+        const {
+            movieStore: { movieList },
+            appStore: { authUserId },
+        } = store;
 
         if (isDefined(authUserId)) {
             await MovieApi.update(id, updateParams);
@@ -46,7 +53,10 @@ class MovieService {
     }
 
     public async remove(id: string): Promise<void> {
-        const { movieStore: { movieList }, appStore: { authUserId } } = store;
+        const {
+            movieStore: { movieList },
+            appStore: { authUserId },
+        } = store;
 
         if (isDefined(authUserId)) {
             await MovieApi.remove(id);
@@ -56,7 +66,9 @@ class MovieService {
     }
 
     public async reloadMovie(movieId: string): Promise<void> {
-        const { movieStore: { movieList } } = store;
+        const {
+            movieStore: { movieList },
+        } = store;
         const movieData = await MovieApi.getById(movieId);
 
         const movie = movieList.get(movieId);

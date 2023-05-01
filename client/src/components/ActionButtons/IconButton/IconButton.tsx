@@ -12,26 +12,16 @@ export interface IconButtonProps {
     onButtonClick(): void;
 }
 
-interface Props extends IconButtonProps {
-}
+interface Props extends IconButtonProps {}
 
-export function IconButton({
-    icon,
-    inheritColor,
-    isDisable,
-    onButtonClick,
-}: Props): JSX.Element {
+export function IconButton({ icon, inheritColor, isDisable, onButtonClick }: Props): JSX.Element {
     return (
         <div
-            className={classnames([
-                style.root,
-                isDisable && style.disabled,
-                inheritColor && style.root_inheritColor,
-            ])}
+            className={classnames([style.root, isDisable && style.disabled, inheritColor && style.root_inheritColor])}
             onMouseUp={isDisable ? undefined : onButtonClick}
         >
             <div className={style.icon}>
-                <Icon type={icon}/>
+                <Icon type={icon} />
             </div>
         </div>
     );

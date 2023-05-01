@@ -5,7 +5,6 @@ import { axios } from '../lib/axios';
 const AUTH_URL = '/api/auth';
 
 export class AuthApi {
-
     public static async login(user: LoginParams): Promise<AuthUserData> {
         const res = await axios.post<AuthUserResponse>(`${AUTH_URL}/login`, { user });
 

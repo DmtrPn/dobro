@@ -5,10 +5,9 @@ import classnames from 'classnames';
 import style from './Textarea.scss';
 import { FieldTitle } from '@components/FieldTitle';
 
-export const TextareaModifiers = {
-};
+export const TextareaModifiers = {};
 
-export interface TextareaProps extends React.HTMLProps<HTMLTextAreaElement>  {
+export interface TextareaProps extends React.HTMLProps<HTMLTextAreaElement> {
     title?: string;
     value?: string;
     rows?: number;
@@ -37,12 +36,7 @@ export function Textarea({
     ...props
 }: Props): JSX.Element {
     return (
-        <div className={classnames([
-            style.root,
-            isActive && style.active,
-            disabled && style.disabled,
-            ...modifiers,
-        ])}>
+        <div className={classnames([style.root, isActive && style.active, disabled && style.disabled, ...modifiers])}>
             {title && <FieldTitle title={title} />}
             <TextareaAutosize
                 className={style.textarea}
@@ -50,7 +44,7 @@ export function Textarea({
                 placeholder={placeholder ?? ''}
                 disabled={disabled}
                 ref={textareaRef}
-                {...props as any}
+                {...(props as any)}
             />
         </div>
     );

@@ -10,8 +10,7 @@ import { SearchInput } from '@components/Input';
 import { MovieForm } from './MovieForm';
 import { Movie } from './Movie';
 
-export interface MoviePageProps {
-}
+export interface MoviePageProps {}
 
 interface Props extends MoviePageProps {
     canEdit: boolean;
@@ -41,35 +40,24 @@ export function MoviePage({
     return (
         <div className={style.root}>
             <div className={style.topLine}>
-                <Menu
-                    items={menuItems}
-                    selectedNames={selectedMenuItems}
-                    onMenuItemClick={onMenuItemClick}
-                />
-                <SearchInput
-                    value={searchValue}
-                    onChange={onSearchInputChange}
-                />
+                <Menu items={menuItems} selectedNames={selectedMenuItems} onMenuItemClick={onMenuItemClick} />
+                <SearchInput value={searchValue} onChange={onSearchInputChange} />
             </div>
             <div className={style.cards}>
                 {ids.map(id => (
-                    <div
-                        key={id}
-                        className={classnames([
-                            style.card,
-                        ])}
-                    >
+                    <div key={id} className={classnames([style.card])}>
                         <Movie id={id} />
                     </div>
                 ))}
             </div>
-            {canEdit && (
-                addMode
-                    ? <div className={style.card}>
+            {canEdit &&
+                (addMode ? (
+                    <div className={style.card}>
                         <MovieForm onFinish={onFinishCreate} />
                     </div>
-                    : <SaveButton onSaveClick={onAddClick} label={'Добавить'} />
-            )}
+                ) : (
+                    <SaveButton onSaveClick={onAddClick} label={'Добавить'} />
+                ))}
         </div>
     );
 }

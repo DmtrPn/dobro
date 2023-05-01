@@ -6,20 +6,16 @@ import { NavMenu, NavMenuProps, NavItemData } from './NavMenu';
 import { AppStore } from '@store/App/AppStore';
 import { authService } from '@store/App/service/authService';
 
-interface Props extends NavMenuProps {
-}
+interface Props extends NavMenuProps {}
 
 interface StoreProps {
     appStore: AppStore;
 }
 
-const injectableStores: (keyof StoreProps)[] = [
-    AppStore.Name,
-];
+const injectableStores: (keyof StoreProps)[] = [AppStore.Name];
 
 @observer
 class Component extends React.Component<Props & StoreProps> {
-
     @observable private menuOpen = false;
 
     constructor(props: Props & StoreProps) {
@@ -67,7 +63,7 @@ class Component extends React.Component<Props & StoreProps> {
         ];
     }
 
-    private getCommonNavItems(): NavItemData [] {
+    private getCommonNavItems(): NavItemData[] {
         return [
             {
                 to: '/wish',

@@ -14,23 +14,18 @@ import { toArrayFromIterable } from '@utils/toArrayFromIterable';
 
 import { MoviePage, MoviePageProps } from './MoviePage';
 
-interface Props extends MoviePageProps {
-}
+interface Props extends MoviePageProps {}
 
 interface StoreProps {
     movieStore: MovieStore;
     appStore: AppStore;
 }
 
-const injectableStores: (keyof StoreProps)[] = [
-    MovieStore.Name,
-    AppStore.Name,
-];
+const injectableStores: (keyof StoreProps)[] = [MovieStore.Name, AppStore.Name];
 
 @inject(...injectableStores)
 @observer
 export class MoviePageContainer extends React.Component<Props & StoreProps> {
-
     @observable private addMode = false;
     @observable private selectedMenuItems = new Set<string>([MovieFilterName.New]);
     @observable private searchValue = '';
@@ -42,14 +37,14 @@ export class MoviePageContainer extends React.Component<Props & StoreProps> {
     }
 
     public async componentDidMount(): Promise<void> {
-        await Promise.all([
-            movieService.load(),
-            authUserService.loadUserMovies(),
-        ]);
+        await Promise.all([movieService.load(), authUserService.loadUserMovies()]);
     }
 
     public render() {
-        const { movieStore: { movieList }, appStore: { authUser } } = this.props;
+        const {
+            movieStore: { movieList },
+            appStore: { authUser },
+        } = this.props;
         const viewedIds = authUser?.movies.getFilteredValuesIds({ isViewed: true }) || [];
 
         return React.createElement(MoviePage, {
@@ -96,5 +91,4 @@ export class MoviePageContainer extends React.Component<Props & StoreProps> {
             this.selectedMenuItems.add(name);
         }
     }
-
 }

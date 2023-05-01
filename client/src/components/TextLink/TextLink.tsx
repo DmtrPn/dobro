@@ -15,22 +15,12 @@ export interface TextLinkProps {
     isHighlighted?: boolean;
 }
 
-interface Props extends TextLinkProps {
-}
+interface Props extends TextLinkProps {}
 
-export function TextLink({
-    link,
-    label,
-    theme,
-    isHighlighted,
-}: Props): JSX.Element {
+export function TextLink({ link, label, theme, isHighlighted }: Props): JSX.Element {
     return (
         <a
-            className={classnames([
-                style.root,
-                isHighlighted && style.root_highlighted,
-                theme,
-            ])}
+            className={classnames([style.root, isHighlighted && style.root_highlighted, theme])}
             href={link}
             target="_blank"
         >

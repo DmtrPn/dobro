@@ -2,8 +2,7 @@ import React, { RefObject } from 'react';
 
 import style from './Clock.scss';
 
-export interface ClockProps {
-}
+export interface ClockProps {}
 
 interface Props extends ClockProps {
     hourRef: RefObject<HTMLDivElement>;
@@ -11,11 +10,7 @@ interface Props extends ClockProps {
     secondRef: RefObject<HTMLDivElement>;
 }
 
-export function Clock({
-    hourRef,
-    minuteRef,
-    secondRef,
-}: Props): JSX.Element {
+export function Clock({ hourRef, minuteRef, secondRef }: Props): JSX.Element {
     return (
         <div className={style.root}>
             <div>
@@ -32,7 +27,6 @@ export function Clock({
                     <div ref={secondRef} className={style.sc} />
                 </div>
             </div>
-
         </div>
     );
 }

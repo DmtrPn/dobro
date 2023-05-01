@@ -11,17 +11,11 @@ export interface ItemProps {
     extra?: React.ReactChild;
 }
 
-export function Item({
-    imgSrc,
-    header,
-    meta,
-    description,
-    extra,
-}: ItemProps): JSX.Element {
+export function Item({ imgSrc, header, meta, description, extra }: ItemProps): JSX.Element {
     return (
         <SemantiItem.Group>
             <SemantiItem className={style.root}>
-                {imgSrc && <SemantiItem.Image size='tiny' src={imgSrc} />}
+                {imgSrc && <SemantiItem.Image size="tiny" src={imgSrc} />}
                 <SemantiItem.Content>
                     <SemantiItem.Header>{header}</SemantiItem.Header>
                     {meta && <SemantiItem.Meta>{meta}</SemantiItem.Meta>}

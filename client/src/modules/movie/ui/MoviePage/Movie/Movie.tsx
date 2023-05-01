@@ -13,12 +13,11 @@ import { TextLink, TextLinkTheme } from '@components/TextLink';
 import { IconType } from '@components/Icon';
 import { Rating, RatingEventData } from '@components/Rating';
 
-export interface MovieProps {
-}
+export interface MovieProps {}
 
 interface Props extends MovieProps {
     canEdit: boolean;
-    movie: MovieData & { posterUrl?: string; };
+    movie: MovieData & { posterUrl?: string };
     rating: string;
     isViewed: boolean;
     userRating?: number;
@@ -28,12 +27,7 @@ interface Props extends MovieProps {
 }
 
 export function Movie({
-    movie: {
-        name,
-        link,
-        description = '',
-        posterUrl,
-    },
+    movie: { name, link, description = '', posterUrl },
     isViewed,
     canEdit,
     userRating,
@@ -42,7 +36,6 @@ export function Movie({
     onRatingChange,
     toggleStatus,
 }: Props): JSX.Element {
-
     return (
         <div className={style.root}>
             {canEdit && (
@@ -55,36 +48,18 @@ export function Movie({
                 <div className={style.title}>
                     {canEdit && (
                         <span className={isViewed ? style.statusIcon_viewed : style.statusIcon}>
-                            <IconButton
-                                inheritColor
-                                icon={IconType.CHECK}
-                                onButtonClick={toggleStatus}
-                            />
+                            <IconButton inheritColor icon={IconType.CHECK} onButtonClick={toggleStatus} />
                         </span>
                     )}
-                    <TextLink
-                        link={link}
-                        label={name}
-                        theme={TextLinkTheme.Bold}
-                    />
-                    <span className={classnames([
-                        style.rating,
-                        commonStyle.font_text,
-                    ])}>
-                        {rating}
-                    </span>
+                    <TextLink link={link} label={name} theme={TextLinkTheme.Bold} />
+                    <span className={classnames([style.rating, commonStyle.font_text])}>{rating}</span>
                 </div>
                 <div className={style.description}>
                     <TruncatedText text={description} maxLine={3} />
                 </div>
                 {canEdit && (
                     <span className={style.ratingSelect}>
-                        <Rating
-                            title={'Мой рейтинг'}
-                            rating={userRating}
-                            maxRating={10}
-                            onRate={onRatingChange}
-                        />
+                        <Rating title={'Мой рейтинг'} rating={userRating} maxRating={10} onRate={onRatingChange} />
                     </span>
                 )}
             </div>

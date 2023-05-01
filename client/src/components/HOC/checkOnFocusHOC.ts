@@ -11,12 +11,8 @@ interface State {
     isOnFocus: boolean;
 }
 
-export function checkOnFocusHOC<Props>(
-    WrappedComponent: any,
-): React.ComponentType<Props> {
-
+export function checkOnFocusHOC<Props>(WrappedComponent: any): React.ComponentType<Props> {
     class FixedPositionHOC extends React.Component<Props, State> {
-
         public state: State = {
             isOnFocus: false,
         };
@@ -42,5 +38,4 @@ export function checkOnFocusHOC<Props>(
     }
 
     return FixedPositionHOC;
-
 }

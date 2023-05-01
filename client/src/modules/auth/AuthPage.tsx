@@ -7,8 +7,7 @@ import { Input } from '@components/Input';
 import { SaveButton } from '@components/ActionButtons/SaveButton';
 import classnames from 'classnames';
 
-export interface AuthPageProps {
-}
+export interface AuthPageProps {}
 
 interface Props extends AuthPageProps {
     errorMessage?: string;
@@ -30,64 +29,52 @@ export function AuthPage({
     onInputChange,
 }: Props): JSX.Element {
     const isPasswordValid = password.length > 5;
-    return !!fullName
-        ? (
-            <div className={style.root}>
-                <div className={style.form}>
-                    <div className={commonStyle.field}>
-                        <span className={style.message}>Здравствуйте, {fullName}</span>
-                    </div>
-                    <div className={commonStyle.field}>
-                        <SaveButton
-                            label={'Выйти'}
-                            onSaveClick={onLogoutClick}
-                        />
-                    </div>
+    return !!fullName ? (
+        <div className={style.root}>
+            <div className={style.form}>
+                <div className={commonStyle.field}>
+                    <span className={style.message}>Здравствуйте, {fullName}</span>
+                </div>
+                <div className={commonStyle.field}>
+                    <SaveButton label={'Выйти'} onSaveClick={onLogoutClick} />
                 </div>
             </div>
-        )
-        : (
-            <div className={style.root}>
-                <div className={style.form}>
+        </div>
+    ) : (
+        <div className={style.root}>
+            <div className={style.form}>
+                <div className={commonStyle.field}>
+                    <span className={style.message}>Авторизация</span>
+                </div>
+                {!!errorMessage && (
                     <div className={commonStyle.field}>
-                        <span className={style.message}>Авторизация</span>
+                        <span className={style.errorMessage}>{errorMessage}</span>
                     </div>
-                    {!!errorMessage && (
-                        <div className={commonStyle.field}>
-                            <span className={style.errorMessage}>{errorMessage}</span>
-                        </div>
-                    )}
-                    <div className={commonStyle.field}>
-                        <Input
-                            name={'email'}
-                            title={'email'}
-                            type={'email'}
-                            value={email}
-                            onChange={onInputChange}
-                            onKeyDown={(e) => e.keyCode === 13 ? onLoginClick() : null}
-                        />
-                    </div>
-                    <div className={commonStyle.field}>
-                        <Input
-                            type={'password'}
-                            name={'password'}
-                            title={'Пароль'}
-                            value={password}
-                            onChange={onInputChange}
-                            onKeyDown={(e) => e.keyCode === 13 ? onLoginClick() : null}
-                        />
-                    </div>
-                    <div className={classnames([
-                        commonStyle.field,
-                        style.buttons,
-                    ])}>
-                        <SaveButton
-                            disabled={!isPasswordValid}
-                            label={'Войти'}
-                            onSaveClick={onLoginClick}
-                        />
-                    </div>
+                )}
+                <div className={commonStyle.field}>
+                    <Input
+                        name={'email'}
+                        title={'email'}
+                        type={'email'}
+                        value={email}
+                        onChange={onInputChange}
+                        onKeyDown={e => (e.keyCode === 13 ? onLoginClick() : null)}
+                    />
+                </div>
+                <div className={commonStyle.field}>
+                    <Input
+                        type={'password'}
+                        name={'password'}
+                        title={'Пароль'}
+                        value={password}
+                        onChange={onInputChange}
+                        onKeyDown={e => (e.keyCode === 13 ? onLoginClick() : null)}
+                    />
+                </div>
+                <div className={classnames([commonStyle.field, style.buttons])}>
+                    <SaveButton disabled={!isPasswordValid} label={'Войти'} onSaveClick={onLoginClick} />
                 </div>
             </div>
-        );
+        </div>
+    );
 }

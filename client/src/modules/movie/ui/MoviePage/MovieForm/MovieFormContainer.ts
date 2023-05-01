@@ -15,7 +15,6 @@ interface Props {
 }
 
 export class MovieFormContainer extends React.Component<Props> {
-
     public render() {
         return React.createElement(Form, {
             mutableData: MovieMutableData,

@@ -24,26 +24,20 @@ export function TruncatedText({
     toggleIsOpen,
 }: Props): JSX.Element {
     return (
-        <div
-            className={classnames([
-                style.root,
-                isTruncated && style.truncated,
-            ])}
-            onClick={toggleIsOpen}
-        >
-            {isOpen
-                ? text
-                : (
-                    <div
-                        ref={truncatedTextRef}
-                        className={style.truncated_text}
-                        style={{
-                            WebkitLineClamp: maxLine,
-                        }}
-                    >
-                        {text}
-                    </div>
-                )}
+        <div className={classnames([style.root, isTruncated && style.truncated])} onClick={toggleIsOpen}>
+            {isOpen ? (
+                text
+            ) : (
+                <div
+                    ref={truncatedTextRef}
+                    className={style.truncated_text}
+                    style={{
+                        WebkitLineClamp: maxLine,
+                    }}
+                >
+                    {text}
+                </div>
+            )}
         </div>
     );
 }
