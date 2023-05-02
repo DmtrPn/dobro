@@ -82,7 +82,7 @@
     "sass-loader": "12.6.0",
     "semantic-ui-css": "2.4.1",
     "semantic-ui-react": "2.1.4",
-    "svg-sprite": "1.5.4",
+    "svg-sprite": "2.0.2",
     "terser-webpack-plugin": "5.3.1",
     "ts-jest": "29.1.0",
     "ts-node": "10.7.0",
@@ -97,7 +97,6 @@
     "webpack-merge": "5.8.0",
     "webpack-stream": "7.0.0"
   },
-  "dependencies": {},
   "resolutions": {
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1"
