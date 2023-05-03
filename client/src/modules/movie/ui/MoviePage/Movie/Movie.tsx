@@ -1,41 +1,35 @@
 import React from 'react';
 import classnames from 'classnames';
+import { observer } from 'mobx-react-lite';
 
 import style from './Movie.scss';
 import commonStyle from '@components/mixins/commonStyles.scss';
-
-import { MovieData } from 'dobro-types/frontend';
 
 import { IconButton } from '@components/ActionButtons/IconButton';
 import { EditButton } from '@components/ActionButtons/EditButton';
 import { TruncatedText } from '@components/TruncatedText';
 import { TextLink, TextLinkTheme } from '@components/TextLink';
 import { IconType } from '@components/Icon';
-import { Rating, RatingEventData } from '@components/Rating';
+import { Rating } from '@components/Rating';
+import { useMovie } from './useMovie';
 
 export interface MovieProps {}
 
 interface Props extends MovieProps {
-    canEdit: boolean;
-    movie: MovieData & { posterUrl?: string };
-    rating: string;
-    isViewed: boolean;
-    userRating?: number;
+    id: string;
     onEditClick(): void;
-    toggleStatus(): void;
-    onRatingChange(event: React.MouseEvent<HTMLDivElement>, data: RatingEventData): void;
 }
 
-export function Movie({
-    movie: { name, link, description = '', posterUrl },
-    isViewed,
-    canEdit,
-    userRating,
-    rating,
-    onEditClick,
-    onRatingChange,
-    toggleStatus,
-}: Props): JSX.Element {
+function Component({ id, onEditClick }: Props): JSX.Element {
+    const {
+        movie: { name, link, description = '', posterUrl },
+        isViewed,
+        canEdit,
+        userRating,
+        rating,
+        onRatingChange,
+        toggleStatus,
+    } = useMovie({ id });
     return (
         <div className={style.root}>
             {canEdit && (
@@ -66,3 +60,5 @@ export function Movie({
         </div>
     );
 }
+
+export const Movie = observer(Component);

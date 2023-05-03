@@ -28,7 +28,7 @@ export function useCheckOnFocus(params: UseCheckOnFocusParams = {}): UseCheckOnF
         if (params.name) {
             event.target.name = params.name;
         }
-        params.onFocus?.(event);
+        params.onBlur?.(event);
     }
 
     return {

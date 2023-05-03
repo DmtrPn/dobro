@@ -26,7 +26,6 @@ export const AuthPage = observer(({}: AuthPageProps): JSX.Element => {
     const { email, errorMessage, password, isPasswordValid, onInputChange, onLoginClick, onLogoutClick } = useAuth();
     const { fullName } = useAuthUser();
 
-    console.log('fullName:', fullName);
     return (
         <div className={style.root} data-testid={AuthPageDataTestAttributes.Root}>
             <div className={style.form}>
