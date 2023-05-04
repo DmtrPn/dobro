@@ -30,6 +30,7 @@ function Component({ id, onEditClick }: Props): JSX.Element {
         onRatingChange,
         toggleStatus,
     } = useMovie({ id });
+
     return (
         <div className={style.root}>
             {canEdit && (
